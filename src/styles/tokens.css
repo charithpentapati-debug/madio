@@ -1,0 +1,52 @@
+/* ============================================================
+   MADIO Design Tokens
+   Shared across all verticals. Import in index.css.
+   ============================================================ */
+
+:root {
+  /* --- Typography --- */
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+
+  /* --- Shared surface palette --- */
+  --color-surface:       #FAFAF7;   /* warm off-white page bg */
+  --color-surface-warm:  #F5F0EB;   /* slightly warmer tint */
+  --color-surface-mid:   #F0EDE8;
+  --color-ink:           #1A1A1A;   /* body text default */
+  --color-ink-muted:     #6B6B6B;
+  --color-ink-subtle:    #C4B9A8;
+  --color-border:        #EBE8E2;
+  --color-border-dark:   #243040;   /* navy-tinted dark border */
+
+  /* --- MADIO master palette (Furniture flagship) --- */
+  --color-navy:          #16232B;   /* primary dark / header-footer bg */
+  --color-olive:         #3D4A2E;   /* primary brand accent */
+  --color-navy-mid:      #1E2F3C;   /* slightly lighter navy for hover states */
+  --color-navy-muted:    #8FA3B1;   /* desaturated navy-tinted mid text */
+
+  /* --- Per-vertical accent colours --- */
+  --accent-madio:        #3D4A2E;   /* MADIO top-level — olive/sage (master) */
+  --accent-map:          #B8956A;   /* MAP — warm gold */
+  --accent-furniture:    #3D4A2E;   /* Furniture — same as master olive */
+  --accent-doors:        #4A6741;   /* Doors & Windows — forest green */
+
+  /* --- Shared spacing scale --- */
+  --space-xs:   4px;
+  --space-sm:   8px;
+  --space-md:   16px;
+  --space-lg:   24px;
+  --space-xl:   40px;
+  --space-2xl:  64px;
+  --space-3xl:  96px;
+
+  /* --- Shared motion --- */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out:   cubic-bezier(0.215, 0.61, 0.355, 1);
+  --duration-fast: 200ms;
+  --duration-base: 300ms;
+  --duration-slow: 500ms;
+
+  /* --- Shared button base --- */
+  --btn-tracking:  0.2em;
+  --btn-radius:    0px;   /* MAP aesthetic: sharp corners */
+}

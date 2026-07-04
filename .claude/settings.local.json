@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls \"/Users/cherry/AIBuilds/MAP /src/assets/\")",
+      "Read(//Users/cherry/AIBuilds/MAP /src/assets/**)"
+    ]
+  }
+}
