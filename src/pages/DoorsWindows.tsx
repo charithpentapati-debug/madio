@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { dwProductsData } from "../data/doorsWindows";
 import { VerticalProductCard } from "../components/VerticalProductCard";
 
-const DW_ACCENT = "#4A6741";
+const DW_ACCENT = "#B8956A";
 
 // Why MADIO D&W — from PDF page 7, verbatim
 const whyPoints = [

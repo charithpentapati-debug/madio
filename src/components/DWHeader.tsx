@@ -58,7 +58,7 @@ export const DWHeader: React.FC = () => {
                 end={link.end}
                 className={({ isActive }) =>
                   "text-[11px] font-sans tracking-[0.15em] uppercase font-light transition-all duration-300 relative pb-1 whitespace-nowrap " +
-                  "after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-[1px] after:bg-[#4A6741] after:transition-all after:duration-300 " +
+                  "after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-[1px] after:bg-[#B8956A] after:transition-all after:duration-300 " +
                   (isActive
                     ? "text-white after:w-full"
                     : "text-[#8FA3B1] hover:text-white after:w-0 hover:after:w-full")
@@ -102,7 +102,7 @@ export const DWHeader: React.FC = () => {
               end={link.end}
               className={({ isActive }) =>
                 `text-3xl font-serif tracking-[0.06em] font-light transition-all duration-300 ${
-                  isActive ? "text-white pl-4 border-l-2 border-[#4A6741]" : "text-[#8FA3B1] hover:text-white"
+                  isActive ? "text-white pl-4 border-l-2 border-[#B8956A]" : "text-[#8FA3B1] hover:text-white"
                 }`
               }
             >
@@ -117,7 +117,7 @@ export const DWHeader: React.FC = () => {
           </Link>
         </div>
         <div className="p-10 border-t border-[#243040]">
-          <p className="text-[10px] tracking-[0.2em] uppercase text-[#4A6741] font-sans mb-2">
+          <p className="text-[10px] tracking-[0.2em] uppercase text-[#B8956A] font-sans mb-2">
             MADIO Doors &amp; Windows
           </p>
           <p className="text-xs text-[#8FA3B1] font-light mt-3">Shilpa Hills, Kondapur, Hyderabad</p>

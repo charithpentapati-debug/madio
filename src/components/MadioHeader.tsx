@@ -27,7 +27,7 @@ export const MadioHeader: React.FC = () => {
   }, [location]);
 
   const navLinks = [
-    { path: "/furniture",     label: "MADIO Furniture" },
+    { path: "/",              label: "MADIO Furniture" },
     { path: "/map",           label: "MAP" },
     { path: "/doors-windows", label: "MADIO Doors & Windows" },
     { path: "/contact",       label: "Contact" },
@@ -36,7 +36,7 @@ export const MadioHeader: React.FC = () => {
   const navLinkClass = ({ isActive }: { isActive: boolean }) => {
     const base =
       "text-[11px] font-sans tracking-[0.15em] uppercase font-light transition-all duration-300 relative pb-1 whitespace-nowrap " +
-      "after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-[1px] after:bg-[#3D4A2E] after:transition-all after:duration-300 ";
+      "after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-[1px] after:bg-[#B8956A] after:transition-all after:duration-300 ";
     if (onDark) {
       return base + (isActive
         ? "text-white after:w-full"
@@ -114,7 +114,7 @@ export const MadioHeader: React.FC = () => {
               className={({ isActive }) =>
                 `text-3xl font-serif tracking-[0.06em] font-light transition-all duration-300 ${
                   isActive
-                    ? "text-white pl-4 border-l-2 border-[#3D4A2E]"
+                    ? "text-white pl-4 border-l-2 border-[#B8956A]"
                     : "text-[#8FA3B1] hover:text-white"
                 }`
               }
@@ -124,7 +124,7 @@ export const MadioHeader: React.FC = () => {
           ))}
         </div>
         <div className="p-10 border-t border-[#243040]">
-          <p className="text-[10px] tracking-[0.2em] uppercase text-[#3D4A2E] font-sans mb-2">
+          <p className="text-[10px] tracking-[0.2em] uppercase text-[#B8956A] font-sans mb-2">
             MADIO Furniture | MAP | MADIO Doors &amp; Windows
           </p>
           <p className="text-xs text-[#8FA3B1] font-light mt-3">Kondapur, Hyderabad, India</p>

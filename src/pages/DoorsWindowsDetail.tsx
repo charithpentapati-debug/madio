@@ -4,7 +4,7 @@ import { ArrowLeft, ArrowRight, CheckCircle } from "lucide-react";
 import { dwProductsData } from "../data/doorsWindows";
 import type { DWSpec } from "../data/doorsWindows";
 
-const DW_ACCENT = "#4A6741";
+const DW_ACCENT = "#B8956A";
 
 const hasValue = (v: string | undefined): v is string =>
   !!v && v.trim() !== "" && v.trim().toLowerCase() !== "todo";

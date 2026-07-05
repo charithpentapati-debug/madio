@@ -60,6 +60,7 @@ export const dwProductsData: DWProduct[] = [
       acoustic:      "Multi-chamber EPDM seals — ≤ 38 dB sound attenuation",
       thermal:       "Thermal break construction — compatible with Low-E glazing",
       windLoad:      "Class A structural wind-load resistance",
+      warranty:      "10-year product warranty",
     },
   },
   {

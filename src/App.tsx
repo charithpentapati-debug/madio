@@ -1,10 +1,9 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { MadioLayout } from "./layouts/MadioLayout";
 import { MapLayout } from "./layouts/MapLayout";
 import { DWLayout } from "./layouts/DWLayout";
 import { FurnitureLayout } from "./layouts/FurnitureLayout";
-import { MadioHome } from "./pages/MadioHome";
 import { FurnitureLanding } from "./pages/FurnitureLanding";
 import { FurnitureCategoryPage } from "./pages/FurnitureCategoryPage";
 import { FurnitureProductDetail } from "./pages/FurnitureProductDetail";
@@ -25,13 +24,13 @@ const App: React.FC = () => (
     <Routes>
       {/* MADIO umbrella routes (home + contact share the MADIO header/footer) */}
       <Route element={<MadioLayout />}>
-        <Route index element={<MadioHome />} />
+        <Route index element={<FurnitureLanding />} />
         <Route path="contact" element={<MadioContact />} />
       </Route>
 
       {/* MADIO Furniture vertical — own layout with compound MADIO/Furniture header */}
       <Route path="furniture" element={<FurnitureLayout />}>
-        <Route index element={<FurnitureLanding />} />
+        <Route index element={<Navigate to="/" replace />} />
         <Route path=":category" element={<FurnitureCategoryPage />} />
         <Route path=":category/:productId" element={<FurnitureProductDetail />} />
       </Route>

@@ -103,7 +103,7 @@ export const VerticalProductCard: React.FC<VerticalProductCardProps> = ({
             {category}
           </span>
         )}
-        <h3 className="text-xl font-serif font-light text-[#16232B] mb-2 group-hover:text-[#3D4A2E] transition-colors duration-300">
+        <h3 className="text-xl font-serif font-light text-[#16232B] mb-2 group-hover:text-[#B8956A] transition-colors duration-300">
           {name}
         </h3>
         <p className="text-xs text-[#6B6B6B] font-light leading-relaxed flex-grow">

@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { furnitureCategories } from "../data/furniture";
 import type { FurnitureCategoryMeta } from "../data/furniture";
 
-const FURNITURE_ACCENT = "#3D4A2E";
+const FURNITURE_ACCENT = "#B8956A";
 
 // Subtle olive stripe texture — placeholder visual for all hero/image areas
 const OliveTexture: React.FC<{ className?: string; opacity?: string }> = ({

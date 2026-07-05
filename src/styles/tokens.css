@@ -19,16 +19,16 @@
   --color-border-dark:   #243040;   /* navy-tinted dark border */
 
   /* --- MADIO master palette (Furniture flagship) --- */
+  --color-olive:         #B8956A;   /* primary brand accent (MAP sand/gold) */
   --color-navy:          #16232B;   /* primary dark / header-footer bg */
-  --color-olive:         #3D4A2E;   /* primary brand accent */
   --color-navy-mid:      #1E2F3C;   /* slightly lighter navy for hover states */
   --color-navy-muted:    #8FA3B1;   /* desaturated navy-tinted mid text */
 
   /* --- Per-vertical accent colours --- */
-  --accent-madio:        #3D4A2E;   /* MADIO top-level — olive/sage (master) */
-  --accent-map:          #B8956A;   /* MAP — warm gold */
-  --accent-furniture:    #3D4A2E;   /* Furniture — same as master olive */
-  --accent-doors:        #4A6741;   /* Doors & Windows — forest green */
+  --accent-madio:        #B8956A;   /* MADIO top-level — warm sand/gold */
+  --accent-map:          #B8956A;   /* MAP — warm sand/gold */
+  --accent-furniture:    #B8956A;   /* Furniture — warm sand/gold */
+  --accent-doors:        #B8956A;   /* Doors & Windows — warm sand/gold */
 
   /* --- Shared spacing scale --- */
   --space-xs:   4px;

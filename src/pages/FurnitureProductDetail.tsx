@@ -9,7 +9,7 @@ import {
 } from "../data/furniture";
 import type { FurnitureProductSpec } from "../data/furniture";
 
-const FURNITURE_ACCENT = "#3D4A2E";
+const FURNITURE_ACCENT = "#B8956A";
 
 // Guard: hides empty / placeholder spec fields in the UI
 const hasValue = (v: string | undefined): v is string =>
@@ -31,7 +31,7 @@ export const FurnitureProductDetail: React.FC = () => {
 
   // Validate route params
   if (!category || !isFurnitureCategoryId(category)) {
-    return <Navigate to="/furniture" replace />;
+    return <Navigate to="/" replace />;
   }
   const product = productId ? getProductById(productId) : undefined;
   if (!product || product.category !== category) {

@@ -8,7 +8,7 @@ import {
 } from "../data/furniture";
 import type { FurnitureProduct } from "../data/furniture";
 
-const FURNITURE_ACCENT = "#3D4A2E";
+const FURNITURE_ACCENT = "#B8956A";
 
 // Product card for the listing grid
 const ProductCard: React.FC<{ product: FurnitureProduct; categoryId: string }> = ({
@@ -108,7 +108,7 @@ export const FurnitureCategoryPage: React.FC = () => {
 
   // Unknown slug → redirect to landing
   if (!category || !isFurnitureCategoryId(category)) {
-    return <Navigate to="/furniture" replace />;
+    return <Navigate to="/" replace />;
   }
 
   const meta = furnitureCategories.find((c) => c.id === category);
@@ -134,7 +134,7 @@ export const FurnitureCategoryPage: React.FC = () => {
         />
         <div className="relative z-10 max-w-7xl mx-auto">
           <Link
-            to="/furniture"
+            to="/"
             className="inline-flex items-center space-x-2 text-xs uppercase tracking-[0.2em] font-sans text-[#8FA3B1] hover:text-white transition-colors mb-10"
           >
             <ArrowLeft size={13} />
@@ -246,7 +246,7 @@ export const FurnitureCategoryPage: React.FC = () => {
                 <ArrowRight size={13} />
               </Link>
               <Link
-                to="/furniture"
+                to="/"
                 className="inline-flex items-center space-x-2 px-8 py-4 text-xs uppercase tracking-[0.25em] font-sans font-medium border border-[#EBE8E2] text-[#6B6B6B] hover:border-[#16232B] hover:text-[#16232B] transition-all duration-300"
               >
                 <ArrowLeft size={13} />

@@ -66,6 +66,12 @@ export const MapHeader: React.FC = () => {
           {/* CTA & Mobile Toggle */}
           <div className="flex items-center space-x-6">
             <Link
+              to="/"
+              className="hidden lg:block text-[11px] tracking-[0.12em] uppercase font-sans text-[#6B6B6B] hover:text-[#B8956A] transition-colors duration-300"
+            >
+              ← MADIO
+            </Link>
+            <Link
               to="/map/quote"
               className="hidden lg:flex items-center space-x-2 border border-[#B8956A]/60 px-6 py-2.5 text-xs tracking-[0.2em] uppercase font-sans text-[#1A1A1A] hover:bg-[#B8956A] hover:text-white hover:border-[#B8956A] transition-all duration-300"
             >
@@ -110,6 +116,12 @@ export const MapHeader: React.FC = () => {
           >
             <span>Request a Quote</span>
             <ArrowRight size={18} />
+          </Link>
+          <Link
+            to="/"
+            className="text-2xl font-serif tracking-[0.1em] font-light text-[#1A1A1A] hover:text-[#B8956A] transition-colors duration-300 pt-2 block"
+          >
+            MADIO
           </Link>
         </div>
         <div className="p-10 border-t border-[#EBE8E2] bg-[#F5F0EB]/60">

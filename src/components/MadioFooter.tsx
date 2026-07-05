@@ -19,7 +19,7 @@ export const MadioFooter: React.FC = () => {
               style={{ filter: "brightness(0) invert(1)" }}
             />
           </Link>
-          <p className="text-[10px] tracking-[0.2em] uppercase font-sans text-[#3D4A2E] font-medium">
+          <p className="text-[10px] tracking-[0.2em] uppercase font-sans text-[#B8956A] font-medium">
             MADIO Furniture | MAP | MADIO Doors &amp; Windows
           </p>
           <p className="text-xs text-[#8FA3B1] font-light leading-relaxed max-w-xs mt-2">
@@ -29,12 +29,12 @@ export const MadioFooter: React.FC = () => {
 
         {/* Verticals */}
         <div className="md:col-span-3">
-          <h4 className="text-[10px] uppercase tracking-[0.2em] font-sans font-medium text-[#3D4A2E] mb-5">
+          <h4 className="text-[10px] uppercase tracking-[0.2em] font-sans font-medium text-[#B8956A] mb-5">
             Our Brands
           </h4>
           <ul className="space-y-3 text-xs text-[#8FA3B1] font-light">
             <li>
-              <Link to="/furniture" className="hover:text-white transition-colors duration-300">
+              <Link to="/" className="hover:text-white transition-colors duration-300">
                 MADIO Furniture
               </Link>
             </li>
@@ -53,7 +53,7 @@ export const MadioFooter: React.FC = () => {
 
         {/* Contact */}
         <div className="md:col-span-3 md:col-start-9">
-          <h4 className="text-[10px] uppercase tracking-[0.2em] font-sans font-medium text-[#3D4A2E] mb-5">
+          <h4 className="text-[10px] uppercase tracking-[0.2em] font-sans font-medium text-[#B8956A] mb-5">
             Contact
           </h4>
           <ul className="space-y-3 text-xs text-[#8FA3B1] font-light">
@@ -78,7 +78,7 @@ export const MadioFooter: React.FC = () => {
           </ul>
           <Link
             to="/contact"
-            className="inline-block mt-6 text-[10px] uppercase tracking-[0.2em] font-sans border border-[#3D4A2E] text-[#3D4A2E] px-4 py-2 hover:bg-[#3D4A2E] hover:text-white transition-all duration-300"
+            className="inline-block mt-6 text-[10px] uppercase tracking-[0.2em] font-sans border border-[#B8956A] text-[#B8956A] px-4 py-2 hover:bg-[#B8956A] hover:text-white transition-all duration-300"
           >
             Get in Touch
           </Link>

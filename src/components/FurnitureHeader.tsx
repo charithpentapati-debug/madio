@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import madioLogo from "../assets/madio-logo.png";
 
-const FURNITURE_ACCENT = "#3D4A2E";
+const FURNITURE_ACCENT = "#B8956A";
 
 export const FurnitureHeader: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -34,7 +34,7 @@ export const FurnitureHeader: React.FC = () => {
         <div className="max-w-7xl mx-auto px-6 md:px-12 h-16 flex items-center justify-between">
 
           {/* Compound wordmark: MADIO / Furniture */}
-          <Link to="/furniture" className="flex flex-col leading-none group">
+          <Link to="/" className="flex flex-col leading-none group">
             <img
               src={madioLogo}
               alt="MADIO Furniture"
@@ -52,7 +52,7 @@ export const FurnitureHeader: React.FC = () => {
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center space-x-8">
             {[
-              { to: "/furniture",         label: "All Furniture" },
+              { to: "/",                  label: "All Furniture" },
               { to: "/contact",           label: "Enquire"       },
             ].map(({ to, label }) => (
               <Link
@@ -93,7 +93,7 @@ export const FurnitureHeader: React.FC = () => {
               MADIO Furniture
             </span>
             {[
-              { to: "/furniture",  label: "All Furniture" },
+              { to: "/",           label: "All Furniture" },
               { to: "/contact",    label: "Enquire"       },
               { to: "/",           label: "← MADIO"      },
             ].map(({ to, label }) => (
