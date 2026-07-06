@@ -25,7 +25,7 @@ export const MapHeader: React.FC = () => {
     { path: "/map/gallery",  label: "Texture Gallery" },
     { path: "/map/stencils", label: "Stencils" },
     { path: "/map/colors",   label: "Color Library" },
-    { path: "/map/contact",  label: "Contact" },
+    { path: "/contact?source=map",  label: "Contact" },
   ];
 
   return (
@@ -72,7 +72,7 @@ export const MapHeader: React.FC = () => {
               ← MADIO
             </Link>
             <Link
-              to="/map/quote"
+              to="/contact?source=map"
               className="hidden lg:flex items-center space-x-2 border border-[#B8956A]/60 px-6 py-2.5 text-xs tracking-[0.2em] uppercase font-sans text-[#1A1A1A] hover:bg-[#B8956A] hover:text-white hover:border-[#B8956A] transition-all duration-300"
             >
               <span>Request Quote</span>
@@ -111,7 +111,7 @@ export const MapHeader: React.FC = () => {
             </NavLink>
           ))}
           <Link
-            to="/map/quote"
+            to="/contact?source=map"
             className="inline-flex items-center justify-between border-b border-[#B8956A]/40 pb-2 text-base tracking-[0.2em] uppercase font-sans text-[#B8956A] pt-4"
           >
             <span>Request a Quote</span>

@@ -25,25 +25,25 @@ export const MadioHome: React.FC = () => (
 
       {/* Content — anchored to bottom */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 pb-24 md:pb-32">
-        <span className="text-[10px] tracking-[0.3em] uppercase font-sans font-medium text-[#3D4A2E] block mb-6">
+        <span className="text-[10px] tracking-[0.3em] uppercase font-sans font-medium text-[#B8956A] block mb-6">
           Furniture | MAP | Doors &amp; Windows
         </span>
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif font-light text-white leading-[1.05] mb-8 max-w-3xl">
           Spaces shaped by <span className="italic font-normal">craft</span>.
         </h1>
-        <p className="text-sm md:text-base text-[#8FA3B1] font-light leading-relaxed max-w-lg mb-12">
+        <p className="text-sm md:text-base text-[#C4B9A8] font-light leading-relaxed max-w-lg mb-12">
           MADIO is a Hyderabad-based design house developing premium furniture, architectural surface finishes, and building products for architects and luxury developers across India.
         </p>
         <div className="flex flex-col sm:flex-row gap-4">
           <Link
             to="/furniture"
-            className="inline-flex items-center justify-center space-x-2 bg-[#3D4A2E] text-white px-8 py-4 text-xs uppercase tracking-[0.25em] font-sans font-medium hover:bg-[#4A5938] transition-all duration-300"
+            className="inline-flex items-center justify-center space-x-2 bg-[#B8956A] text-white px-8 py-4 text-xs uppercase tracking-[0.25em] font-sans font-medium hover:bg-[#4A5938] transition-all duration-300"
           >
             <span>Explore MADIO Furniture</span>
             <ArrowRight size={13} />
           </Link>
           <Link
-            to="/contact"
+            to="/contact?source=general"
             className="inline-flex items-center justify-center space-x-2 border border-white/50 text-white px-8 py-4 text-xs uppercase tracking-[0.25em] font-sans font-medium hover:border-white hover:bg-white/10 transition-all duration-300"
           >
             <span>Enquire</span>
@@ -66,7 +66,7 @@ export const MadioHome: React.FC = () => (
         ================================================================ */}
     <section className="bg-[#FAFAF7]">
       <div className="max-w-7xl mx-auto px-6 md:px-12 pt-20 pb-6">
-        <span className="text-[10px] tracking-[0.25em] uppercase text-[#3D4A2E] font-sans font-medium">
+        <span className="text-[10px] tracking-[0.25em] uppercase text-[#B8956A] font-sans font-medium">
           Our Brands
         </span>
       </div>
@@ -81,33 +81,33 @@ export const MadioHome: React.FC = () => (
             className="lg:col-span-2 lg:row-span-2 relative min-h-[420px] lg:min-h-[560px] group overflow-hidden flex flex-col justify-end"
           >
             {/* TODO: client to provide hero furniture photography for this block */}
-            <div className="absolute inset-0 bg-[#16232B]" />
+            <div className="absolute inset-0 bg-[#EBE8E2]" />
             {/* Olive texture lines — placeholder visual treatment */}
             <div className="absolute inset-0 opacity-[0.06]"
               style={{
-                backgroundImage: "repeating-linear-gradient(45deg, #3D4A2E 0, #3D4A2E 1px, transparent 0, transparent 50%)",
+                backgroundImage: "repeating-linear-gradient(45deg, #B8956A 0, #B8956A 1px, transparent 0, transparent 50%)",
                 backgroundSize: "20px 20px",
               }}
             />
-            <div className="absolute top-8 right-8 text-[9px] uppercase tracking-[0.25em] text-[#3D4A2E] font-sans border border-[#243040] px-3 py-1.5">
+            <div className="absolute top-8 right-8 text-[9px] uppercase tracking-[0.25em] text-[#B8956A] font-sans border border-[#EBE8E2] px-3 py-1.5">
               {/* TODO: client to provide furniture photography */}
               Photography coming soon
             </div>
             {/* Hover reveal overlay */}
-            <div className="absolute inset-0 bg-[#3D4A2E]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="absolute inset-0 bg-[#B8956A]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             {/* Content */}
             <div className="relative z-10 p-8 md:p-12">
-              <div className="w-10 h-[2px] bg-[#3D4A2E] mb-6 transition-all duration-300 group-hover:w-16" />
-              <span className="text-[10px] uppercase tracking-[0.25em] text-[#3D4A2E] font-sans font-medium block mb-2">
+              <div className="w-10 h-[2px] bg-[#B8956A] mb-6 transition-all duration-300 group-hover:w-16" />
+              <span className="text-[10px] uppercase tracking-[0.25em] text-[#B8956A] font-sans font-medium block mb-2">
                 Flagship Vertical
               </span>
-              <h2 className="text-4xl md:text-5xl font-serif font-light text-white mb-3">
+              <h2 className="text-4xl md:text-5xl font-serif font-light text-[#16232B] mb-3">
                 MADIO Furniture
               </h2>
-              <p className="text-xs text-[#8FA3B1] font-light leading-relaxed max-w-sm mb-6">
+              <p className="text-xs text-[#6B6B6B] font-light leading-relaxed max-w-sm mb-6">
                 Design-led furniture for residential and hospitality projects, crafted in Hyderabad.
               </p>
-              <span className="inline-flex items-center space-x-2 text-xs uppercase tracking-[0.2em] font-sans font-medium text-white group-hover:space-x-3 transition-all duration-300">
+              <span className="inline-flex items-center space-x-2 text-xs uppercase tracking-[0.2em] font-sans font-medium text-[#16232B] group-hover:space-x-3 transition-all duration-300">
                 <span>Explore</span>
                 <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform duration-300" />
               </span>
@@ -145,23 +145,23 @@ export const MadioHome: React.FC = () => (
             className="relative min-h-[260px] group overflow-hidden flex flex-col justify-end"
           >
             {/* TODO: client to provide Doors & Windows product/showroom photography */}
-            <div className="absolute inset-0 bg-[#1E2F3C]" />
+            <div className="absolute inset-0 bg-[#EBE8E2]" />
             <div className="absolute inset-0 opacity-[0.04]"
               style={{
-                backgroundImage: "repeating-linear-gradient(-45deg, #4A6741 0, #4A6741 1px, transparent 0, transparent 50%)",
+                backgroundImage: "repeating-linear-gradient(-45deg, #B8956A 0, #B8956A 1px, transparent 0, transparent 50%)",
                 backgroundSize: "16px 16px",
               }}
             />
-            <div className="absolute inset-0 bg-[#4A6741]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="absolute inset-0 bg-[#B8956A]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             <div className="relative z-10 p-6 md:p-8">
-              <div className="w-8 h-[2px] bg-[#4A6741] mb-4 transition-all duration-300 group-hover:w-12" />
-              <span className="text-[9px] uppercase tracking-[0.2em] text-[#4A6741] font-sans font-medium block mb-1">
+              <div className="w-8 h-[2px] bg-[#B8956A] mb-4 transition-all duration-300 group-hover:w-12" />
+              <span className="text-[9px] uppercase tracking-[0.2em] text-[#B8956A] font-sans font-medium block mb-1">
                 Fenestration Systems
               </span>
-              <h2 className="text-2xl font-serif font-light text-white mb-4">
+              <h2 className="text-2xl font-serif font-light text-[#16232B] mb-4">
                 MADIO Doors &amp; Windows
               </h2>
-              <span className="inline-flex items-center space-x-2 text-[11px] uppercase tracking-[0.2em] font-sans font-medium text-white group-hover:space-x-3 transition-all duration-300">
+              <span className="inline-flex items-center space-x-2 text-[11px] uppercase tracking-[0.2em] font-sans font-medium text-[#16232B] group-hover:space-x-3 transition-all duration-300">
                 <span>Explore</span>
                 <ArrowRight size={11} className="group-hover:translate-x-1 transition-transform duration-300" />
               </span>
@@ -178,7 +178,7 @@ export const MadioHome: React.FC = () => (
     <section className="border-t border-[#EBE8E2] bg-[#F5F0EB]/50 py-20 px-6 md:px-12">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         <div>
-          <span className="text-[10px] tracking-[0.3em] uppercase text-[#3D4A2E] font-sans font-medium block mb-5">
+          <span className="text-[10px] tracking-[0.3em] uppercase text-[#B8956A] font-sans font-medium block mb-5">
             About MADIO
           </span>
           <h2 className="text-3xl md:text-4xl font-serif font-light text-[#16232B] leading-snug mb-6">
@@ -201,8 +201,8 @@ export const MadioHome: React.FC = () => (
             </div>
           ))}
           <Link
-            to="/contact"
-            className="inline-flex items-center space-x-2 text-xs uppercase tracking-[0.2em] font-sans font-medium text-[#3D4A2E] hover:text-[#16232B] transition-colors duration-300 pt-2"
+            to="/contact?source=general"
+            className="inline-flex items-center space-x-2 text-xs uppercase tracking-[0.2em] font-sans font-medium text-[#B8956A] hover:text-[#16232B] transition-colors duration-300 pt-2"
           >
             <span>Get in Touch</span>
             <ArrowRight size={12} />
@@ -212,24 +212,24 @@ export const MadioHome: React.FC = () => (
     </section>
 
     {/* ================================================================
-        DARK TAGLINE STRIP
+        TAGLINE STRIP
         ================================================================ */}
-    <section className="bg-[#16232B] py-16 px-6 md:px-12">
+    <section className="bg-[#C4B9A8] py-16 px-6 md:px-12">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
-        <p className="text-2xl md:text-3xl font-serif font-light text-white leading-snug max-w-lg">
+        <p className="text-2xl md:text-3xl font-serif font-light text-[#16232B] leading-snug max-w-lg">
           Built on craft.<br className="hidden md:block" /> Specified by architects.
         </p>
         <div className="flex flex-col sm:flex-row gap-4">
           <Link
             to="/furniture"
-            className="inline-flex items-center space-x-2 bg-[#3D4A2E] text-white px-8 py-3.5 text-xs uppercase tracking-[0.25em] font-sans font-medium hover:bg-[#4A5938] transition-all duration-300"
+            className="inline-flex items-center space-x-2 bg-[#B8956A] text-white px-8 py-3.5 text-xs uppercase tracking-[0.25em] font-sans font-medium hover:bg-[#4A5938] transition-all duration-300"
           >
             <span>View MADIO Furniture</span>
             <ArrowRight size={13} />
           </Link>
           <Link
-            to="/contact"
-            className="inline-flex items-center space-x-2 border border-[#243040] text-[#8FA3B1] px-8 py-3.5 text-xs uppercase tracking-[0.25em] font-sans font-medium hover:border-[#3D4A2E] hover:text-[#3D4A2E] transition-all duration-300"
+            to="/contact?source=general"
+            className="inline-flex items-center space-x-2 border border-[#16232B] text-[#16232B] px-8 py-3.5 text-xs uppercase tracking-[0.25em] font-sans font-medium hover:border-[#B8956A] hover:text-[#B8956A] transition-all duration-300"
           >
             <span>Enquire</span>
             <ArrowRight size={13} />

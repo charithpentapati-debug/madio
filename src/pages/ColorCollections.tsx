@@ -2,11 +2,17 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, X, ZoomIn } from "lucide-react";
 import { collectionsData } from "../data/collections";
+import { usePageMeta } from "../hooks/usePageMeta";
 
 const EXTERIOR_IDS = ["aar-coat", "cimento", "exterior-stucco"];
 const INTERIOR_IDS = ["texture-bubbles", "metallics-2d", "marbre", "oyster", "matt-decor", "pearl-burst"];
 
 export const ColorCollections: React.FC = () => {
+  usePageMeta(
+    "Color Library | MAP Architectural Finishes",
+    "Browse MAP's full shade and color library across all decorative surface collections."
+  );
+
   const [lightbox, setLightbox] = useState<{ name: string; tagline: string; image: string } | null>(null);
 
   const exterior = collectionsData.filter((c) => EXTERIOR_IDS.includes(c.id));
@@ -125,7 +131,7 @@ export const ColorCollections: React.FC = () => {
             Physical A4 sample boards, substrate specifications, and MSDS sheets are available for all finish systems. Couriered to architecture offices nationwide.
           </p>
           <Link
-            to="/map/quote"
+            to="/contact?source=map"
             className="shrink-0 inline-flex items-center space-x-2 px-8 py-3 bg-[#1A1A1A] text-white text-[10px] uppercase tracking-[0.25em] font-sans font-medium hover:bg-[#B8956A]"
             style={{ transition: "background-color 0.3s cubic-bezier(0.16,1,0.3,1)" }}
           >
@@ -164,7 +170,7 @@ export const ColorCollections: React.FC = () => {
                 <span className="text-[10px] uppercase tracking-[0.2em] text-[#B8956A] font-sans">{lightbox.tagline}</span>
               </div>
               <Link
-                to="/map/quote"
+                to="/contact?source=map"
                 className="px-6 py-2.5 bg-[#B8956A] text-white text-[10px] uppercase tracking-[0.2em] font-sans font-medium hover:bg-[#1A1A1A]"
                 style={{ transition: "background-color 0.3s cubic-bezier(0.16,1,0.3,1)" }}
                 onClick={() => setLightbox(null)}

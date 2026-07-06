@@ -1,8 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Mail, MapPin, Phone } from "lucide-react";
+import { usePageMeta } from "../hooks/usePageMeta";
 
-export const MadioContact: React.FC = () => (
+export const MadioContact: React.FC = () => {
+  usePageMeta(
+    "Contact MADIO | Furniture, Architectural Finishes & Doors",
+    "Get in touch with MADIO — reach our Furniture, MAP Finishes, or Doors & Windows teams."
+  );
+
+  return (
   <div className="min-h-screen bg-[#FAFAF7] pt-36 pb-24 px-6 md:px-12">
     <div className="max-w-7xl mx-auto">
 
@@ -127,4 +134,5 @@ export const MadioContact: React.FC = () => (
       </div>
     </div>
   </div>
-);
+  );
+};

@@ -7,6 +7,7 @@ import {
   isFurnitureCategoryId,
 } from "../data/furniture";
 import type { FurnitureProduct } from "../data/furniture";
+import { usePageMeta } from "../hooks/usePageMeta";
 
 const FURNITURE_ACCENT = "#B8956A";
 
@@ -19,12 +20,12 @@ const ProductCard: React.FC<{ product: FurnitureProduct; categoryId: string }> =
   return (
   <Link
     to={`/furniture/${categoryId}/${product.id}`}
-    className="group flex flex-col overflow-hidden border border-[#EBE8E2] bg-white hover:border-[#3D4A2E]/30 transition-all duration-400 reveal-on-scroll"
+    className="group flex flex-col overflow-hidden border border-[#EBE8E2] bg-white hover:border-[#B8956A]/30 transition-all duration-400 reveal-on-scroll"
   >
     {/* Image — real photo when available, placeholder otherwise */}
     <div
       className="relative h-44 overflow-hidden shrink-0"
-      style={{ backgroundColor: "#16232B" }}
+      style={{ backgroundColor: "#EBE8E2" }}
     >
       {imgSrc ? (
         <img
@@ -40,16 +41,16 @@ const ProductCard: React.FC<{ product: FurnitureProduct; categoryId: string }> =
             className="absolute inset-0 opacity-[0.05]"
             style={{
               backgroundImage:
-                "repeating-linear-gradient(45deg, #3D4A2E 0, #3D4A2E 1px, transparent 0, transparent 50%)",
+                "repeating-linear-gradient(45deg, #B8956A 0, #B8956A 1px, transparent 0, transparent 50%)",
               backgroundSize: "18px 18px",
             }}
           />
-          <span className="absolute bottom-3 left-3 text-[9px] font-mono text-[#4A6070] tracking-wider">
+          <span className="absolute bottom-3 left-3 text-[9px] font-mono text-[#6B6B6B] tracking-wider">
             {product.sku}
           </span>
         </>
       )}
-      <div className="absolute inset-0 bg-[#3D4A2E]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
+      <div className="absolute inset-0 bg-[#B8956A]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
     </div>
 
     {/* Card body */}
@@ -62,7 +63,7 @@ const ProductCard: React.FC<{ product: FurnitureProduct; categoryId: string }> =
           {product.subcategory}
         </span>
       )}
-      <p className="text-sm font-serif font-light text-[#16232B] group-hover:text-[#3D4A2E] transition-colors duration-300 mb-auto">
+      <p className="text-sm font-serif font-light text-[#16232B] group-hover:text-[#B8956A] transition-colors duration-300 mb-auto">
         {product.name}
       </p>
       <div className="flex items-center justify-between mt-3 pt-3 border-t border-[#EBE8E2]">
@@ -71,7 +72,7 @@ const ProductCard: React.FC<{ product: FurnitureProduct; categoryId: string }> =
         </span>
         <ArrowRight
           size={11}
-          className="text-[#3D4A2E] group-hover:translate-x-0.5 transition-transform duration-300"
+          className="text-[#B8956A] group-hover:translate-x-0.5 transition-transform duration-300"
         />
       </div>
     </div>
@@ -93,7 +94,7 @@ const ComingSoonState: React.FC<{ name: string }> = ({ name }) => (
       This collection is being prepared. Enquire below and we'll get in touch when it's available.
     </p>
     <Link
-      to="/contact"
+      to="/contact?source=furniture"
       className="inline-flex items-center space-x-2 px-8 py-4 text-xs uppercase tracking-[0.25em] font-sans font-medium text-white transition-opacity hover:opacity-90"
       style={{ backgroundColor: FURNITURE_ACCENT }}
     >
@@ -105,6 +106,15 @@ const ComingSoonState: React.FC<{ name: string }> = ({ name }) => (
 
 export const FurnitureCategoryPage: React.FC = () => {
   const { category } = useParams<{ category: string }>();
+  const previewMeta =
+    category && isFurnitureCategoryId(category)
+      ? furnitureCategories.find((c) => c.id === category)
+      : undefined;
+
+  usePageMeta(
+    previewMeta ? `${previewMeta.name} | MADIO Furniture` : "MADIO Furniture",
+    previewMeta?.description ?? "MADIO Furniture — design-led furniture for residential and hospitality interiors."
+  );
 
   // Unknown slug → redirect to landing
   if (!category || !isFurnitureCategoryId(category)) {
@@ -122,20 +132,20 @@ export const FurnitureCategoryPage: React.FC = () => {
   return (
     <div className="bg-[#FAFAF7]">
 
-      {/* ── Dark header banner ── */}
-      <section className="relative bg-[#16232B] pt-32 pb-14 px-6 md:px-12 overflow-hidden">
+      {/* ── Header banner ── */}
+      <section className="relative bg-[#F5F0EB] pt-32 pb-14 px-6 md:px-12 overflow-hidden">
         <div
           className="absolute inset-0 opacity-[0.04]"
           style={{
             backgroundImage:
-              "repeating-linear-gradient(-45deg, #3D4A2E 0, #3D4A2E 1px, transparent 0, transparent 50%)",
+              "repeating-linear-gradient(-45deg, #B8956A 0, #B8956A 1px, transparent 0, transparent 50%)",
             backgroundSize: "20px 20px",
           }}
         />
         <div className="relative z-10 max-w-7xl mx-auto">
           <Link
             to="/"
-            className="inline-flex items-center space-x-2 text-xs uppercase tracking-[0.2em] font-sans text-[#8FA3B1] hover:text-white transition-colors mb-10"
+            className="inline-flex items-center space-x-2 text-xs uppercase tracking-[0.2em] font-sans text-[#6B6B6B] hover:text-[#16232B] transition-colors mb-10"
           >
             <ArrowLeft size={13} />
             <span>All Furniture</span>
@@ -149,19 +159,19 @@ export const FurnitureCategoryPage: React.FC = () => {
               >
                 MADIO Furniture
               </span>
-              <h1 className="text-4xl md:text-6xl font-serif font-light text-white leading-tight">
+              <h1 className="text-4xl md:text-6xl font-serif font-light text-[#16232B] leading-tight">
                 {meta?.name}
               </h1>
             </div>
             {meta?.isPopulated && (
-              <span className="text-xs font-sans text-[#8FA3B1] font-light pb-1">
+              <span className="text-xs font-sans text-[#6B6B6B] font-light pb-1">
                 {products.length} piece{products.length !== 1 ? "s" : ""}
               </span>
             )}
           </div>
 
           {meta?.description && (
-            <p className="text-sm text-[#8FA3B1] font-light leading-relaxed max-w-xl mt-4">
+            <p className="text-sm text-[#6B6B6B] font-light leading-relaxed max-w-xl mt-4">
               {meta.description}
             </p>
           )}
@@ -236,7 +246,7 @@ export const FurnitureCategoryPage: React.FC = () => {
             {/* CTA strip */}
             <div className="border-t border-[#EBE8E2] mt-16 pt-10 flex flex-col sm:flex-row gap-4 items-start">
               <Link
-                to={`/contact?category=${category}`}
+                to={`/contact?source=furniture&category=${category}`}
                 className="inline-flex items-center space-x-2 px-8 py-4 text-xs uppercase tracking-[0.25em] font-sans font-medium text-white hover:opacity-90 transition-opacity"
                 style={{ backgroundColor: FURNITURE_ACCENT }}
               >

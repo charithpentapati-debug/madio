@@ -6,7 +6,7 @@ export const MadioFooter: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#16232B] text-[#FAFAF7] pt-16 pb-8 border-t border-[#243040]">
+    <footer className="bg-[#2C2C2C] text-[#FAFAF7] pt-16 pb-8 border-t border-[#3D3D3D]">
       <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-12 gap-12 mb-12">
 
         {/* Brand */}
@@ -15,14 +15,13 @@ export const MadioFooter: React.FC = () => {
             <img
               src={madioLogoFull}
               alt="MADIO"
-              className="h-8 w-auto"
-              style={{ filter: "brightness(0) invert(1)" }}
+              className="h-8 w-auto brightness-0 invert"
             />
           </Link>
           <p className="text-[10px] tracking-[0.2em] uppercase font-sans text-[#B8956A] font-medium">
             MADIO Furniture | MAP | MADIO Doors &amp; Windows
           </p>
-          <p className="text-xs text-[#8FA3B1] font-light leading-relaxed max-w-xs mt-2">
+          <p className="text-xs text-[#C4B9A8] font-light leading-relaxed max-w-xs mt-2">
             A design-led house of brands developing premium furniture, architectural finishes, and building products.
           </p>
         </div>
@@ -32,7 +31,7 @@ export const MadioFooter: React.FC = () => {
           <h4 className="text-[10px] uppercase tracking-[0.2em] font-sans font-medium text-[#B8956A] mb-5">
             Our Brands
           </h4>
-          <ul className="space-y-3 text-xs text-[#8FA3B1] font-light">
+          <ul className="space-y-3 text-xs text-[#C4B9A8] font-light">
             <li>
               <Link to="/" className="hover:text-white transition-colors duration-300">
                 MADIO Furniture
@@ -56,7 +55,7 @@ export const MadioFooter: React.FC = () => {
           <h4 className="text-[10px] uppercase tracking-[0.2em] font-sans font-medium text-[#B8956A] mb-5">
             Contact
           </h4>
-          <ul className="space-y-3 text-xs text-[#8FA3B1] font-light">
+          <ul className="space-y-3 text-xs text-[#C4B9A8] font-light">
             <li>
               <a href="mailto:info@madio.in" className="hover:text-white transition-colors">
                 info@madio.in
@@ -77,7 +76,7 @@ export const MadioFooter: React.FC = () => {
             </li>
           </ul>
           <Link
-            to="/contact"
+            to="/contact?source=general"
             className="inline-block mt-6 text-[10px] uppercase tracking-[0.2em] font-sans border border-[#B8956A] text-[#B8956A] px-4 py-2 hover:bg-[#B8956A] hover:text-white transition-all duration-300"
           >
             Get in Touch
@@ -85,7 +84,7 @@ export const MadioFooter: React.FC = () => {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 pt-8 border-t border-[#243040] flex flex-col md:flex-row items-center justify-between text-[11px] text-[#4A6070] font-light gap-3">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 pt-8 border-t border-[#3D3D3D] flex flex-col md:flex-row items-center justify-between text-[11px] text-[#6B6B6B] font-light gap-3">
         <span>&copy; {currentYear} MADIO. All rights reserved.</span>
         <div className="flex items-center space-x-6">
           <span>Hyderabad, India</span>
@@ -93,7 +92,7 @@ export const MadioFooter: React.FC = () => {
             href="https://wa.me/919948601899"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-[#8FA3B1] transition-colors"
+            className="text-[#B8956A] hover:underline transition-colors"
           >
             WhatsApp
           </a>

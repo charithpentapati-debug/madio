@@ -9,9 +9,7 @@ export const DWHeader: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
 
-  // D&W landing hero and product detail headers are both dark (navy bg),
-  // so logo and nav text are always white regardless of scroll state.
-  // Only the header container changes (transparent → glass navy on scroll).
+  // Light glass header, consistent with the site-wide light theme.
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -25,7 +23,7 @@ export const DWHeader: React.FC = () => {
 
   const navLinks = [
     { path: "/doors-windows", label: "Systems",  end: true },
-    { path: "/contact",       label: "Enquire",  end: false },
+    { path: "/contact?source=doors-windows", label: "Enquire",  end: false },
   ];
 
   return (
@@ -33,19 +31,18 @@ export const DWHeader: React.FC = () => {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           isScrolled
-            ? "py-4 bg-[#16232B]/92 backdrop-blur-md shadow-sm border-b border-[#243040]"
-            : "py-7 bg-transparent"
+            ? "py-4 bg-[#FAFAF7]/92 backdrop-blur-md shadow-sm border-b border-[#EBE8E2]"
+            : "py-7 bg-[#FAFAF7]/70 backdrop-blur-sm"
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
 
-          {/* D&W logo — always white (dark contexts only) */}
+          {/* D&W logo */}
           <Link to="/doors-windows" className="select-none cursor-pointer shrink-0">
             <img
               src={dwLogo}
               alt="MADIO Doors & Windows"
               className="h-7 md:h-8 w-auto"
-              style={{ filter: "brightness(0) invert(1)" }}
             />
           </Link>
 
@@ -60,8 +57,8 @@ export const DWHeader: React.FC = () => {
                   "text-[11px] font-sans tracking-[0.15em] uppercase font-light transition-all duration-300 relative pb-1 whitespace-nowrap " +
                   "after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-[1px] after:bg-[#B8956A] after:transition-all after:duration-300 " +
                   (isActive
-                    ? "text-white after:w-full"
-                    : "text-[#8FA3B1] hover:text-white after:w-0 hover:after:w-full")
+                    ? "text-[#16232B] after:w-full"
+                    : "text-[#6B6B6B] hover:text-[#16232B] after:w-0 hover:after:w-full")
                 }
               >
                 {link.label}
@@ -73,13 +70,13 @@ export const DWHeader: React.FC = () => {
           <div className="flex items-center space-x-6 shrink-0">
             <Link
               to="/"
-              className="hidden lg:block text-[11px] tracking-[0.15em] uppercase font-sans text-[#8FA3B1] hover:text-white transition-colors duration-300"
+              className="hidden lg:block text-[11px] tracking-[0.15em] uppercase font-sans text-[#6B6B6B] hover:text-[#16232B] transition-colors duration-300"
             >
               ← MADIO
             </Link>
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden text-white hover:text-[#8FA3B1] transition-colors focus:outline-none"
+              className="md:hidden text-[#16232B] hover:text-[#6B6B6B] transition-colors focus:outline-none"
               aria-label="Toggle menu"
             >
               {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
@@ -90,7 +87,7 @@ export const DWHeader: React.FC = () => {
 
       {/* Full-screen mobile menu */}
       <div
-        className={`fixed inset-0 z-40 bg-[#16232B] transition-all duration-500 md:hidden flex flex-col justify-between ${
+        className={`fixed inset-0 z-40 bg-[#FAFAF7] transition-all duration-500 md:hidden flex flex-col justify-between ${
           isMobileMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"
         }`}
       >
@@ -102,7 +99,7 @@ export const DWHeader: React.FC = () => {
               end={link.end}
               className={({ isActive }) =>
                 `text-3xl font-serif tracking-[0.06em] font-light transition-all duration-300 ${
-                  isActive ? "text-white pl-4 border-l-2 border-[#B8956A]" : "text-[#8FA3B1] hover:text-white"
+                  isActive ? "text-[#16232B] pl-4 border-l-2 border-[#B8956A]" : "text-[#6B6B6B] hover:text-[#16232B]"
                 }`
               }
             >
@@ -111,17 +108,17 @@ export const DWHeader: React.FC = () => {
           ))}
           <Link
             to="/"
-            className="text-3xl font-serif tracking-[0.06em] font-light text-[#8FA3B1] hover:text-white transition-all duration-300"
+            className="text-3xl font-serif tracking-[0.06em] font-light text-[#6B6B6B] hover:text-[#16232B] transition-all duration-300"
           >
             MADIO
           </Link>
         </div>
-        <div className="p-10 border-t border-[#243040]">
+        <div className="p-10 border-t border-[#EBE8E2]">
           <p className="text-[10px] tracking-[0.2em] uppercase text-[#B8956A] font-sans mb-2">
             MADIO Doors &amp; Windows
           </p>
-          <p className="text-xs text-[#8FA3B1] font-light mt-3">Shilpa Hills, Kondapur, Hyderabad</p>
-          <p className="text-xs text-[#8FA3B1] font-light mt-1">info@madio.in</p>
+          <p className="text-xs text-[#6B6B6B] font-light mt-3">Shilpa Hills, Kondapur, Hyderabad</p>
+          <p className="text-xs text-[#6B6B6B] font-light mt-1">info@madio.in</p>
         </div>
       </div>
     </>

@@ -28,13 +28,13 @@ export const Header: React.FC = () => {
   }, [location]);
 
   const navLinks = [
-    { path: "/", label: "Home" },
-    { path: "/about", label: "About" },
-    { path: "/products", label: "Collections" },
-    { path: "/gallery", label: "Texture Gallery" },
-    { path: "/stencils", label: "Stencils" },
-    { path: "/colors", label: "Color Library" },
-    { path: "/contact", label: "Contact" },
+    { path: "/map", label: "Home" },
+    { path: "/map/about", label: "About" },
+    { path: "/map/products", label: "Collections" },
+    { path: "/map/gallery", label: "Texture Gallery" },
+    { path: "/map/stencils", label: "Stencils" },
+    { path: "/map/colors", label: "Color Library" },
+    { path: "/map/contact", label: "Contact" },
   ];
 
   return (
@@ -48,7 +48,7 @@ export const Header: React.FC = () => {
       >
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="select-none cursor-pointer shrink-0">
+          <Link to="/map" className="select-none cursor-pointer shrink-0">
             <img
               src={mapLogo}
               alt="MAP"
@@ -78,7 +78,7 @@ export const Header: React.FC = () => {
           {/* CTA & Mobile Toggle */}
           <div className="flex items-center space-x-6">
             <Link
-              to="/quote"
+              to="/map/quote"
               className="hidden lg:flex items-center space-x-2 border border-[#B8956A]/60 px-6 py-2.5 text-xs tracking-[0.2em] uppercase font-sans text-[#1A1A1A] hover:bg-[#B8956A] hover:text-white hover:border-[#B8956A] transition-all duration-300"
             >
               <span>Request Quote</span>
@@ -119,7 +119,7 @@ export const Header: React.FC = () => {
             </NavLink>
           ))}
           <Link
-            to="/quote"
+            to="/map/quote"
             className="inline-flex items-center justify-between border-b border-[#B8956A]/40 pb-2 text-base tracking-[0.2em] uppercase font-sans text-[#B8956A] pt-4"
           >
             <span>Request a Quote</span>

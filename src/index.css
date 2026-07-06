@@ -86,3 +86,73 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-brand-gold);
 }
+
+/* ============================================================
+   Global polish layer — consistent motion, focus, and form-field
+   treatment site-wide. Kept at base specificity so per-component
+   Tailwind utilities still win where they differ intentionally.
+   ============================================================ */
+
+/* Unified easing + timing for all interactive elements. Components that
+   declare their own duration keep it; this fixes the default curve. */
+a, button, [role="button"] {
+  transition-timing-function: var(--ease-in-out);
+}
+
+/* Consistent, accessible focus ring (keyboard only — no ring on click) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid var(--color-brand-gold);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Form fields — one pattern everywhere (Contact, Request Quote, footer).
+   Matches the Contact form's treatment: soft radius, warm surface,
+   gold focus border, muted placeholder, gentle transition. */
+input:not([type="checkbox"]):not([type="radio"]),
+textarea,
+select {
+  border-radius: 4px;
+  transition: border-color var(--duration-base) var(--ease-in-out),
+              background-color var(--duration-base) var(--ease-in-out),
+              box-shadow var(--duration-base) var(--ease-in-out);
+}
+input::placeholder,
+textarea::placeholder {
+  color: color-mix(in srgb, var(--color-brand-grey) 60%, transparent);
+  font-weight: 300;
+}
+input:not([type="checkbox"]):not([type="radio"]):focus,
+textarea:focus,
+select:focus {
+  background-color: #ffffff;
+}
+
+/* Buttons & card-style links: subtle press feedback, Apple-style */
+button:active,
+a[class*="px-8"]:active,
+a[class*="px-10"]:active {
+  transform: scale(0.985);
+}
+button, a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Cards: smooth elevation on hover for any bordered white card */
+.group.bg-white,
+div[class*="border-\[\#EBE8E2\]"][class*="bg-white"] {
+  transition-property: box-shadow, border-color, transform;
+  transition-duration: var(--duration-base);
+  transition-timing-function: var(--ease-in-out);
+}
+
+/* Crisper serif rendering for large display headings */
+h1, h2 {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}

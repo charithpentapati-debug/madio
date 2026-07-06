@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { X } from "lucide-react";
+import { usePageMeta } from "../hooks/usePageMeta";
 
 const stencilModules = import.meta.glob<{ default: string }>(
   "../assets/stencils/ASN*.png",
@@ -33,6 +34,11 @@ const STENCIL_CODES: string[] = [
 const stencils = STENCIL_CODES.map((code) => ({ code, img: resolveImg(code) }));
 
 export const Stencils: React.FC = () => {
+  usePageMeta(
+    "Stencils | MAP Architectural Finishes",
+    "Explore MAP's decorative wall stencil designs for interior and exterior applications."
+  );
+
   const [lightbox, setLightbox] = useState<{ code: string; img: string } | null>(null);
 
   return (

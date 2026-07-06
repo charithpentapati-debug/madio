@@ -2,8 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Shield, Sparkles, Compass, MapPin } from "lucide-react";
 import aboutHero from "../assets/products/exterior-stucco/4.jpeg";
+import { usePageMeta } from "../hooks/usePageMeta";
 
 export const About: React.FC = () => {
+  usePageMeta(
+    "About MAP | Premium Architectural Finishes & Decorative Surfaces",
+    "Learn about MAP — India's premium decorative surfaces and architectural finishes brand."
+  );
+
   return (
     <div className="texture-overlay min-h-screen pt-36 pb-24 bg-[#FAFAF7]">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -108,7 +114,7 @@ export const About: React.FC = () => {
         <div className="text-center mt-24 reveal-on-scroll">
           <span className="text-xs uppercase tracking-[0.2em] text-[#6B6B6B] block mb-4">Ready to specify MAP?</span>
           <Link
-            to="/map/quote"
+            to="/contact?source=map"
             className="inline-block px-12 py-4 bg-[#B8956A] text-white text-xs uppercase tracking-[0.25em] font-sans font-medium hover:bg-[#1A1A1A] transition-colors duration-300"
           >
             Request Architectural Samples

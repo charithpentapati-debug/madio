@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useSearchParams, Link } from "react-router-dom";
 import { ArrowLeft, ArrowRight, Settings } from "lucide-react";
 import { collectionsData } from "../data/collections";
+import { usePageMeta } from "../hooks/usePageMeta";
 
 const hasValue = (v: string) => v.trim() !== "" && v.trim().toLowerCase() !== "todo";
 
@@ -12,6 +13,14 @@ export const Products: React.FC = () => {
   // If a collection is selected, find its data
   const activeCollection = collectionsData.find(
     (c) => c.id === activeCollectionId
+  );
+
+  usePageMeta(
+    activeCollection
+      ? `${activeCollection.name} | MAP Collections`
+      : "MAP Collections | Premium Architectural Finishes & Decorative Surfaces",
+    activeCollection?.description ??
+      "Explore MAP's collections of premium decorative surfaces, Venetian plasters, and microcement systems."
   );
 
   // Scroll to top when active collection changes
@@ -84,7 +93,7 @@ export const Products: React.FC = () => {
                       We courier customized physical mock-up boards to architecture offices nationwide.
                     </p>
                     <Link
-                      to={`/map/quote?collection=${activeCollection.id}`}
+                      to={`/contact?source=map&collection=${activeCollection.id}`}
                       className="text-xs font-semibold text-[#B8956A] hover:underline uppercase tracking-wider mt-3 inline-block"
                     >
                       Order Samples &rarr;
@@ -144,7 +153,7 @@ export const Products: React.FC = () => {
                       with an "Add to Cart" button (onAddToCart handler + activeCollection.price).
                       The price field is already typed on Collection; label/action swap only. */}
                   <Link
-                    to={`/map/quote?collection=${activeCollection.id}`}
+                    to={`/contact?source=map&collection=${activeCollection.id}`}
                     className="flex-1 bg-[#1A1A1A] text-white text-center py-4 text-xs uppercase tracking-[0.25em] font-sans font-medium hover:bg-[#B8956A] transition-all duration-300"
                   >
                     Request Quote for {activeCollection.name}

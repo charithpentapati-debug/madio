@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { X, ZoomIn, Layers } from "lucide-react";
+import { usePageMeta } from "../hooks/usePageMeta";
 import g1Img from "../assets/products/marbre/1.jpg";
 import g2Img from "../assets/products/cimento/3.jpg";
 import g3Img from "../assets/products/2d-metallics/1.jpg";
@@ -96,6 +97,11 @@ const galleryItems: GalleryItem[] = [
 ];
 
 export const TextureGallery: React.FC = () => {
+  usePageMeta(
+    "Texture Gallery | MAP Architectural Finishes",
+    "Browse MAP's gallery of Venetian plasters, microcement, and decorative surface textures in real architectural settings."
+  );
+
   const [activeFilter, setActiveFilter] = useState<string>("all");
   const [selectedItem, setSelectedItem] = useState<GalleryItem | null>(null);
 
@@ -240,7 +246,7 @@ export const TextureGallery: React.FC = () => {
 
                 <div className="pt-8 border-t border-[#EBE8E2] mt-12 flex flex-col sm:flex-row gap-4">
                   <Link
-                    to={`/map/quote?collection=${selectedItem.collectionName.toLowerCase().replace(" ", "-")}`}
+                    to={`/contact?source=map&collection=${selectedItem.collectionName.toLowerCase().replace(" ", "-")}`}
                     className="flex-1 bg-[#1A1A1A] text-white text-center py-3 text-[10px] uppercase tracking-[0.2em] font-sans font-medium hover:bg-[#B8956A] transition-colors"
                   >
                     Request Sample Spec

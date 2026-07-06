@@ -3,6 +3,7 @@ import { Link, useParams, Navigate } from "react-router-dom";
 import { ArrowLeft, ArrowRight, CheckCircle } from "lucide-react";
 import { dwProductsData } from "../data/doorsWindows";
 import type { DWSpec } from "../data/doorsWindows";
+import { usePageMeta } from "../hooks/usePageMeta";
 
 const DW_ACCENT = "#B8956A";
 
@@ -29,6 +30,11 @@ export const DoorsWindowsDetail: React.FC = () => {
   const { productId } = useParams<{ productId: string }>();
   const product = dwProductsData.find((p) => p.id === productId);
 
+  usePageMeta(
+    product ? `${product.name} | MADIO Doors & Windows` : "MADIO Doors & Windows",
+    product?.description ?? "Premium architectural fenestration systems from MADIO Doors & Windows."
+  );
+
   // Unknown slug → redirect to listing
   if (!product) return <Navigate to="/doors-windows" replace />;
 
@@ -40,21 +46,21 @@ export const DoorsWindowsDetail: React.FC = () => {
   return (
     <div className="bg-[#FAFAF7]">
 
-      {/* ── Dark product header banner ── */}
-      <section className="relative bg-[#16232B] pt-32 pb-16 px-6 md:px-12 overflow-hidden">
+      {/* ── Product header banner ── */}
+      <section className="relative bg-[#F5F0EB] pt-32 pb-16 px-6 md:px-12 overflow-hidden">
         {/* Subtle grid texture */}
         <div
           className="absolute inset-0 opacity-[0.04]"
           style={{
             backgroundImage:
-              "repeating-linear-gradient(-45deg, #4A6741 0, #4A6741 1px, transparent 0, transparent 50%)",
+              "repeating-linear-gradient(-45deg, #B8956A 0, #B8956A 1px, transparent 0, transparent 50%)",
             backgroundSize: "20px 20px",
           }}
         />
         <div className="relative z-10 max-w-7xl mx-auto">
           <Link
             to="/doors-windows"
-            className="inline-flex items-center space-x-2 text-xs uppercase tracking-[0.2em] font-sans text-[#8FA3B1] hover:text-white transition-colors mb-10"
+            className="inline-flex items-center space-x-2 text-xs uppercase tracking-[0.2em] font-sans text-[#6B6B6B] hover:text-[#16232B] transition-colors mb-10"
           >
             <ArrowLeft size={13} />
             <span>All Systems</span>
@@ -67,10 +73,10 @@ export const DoorsWindowsDetail: React.FC = () => {
             >
               {product.categoryLabel}
             </span>
-            <h1 className="text-4xl md:text-6xl font-serif font-light text-white leading-tight mb-4">
+            <h1 className="text-4xl md:text-6xl font-serif font-light text-[#16232B] leading-tight mb-4">
               {product.name}
             </h1>
-            <p className="text-sm text-[#8FA3B1] font-light leading-relaxed max-w-xl">
+            <p className="text-sm text-[#6B6B6B] font-light leading-relaxed max-w-xl">
               {product.tagline}
             </p>
           </div>
@@ -82,27 +88,35 @@ export const DoorsWindowsDetail: React.FC = () => {
 
         {/* Left: image placeholder + description */}
         <div className="lg:col-span-6 space-y-6">
-          {/* Product image placeholder */}
+          {/* Product image */}
           <div
-            className="relative h-[420px] flex flex-col items-center justify-center overflow-hidden"
-            style={{ backgroundColor: "#1E2F3C" }}
+            className="relative h-[420px] flex flex-col items-center justify-center overflow-hidden bg-[#EBE8E2]"
           >
-            {/* TODO: client to provide licensed Doors & Windows product photography */}
-            <div
-              className="absolute inset-0 opacity-[0.05]"
-              style={{
-                backgroundImage:
-                  "repeating-linear-gradient(45deg, #4A6741 0, #4A6741 1px, transparent 0, transparent 50%)",
-                backgroundSize: "20px 20px",
-              }}
-            />
-            <div className="relative z-10 text-center px-8">
-              <div className="w-10 h-[2px] mb-6 mx-auto" style={{ backgroundColor: DW_ACCENT }} />
-              <p className="text-[9px] uppercase tracking-[0.25em] font-sans text-[#4A6070]">
-                {/* TODO: client to provide licensed D&W photography */}
-                Photography coming soon
-              </p>
-            </div>
+            {product.images && product.images.length > 0 ? (
+              <img
+                src={product.images[0]}
+                alt={product.name}
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
+            ) : (
+              <>
+                <div
+                  className="absolute inset-0 opacity-[0.05]"
+                  style={{
+                    backgroundImage:
+                      "repeating-linear-gradient(45deg, #B8956A 0, #B8956A 1px, transparent 0, transparent 50%)",
+                    backgroundSize: "20px 20px",
+                  }}
+                />
+                <div className="relative z-10 text-center px-8">
+                  <div className="w-10 h-[2px] mb-6 mx-auto" style={{ backgroundColor: DW_ACCENT }} />
+                  <p className="text-[9px] uppercase tracking-[0.25em] font-sans text-[#6B6B6B]">
+                    Photography coming soon
+                  </p>
+                </div>
+              </>
+            )}
           </div>
 
           {/* Long description */}
@@ -179,7 +193,7 @@ export const DoorsWindowsDetail: React.FC = () => {
               product.price is already typed — just populate it when ready. */}
           <div className="border-t border-[#EBE8E2] pt-8 space-y-4">
             <Link
-              to={`/contact?system=${product.id}`}
+              to={`/contact?source=doors-windows&system=${product.id}`}
               className="flex items-center justify-center space-x-2 w-full py-4 text-xs uppercase tracking-[0.25em] font-sans font-medium text-white transition-all duration-300"
               style={{ backgroundColor: DW_ACCENT }}
               onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.backgroundColor = "#3a5233")}
@@ -214,13 +228,13 @@ export const DoorsWindowsDetail: React.FC = () => {
                 <Link
                   key={p.id}
                   to={`/doors-windows/${p.id}`}
-                  className="bg-white border border-[#EBE8E2] p-6 group hover:border-[#4A6741]/40 transition-all duration-300"
+                  className="bg-white border border-[#EBE8E2] p-6 group hover:border-[#B8956A]/40 transition-all duration-300"
                 >
                   <div className="w-6 h-[2px] mb-4 transition-all duration-300 group-hover:w-10" style={{ backgroundColor: DW_ACCENT }} />
                   <span className="text-[9px] uppercase tracking-[0.2em] font-sans font-medium block mb-1" style={{ color: DW_ACCENT }}>
                     {p.categoryLabel}
                   </span>
-                  <p className="text-sm font-serif font-light text-[#16232B] group-hover:text-[#4A6741] transition-colors">
+                  <p className="text-sm font-serif font-light text-[#16232B] group-hover:text-[#B8956A] transition-colors">
                     {p.name}
                   </p>
                 </Link>

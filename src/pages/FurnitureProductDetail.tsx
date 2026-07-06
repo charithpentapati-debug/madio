@@ -8,6 +8,7 @@ import {
   isFurnitureCategoryId,
 } from "../data/furniture";
 import type { FurnitureProductSpec } from "../data/furniture";
+import { usePageMeta } from "../hooks/usePageMeta";
 
 const FURNITURE_ACCENT = "#B8956A";
 
@@ -28,6 +29,12 @@ const SPEC_LABELS: Partial<Record<keyof FurnitureProductSpec, string>> = {
 
 export const FurnitureProductDetail: React.FC = () => {
   const { category, productId } = useParams<{ category: string; productId: string }>();
+  const previewProduct = productId ? getProductById(productId) : undefined;
+
+  usePageMeta(
+    previewProduct ? `${previewProduct.name} | MADIO Furniture` : "MADIO Furniture",
+    previewProduct?.description || "MADIO Furniture — design-led furniture for residential and hospitality interiors."
+  );
 
   // Validate route params
   if (!category || !isFurnitureCategoryId(category)) {
@@ -56,20 +63,20 @@ export const FurnitureProductDetail: React.FC = () => {
   return (
     <div className="bg-[#FAFAF7]">
 
-      {/* ── Dark product header banner ── */}
-      <section className="relative bg-[#16232B] pt-32 pb-16 px-6 md:px-12 overflow-hidden">
+      {/* ── Product header banner ── */}
+      <section className="relative bg-[#F5F0EB] pt-32 pb-16 px-6 md:px-12 overflow-hidden">
         <div
           className="absolute inset-0 opacity-[0.04]"
           style={{
             backgroundImage:
-              "repeating-linear-gradient(-45deg, #3D4A2E 0, #3D4A2E 1px, transparent 0, transparent 50%)",
+              "repeating-linear-gradient(-45deg, #B8956A 0, #B8956A 1px, transparent 0, transparent 50%)",
             backgroundSize: "20px 20px",
           }}
         />
         <div className="relative z-10 max-w-7xl mx-auto">
           <Link
             to={`/furniture/${category}`}
-            className="inline-flex items-center space-x-2 text-xs uppercase tracking-[0.2em] font-sans text-[#8FA3B1] hover:text-white transition-colors mb-10"
+            className="inline-flex items-center space-x-2 text-xs uppercase tracking-[0.2em] font-sans text-[#6B6B6B] hover:text-[#16232B] transition-colors mb-10"
           >
             <ArrowLeft size={13} />
             <span>{categoryMeta?.name ?? "Back"}</span>
@@ -83,11 +90,11 @@ export const FurnitureProductDetail: React.FC = () => {
               {categoryMeta?.name ?? "MADIO Furniture"}
             </span>
             {/* Product name — currently the SKU code until client provides real names */}
-            <h1 className="text-4xl md:text-6xl font-serif font-light text-white leading-tight mb-2">
+            <h1 className="text-4xl md:text-6xl font-serif font-light text-[#16232B] leading-tight mb-2">
               {product.name}
             </h1>
             {product.subcategory && (
-              <span className="text-xs text-[#8FA3B1] font-sans font-light uppercase tracking-widest">
+              <span className="text-xs text-[#6B6B6B] font-sans font-light uppercase tracking-widest">
                 {product.subcategory}
               </span>
             )}
@@ -104,7 +111,7 @@ export const FurnitureProductDetail: React.FC = () => {
           {/* Primary image — real photo when available, placeholder otherwise */}
           <div
             className="relative h-[420px] flex flex-col items-center justify-center overflow-hidden"
-            style={{ backgroundColor: "#1E2F3C" }}
+            style={{ backgroundColor: "#EBE8E2" }}
           >
             {product.images[0] ? (
               <img
@@ -120,7 +127,7 @@ export const FurnitureProductDetail: React.FC = () => {
                   className="absolute inset-0 opacity-[0.05]"
                   style={{
                     backgroundImage:
-                      "repeating-linear-gradient(45deg, #3D4A2E 0, #3D4A2E 1px, transparent 0, transparent 50%)",
+                      "repeating-linear-gradient(45deg, #B8956A 0, #B8956A 1px, transparent 0, transparent 50%)",
                     backgroundSize: "18px 18px",
                   }}
                 />
@@ -129,7 +136,7 @@ export const FurnitureProductDetail: React.FC = () => {
                     className="w-10 h-[2px] mb-6 mx-auto"
                     style={{ backgroundColor: FURNITURE_ACCENT }}
                   />
-                  <p className="text-[9px] uppercase tracking-[0.25em] font-sans text-[#4A6070]">
+                  <p className="text-[9px] uppercase tracking-[0.25em] font-sans text-[#6B6B6B]">
                     Photography coming soon
                   </p>
                 </div>
@@ -222,7 +229,7 @@ export const FurnitureProductDetail: React.FC = () => {
               product.price is already typed — just populate it and render here when ready. */}
           <div className="border-t border-[#EBE8E2] pt-8 space-y-4">
             <Link
-              to={`/contact?product=${product.id}&category=${category}`}
+              to={`/contact?source=furniture&category=${category}&product=${product.id}`}
               className="flex items-center justify-center space-x-2 w-full py-4 text-xs uppercase tracking-[0.25em] font-sans font-medium text-white transition-opacity hover:opacity-90"
               style={{ backgroundColor: FURNITURE_ACCENT }}
             >

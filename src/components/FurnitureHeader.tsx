@@ -19,12 +19,10 @@ export const FurnitureHeader: React.FC = () => {
   // Close mobile menu on route change
   useEffect(() => { setMenuOpen(false); }, [location.pathname]);
 
-  // All furniture pages have a dark hero/banner at the top
-  // Unscrolled: transparent over dark bg → white text + inverted logo
-  // Scrolled: navy glass → same treatment
+  // Light glass header, consistent with the site-wide light theme.
   const scrolledBg = isScrolled
-    ? "bg-[#16232B]/92 backdrop-blur-md border-b border-[#243040]/60 shadow-sm"
-    : "bg-transparent";
+    ? "bg-[#FAFAF7]/92 backdrop-blur-md border-b border-[#EBE8E2] shadow-sm"
+    : "bg-[#FAFAF7]/70 backdrop-blur-sm";
 
   return (
     <>
@@ -39,7 +37,6 @@ export const FurnitureHeader: React.FC = () => {
               src={madioLogo}
               alt="MADIO Furniture"
               className="h-4 w-auto transition-opacity duration-300 group-hover:opacity-80"
-              style={{ filter: "brightness(0) invert(1)" }}
             />
             <span
               className="text-[8px] tracking-[0.35em] uppercase font-sans font-medium mt-[3px]"
@@ -53,12 +50,12 @@ export const FurnitureHeader: React.FC = () => {
           <nav className="hidden md:flex items-center space-x-8">
             {[
               { to: "/",                  label: "All Furniture" },
-              { to: "/contact",           label: "Enquire"       },
+              { to: "/contact?source=furniture", label: "Enquire"       },
             ].map(({ to, label }) => (
               <Link
                 key={to}
                 to={to}
-                className="text-[10px] uppercase tracking-[0.2em] font-sans text-white/75 hover:text-white transition-colors duration-200"
+                className="text-[10px] uppercase tracking-[0.2em] font-sans text-[#16232B]/75 hover:text-[#16232B] transition-colors duration-200"
               >
                 {label}
               </Link>
@@ -67,7 +64,7 @@ export const FurnitureHeader: React.FC = () => {
             {/* Back to MADIO */}
             <Link
               to="/"
-              className="text-[9px] uppercase tracking-[0.2em] font-sans font-medium border border-white/20 text-white/60 hover:border-white/60 hover:text-white px-3 py-1.5 transition-all duration-200"
+              className="text-[9px] uppercase tracking-[0.2em] font-sans font-medium border border-[#16232B]/20 text-[#16232B]/60 hover:border-[#16232B]/60 hover:text-[#16232B] px-3 py-1.5 transition-all duration-200"
             >
               ← MADIO
             </Link>
@@ -75,7 +72,7 @@ export const FurnitureHeader: React.FC = () => {
 
           {/* Mobile menu toggle */}
           <button
-            className="md:hidden p-2 text-white/80 hover:text-white transition-colors"
+            className="md:hidden p-2 text-[#16232B]/80 hover:text-[#16232B] transition-colors"
             onClick={() => setMenuOpen((o) => !o)}
             aria-label="Toggle navigation"
           >
@@ -87,20 +84,20 @@ export const FurnitureHeader: React.FC = () => {
 
       {/* Mobile drawer */}
       {menuOpen && (
-        <div className="fixed inset-0 z-40 bg-[#16232B]/98 backdrop-blur-md flex flex-col pt-20 px-8 pb-12">
+        <div className="fixed inset-0 z-40 bg-[#FAFAF7]/98 backdrop-blur-md flex flex-col pt-20 px-8 pb-12">
           <div className="flex flex-col space-y-8 mt-4">
             <span className="text-[9px] uppercase tracking-[0.3em] font-sans font-medium" style={{ color: FURNITURE_ACCENT }}>
               MADIO Furniture
             </span>
             {[
               { to: "/",           label: "All Furniture" },
-              { to: "/contact",    label: "Enquire"       },
+              { to: "/contact?source=furniture", label: "Enquire"       },
               { to: "/",           label: "← MADIO"      },
             ].map(({ to, label }) => (
               <Link
                 key={to}
                 to={to}
-                className="text-3xl font-serif font-light text-white hover:text-[#3D4A2E] transition-colors duration-300"
+                className="text-3xl font-serif font-light text-[#16232B] hover:text-[#B8956A] transition-colors duration-300"
               >
                 {label}
               </Link>

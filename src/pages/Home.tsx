@@ -8,8 +8,14 @@ import editorialDetail from "../assets/products/marbre/4.jpg";
 import galleryImg1 from "../assets/products/cimento/3.jpg";
 import galleryImg2 from "../assets/products/marbre/3.jpg";
 import galleryImg3 from "../assets/products/exterior-stucco/3.jpeg";
+import { usePageMeta } from "../hooks/usePageMeta";
 
 export const Home: React.FC = () => {
+  usePageMeta(
+    "MAP | Premium Architectural Finishes & Decorative Surfaces",
+    "MAP offers premium decorative surfaces, Venetian plasters, microcement systems, and luxury architectural finishes across India."
+  );
+
   // Select 3 highlight collections for home page
   const highlightCollections = collectionsData.filter((c) =>
     ["cimento", "marbre", "metallics-2d", "oyster"].includes(c.id)
@@ -55,7 +61,7 @@ export const Home: React.FC = () => {
               Explore Collections
             </Link>
             <Link
-              to="/map/quote"
+              to="/contact?source=map"
               className="w-full sm:w-auto px-10 py-4 text-xs uppercase tracking-[0.25em] font-sans font-medium border border-white text-white hover:bg-white hover:text-[#1A1A1A] transition-all duration-300"
             >
               Request Sample
@@ -244,9 +250,9 @@ export const Home: React.FC = () => {
       </section>
 
       {/* 5. LUXURY QUOTE CTA SECTION */}
-      <section className="py-24 md:py-32 bg-[#2C2C2C] text-[#FAFAF7] relative overflow-hidden">
+      <section className="py-24 md:py-32 bg-[#C4B9A8] text-[#16232B] relative overflow-hidden">
         {/* Abstract Gold Glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#B8956A]/5 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#B8956A]/10 rounded-full blur-[120px] pointer-events-none" />
 
         <div className="relative z-10 max-w-4xl mx-auto px-6 text-center reveal-on-scroll">
           <span className="text-[10px] tracking-[0.3em] uppercase text-[#B8956A] font-sans font-semibold mb-6 block">
@@ -256,19 +262,19 @@ export const Home: React.FC = () => {
             Elevate Your Next <br />
             <span className="italic font-normal text-[#B8956A]">Architectural Narrative</span>
           </h2>
-          <p className="text-xs md:text-sm text-[#C4B9A8] font-light leading-relaxed max-w-2xl mx-auto mb-12">
+          <p className="text-xs md:text-sm text-[#6B6B6B] font-light leading-relaxed max-w-2xl mx-auto mb-12">
             Are you planning a residential estate, a premium boutique store, or a high-end commercial lobby? Request physical texture boards, custom shade swatches, or schedule a technical consultation with our Hyderabad design advisors.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
-              to="/map/quote"
-              className="w-full sm:w-auto px-10 py-4 text-xs uppercase tracking-[0.25em] font-sans font-medium bg-[#B8956A] text-white hover:bg-[#FAFAF7] hover:text-[#1A1A1A] transition-all duration-300"
+              to="/contact?source=map"
+              className="w-full sm:w-auto px-10 py-4 text-xs uppercase tracking-[0.25em] font-sans font-medium bg-[#B8956A] text-white hover:bg-[#16232B] hover:text-white transition-all duration-300"
             >
               Request a Quote
             </Link>
             <Link
-              to="/map/contact"
-              className="w-full sm:w-auto px-10 py-4 text-xs uppercase tracking-[0.25em] font-sans font-medium border border-[#3D3D3D] text-[#C4B9A8] hover:border-[#B8956A] hover:text-white transition-all duration-300"
+              to="/contact?source=map"
+              className="w-full sm:w-auto px-10 py-4 text-xs uppercase tracking-[0.25em] font-sans font-medium border border-[#16232B] text-[#16232B] hover:border-[#B8956A] hover:text-[#B8956A] transition-all duration-300"
             >
               Contact HQ
             </Link>

@@ -68,7 +68,7 @@ export const VerticalProductCard: React.FC<VerticalProductCardProps> = ({
     <div className="bg-white border border-[#EBE8E2] hover:border-[#16232B]/30 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col group">
 
       {/* Image — if no src provided, render a branded placeholder */}
-      <div className="h-64 overflow-hidden relative flex items-center justify-center" style={{ backgroundColor: image ? undefined : "#1E2F3C" }}>
+      <div className="h-64 overflow-hidden relative flex items-center justify-center" style={{ backgroundColor: image ? undefined : "#EBE8E2" }}>
         {image ? (
           <img
             src={image}
@@ -82,11 +82,11 @@ export const VerticalProductCard: React.FC<VerticalProductCardProps> = ({
             <div
               className="absolute inset-0 opacity-[0.05]"
               style={{
-                backgroundImage: "repeating-linear-gradient(45deg, currentColor 0, currentColor 1px, transparent 0, transparent 50%)",
+                backgroundImage: "repeating-linear-gradient(45deg, #B8956A 0, #B8956A 1px, transparent 0, transparent 50%)",
                 backgroundSize: "20px 20px",
               }}
             />
-            <p className="relative z-10 text-[9px] uppercase tracking-[0.2em] font-sans text-[#4A6070]">
+            <p className="relative z-10 text-[9px] uppercase tracking-[0.2em] font-sans text-[#6B6B6B]">
               Photography coming soon
             </p>
           </>

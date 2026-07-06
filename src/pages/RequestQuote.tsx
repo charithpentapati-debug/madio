@@ -2,8 +2,14 @@ import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Send, CheckCircle, MapPin, Building } from "lucide-react";
 import { collectionsData } from "../data/collections";
+import { usePageMeta } from "../hooks/usePageMeta";
 
 export const RequestQuote: React.FC = () => {
+  usePageMeta(
+    "Request a Quote | MAP Architectural Finishes",
+    "Request a quote for MAP's premium decorative surfaces and architectural finishes."
+  );
+
   const [searchParams] = useSearchParams();
   const initialCollection = searchParams.get("collection") || "";
   const initialShade = searchParams.get("shade") || "";

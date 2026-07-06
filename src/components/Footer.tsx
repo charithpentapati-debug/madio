@@ -32,27 +32,27 @@ export const Footer: React.FC = () => {
           </h4>
           <ul className="space-y-3 text-xs text-[#C4B9A8] font-light">
             <li>
-              <Link to="/products?collection=cimento" className="hover:text-white transition-colors duration-300">
+              <Link to="/map/products?collection=cimento" className="hover:text-white transition-colors duration-300">
                 Cimento (Microcement)
               </Link>
             </li>
             <li>
-              <Link to="/products?collection=marbre" className="hover:text-white transition-colors duration-300">
+              <Link to="/map/products?collection=marbre" className="hover:text-white transition-colors duration-300">
                 Marbre (Venetian Plaster)
               </Link>
             </li>
             <li>
-              <Link to="/products?collection=matt-decor" className="hover:text-white transition-colors duration-300">
+              <Link to="/map/products?collection=matt-decor" className="hover:text-white transition-colors duration-300">
                 Matt Decor (Colour Wash)
               </Link>
             </li>
             <li>
-              <Link to="/products?collection=pearl-burst" className="hover:text-white transition-colors duration-300">
+              <Link to="/map/products?collection=pearl-burst" className="hover:text-white transition-colors duration-300">
                 Pearl Burst (Metallic Pearl)
               </Link>
             </li>
             <li>
-              <Link to="/products?collection=metallics-2d" className="hover:text-white transition-colors duration-300">
+              <Link to="/map/products?collection=metallics-2d" className="hover:text-white transition-colors duration-300">
                 2D Metallics (Pearl Gloss)
               </Link>
             </li>
