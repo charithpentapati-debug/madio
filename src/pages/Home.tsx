@@ -87,7 +87,7 @@ export const Home: React.FC = () => {
               Moving beyond paint to create <span className="italic font-normal text-[#B8956A]">architectural depth</span>.
             </h2>
             <p className="text-sm text-[#6B6B6B] font-light leading-relaxed mb-6">
-              MAP is not a paint shop. We are a luxury architectural finishes brand that develops premium decorative surfaces which become an integral element of structural expression.
+              MAP is not a paint shop. We are a luxury architectural finishes brand that curates premium decorative surfaces which become an integral element of structural expression.
             </p>
             <p className="text-sm text-[#6B6B6B] font-light leading-relaxed mb-8">
               We collaborate closely with leading architects and interior designers across India, providing them with bespoke materials that yield seamless walls, monolithic concrete floors, and organic lime washes of unmatched quality.

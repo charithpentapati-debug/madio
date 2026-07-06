@@ -24,7 +24,7 @@ export const About: React.FC = () => {
             To Create <span className="italic font-normal text-[#B8956A]">Architectural Surfaces</span>.
           </h1>
           <p className="text-base md:text-lg text-[#6B6B6B] font-light leading-relaxed">
-            MAP (Premium Acrylic Paints) is an elite decorative surfaces brand. We do not sell paint buckets. We formulate high-performance plaster systems, microcements, and mineral washes designed to serve as organic extensions of architectural structures.
+            MAP (Premium Acrylic Paints) is an elite decorative surfaces brand. We do not sell paint buckets. We curate and supply high-performance plaster systems, microcements, and mineral washes designed to serve as organic extensions of architectural structures.
           </p>
         </div>
 
@@ -43,7 +43,7 @@ export const About: React.FC = () => {
               Spec'd <span className="italic font-normal text-[#B8956A]">Pan-India</span>.
             </h2>
             <p className="text-sm text-[#6B6B6B] font-light leading-relaxed">
-              Based in Hyderabad, MAP operates out of our state-of-the-art laboratory where chemical engineers and plaster artisans test raw minerals, limestone hydrates, and acrylic polymer emulsions. 
+              Based in Hyderabad, MAP collaborates closely with leading architects and expert application partners to select, specify, and refine high-end decorative surfaces.
             </p>
             <p className="text-sm text-[#6B6B6B] font-light leading-relaxed">
               We supply our comprehensive systems nationwide, supporting luxury residential builds, commercial lobbies, and boutique hotels in Mumbai, Bangalore, Delhi, Chennai, and beyond.
@@ -91,7 +91,7 @@ export const About: React.FC = () => {
                 Bespoke Textures
               </h3>
               <p className="text-xs text-[#6B6B6B] font-light leading-relaxed">
-                We develop unique customized texture solutions for architecture firms. Whether a project calls for a raw, weathered volcanic crust or a highly polished, translucent gloss, our artisans formulate to spec.
+                We specify unique customized texture solutions for architecture firms. Whether a project calls for a raw, weathered volcanic crust or a highly polished, translucent gloss, we supply architectural finishes tailored to spec.
               </p>
             </div>
 
