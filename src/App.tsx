@@ -17,7 +17,7 @@ import { Stencils } from "./pages/Stencils";
 const App: React.FC = () => (
   <BrowserRouter>
     <Routes>
-      {/* All pages share the unified MAP-themed header/footer */}
+      {/* All pages share the unified MadioLayout which includes the vertical switcher header */}
       <Route element={<MadioLayout />}>
         {/* Flagship Furniture Homepage */}
         <Route index element={<FurnitureLanding />} />

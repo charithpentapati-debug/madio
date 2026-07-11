@@ -61,13 +61,22 @@ export const FurnitureHeader: React.FC = () => {
               </Link>
             ))}
 
-            {/* Back to MADIO */}
-            <Link
-              to="/"
-              className="text-[9px] uppercase tracking-[0.2em] font-sans font-medium border border-[#16232B]/20 text-[#16232B]/60 hover:border-[#16232B]/60 hover:text-[#16232B] px-3 py-1.5 transition-all duration-200"
-            >
-              ← MADIO
-            </Link>
+            {/* Switch Vertical dropdown */}
+            <div className="relative group py-2 -my-2">
+              <span className="text-[10px] tracking-[0.2em] uppercase font-sans text-[#16232B]/75 hover:text-[#16232B] transition-colors cursor-pointer select-none">
+                Switch Vertical
+              </span>
+              <div className="absolute top-full right-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                <div className="bg-[#FAFAF7] border border-[#EBE8E2] shadow-lg py-2 min-w-[200px] text-left">
+                  <Link to="/map" className="block px-5 py-2.5 text-[11px] font-sans tracking-[0.1em] uppercase font-light text-[#1A1A1A] hover:text-[#B8956A] hover:bg-[#F5F0EB]">
+                    MAP Finishes
+                  </Link>
+                  <Link to="/doors-windows" className="block px-5 py-2.5 text-[11px] font-sans tracking-[0.1em] uppercase font-light text-[#1A1A1A] hover:text-[#B8956A] hover:bg-[#F5F0EB]">
+                    Doors &amp; Windows
+                  </Link>
+                </div>
+              </div>
+            </div>
           </nav>
 
           {/* Mobile menu toggle */}
@@ -84,24 +93,45 @@ export const FurnitureHeader: React.FC = () => {
 
       {/* Mobile drawer */}
       {menuOpen && (
-        <div className="fixed inset-0 z-40 bg-[#FAFAF7]/98 backdrop-blur-md flex flex-col pt-20 px-8 pb-12">
-          <div className="flex flex-col space-y-8 mt-4">
+        <div className="fixed inset-0 z-40 bg-[#FAFAF7]/98 backdrop-blur-md flex flex-col justify-between pt-24 px-10 pb-12">
+          <div className="flex flex-col space-y-6 overflow-y-auto max-h-[75vh]">
             <span className="text-[9px] uppercase tracking-[0.3em] font-sans font-medium" style={{ color: FURNITURE_ACCENT }}>
               MADIO Furniture
             </span>
             {[
               { to: "/",           label: "All Furniture" },
               { to: "/contact?source=furniture", label: "Enquire"       },
-              { to: "/",           label: "← MADIO"      },
             ].map(({ to, label }) => (
               <Link
                 key={to}
                 to={to}
-                className="text-3xl font-serif font-light text-[#16232B] hover:text-[#B8956A] transition-colors duration-300"
+                className="text-2xl font-serif font-light text-[#16232B] hover:text-[#B8956A] transition-colors duration-300"
               >
                 {label}
               </Link>
             ))}
+            
+            <div className="pt-4 border-t border-[#EBE8E2] flex flex-col space-y-3">
+              <span className="text-[9px] uppercase tracking-[0.25em] text-[#B8956A] font-sans font-semibold">
+                Other Verticals
+              </span>
+              <Link
+                to="/map"
+                className="text-lg font-serif font-light text-[#1A1A1A] hover:text-[#B8956A] transition-colors"
+              >
+                MAP Finishes
+              </Link>
+              <Link
+                to="/doors-windows"
+                className="text-lg font-serif font-light text-[#1A1A1A] hover:text-[#B8956A] transition-colors"
+              >
+                Doors &amp; Windows
+              </Link>
+            </div>
+          </div>
+          <div className="border-t border-[#EBE8E2] pt-6 bg-[#F5F0EB]/60 -mx-10 -mb-12 p-10">
+            <p className="text-xs text-[#1A1A1A] font-light">Kondapur, Hyderabad, India</p>
+            <p className="text-xs text-[#1A1A1A] font-light mt-1">info@madio.in</p>
           </div>
         </div>
       )}

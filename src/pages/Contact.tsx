@@ -48,6 +48,8 @@ export const Contact: React.FC = () => {
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
@@ -56,10 +58,42 @@ export const Contact: React.FC = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("MADIO Contact Form Inquiry Submitted:", formData);
-    setIsSubmitted(true);
+    setIsSubmitting(true);
+    setSubmitError(null);
+
+    const apiUrl = import.meta.env.VITE_GOOGLE_SHEETS_API_URL;
+    if (!apiUrl || apiUrl.includes("YOUR_COPIED_APPS_SCRIPT_URL_HERE")) {
+      console.warn("Google Sheets API URL is not configured in .env file.");
+      // Fallback: simulate success for testing
+      setTimeout(() => {
+        setIsSubmitting(false);
+        setIsSubmitted(true);
+      }, 1000);
+      return;
+    }
+
+    try {
+      // Use no-cors mode to send standard url-encoded form values.
+      // This is the most reliable way to POST to Google Apps Script web apps without CORS issues.
+      const searchParams = new URLSearchParams(formData);
+      await fetch(apiUrl, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: searchParams.toString(),
+      });
+
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+    } catch (err: any) {
+      console.error("Failed to submit contact form:", err);
+      setSubmitError("We were unable to transmit your message. Please check your network connection and try again.");
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -232,6 +266,12 @@ export const Contact: React.FC = () => {
                 <h2 className="text-2xl font-serif font-light text-[#1A1A1A] border-b border-[#EBE8E2] pb-4 mb-6">
                   Inquiry Form
                 </h2>
+
+                {submitError && (
+                  <div className="p-4 bg-red-50 border-l-4 border-red-500 text-red-700 text-xs font-light rounded-[4px] leading-relaxed">
+                    {submitError}
+                  </div>
+                )}
                 
                 {/* Name */}
                 <div className="flex flex-col space-y-2">
@@ -324,10 +364,22 @@ export const Contact: React.FC = () => {
                 {/* Submit button */}
                 <button
                   type="submit"
-                  className="w-full bg-[#B8956A] text-white py-4 text-xs uppercase tracking-[0.25em] font-sans font-semibold hover:bg-[#1A1A1A] transition-colors duration-300 flex items-center justify-center space-x-2 cursor-pointer shadow-sm rounded-[4px]"
+                  disabled={isSubmitting}
+                  className={`w-full bg-[#B8956A] text-white py-4 text-xs uppercase tracking-[0.25em] font-sans font-semibold hover:bg-[#1A1A1A] transition-colors duration-300 flex items-center justify-center space-x-2 cursor-pointer shadow-sm rounded-[4px] ${
+                    isSubmitting ? "opacity-60 cursor-not-allowed" : ""
+                  }`}
                 >
-                  <span>Transmit Message</span>
-                  <Send size={12} />
+                  {isSubmitting ? (
+                    <>
+                      <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin mr-2" />
+                      <span>Transmitting...</span>
+                    </>
+                  ) : (
+                    <>
+                      <span>Transmit Message</span>
+                      <Send size={12} />
+                    </>
+                  )}
                 </button>
               </form>
             )}

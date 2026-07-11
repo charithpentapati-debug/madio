@@ -6,6 +6,7 @@ import madioLogo from "../assets/madio-logo.png";
 export const MadioHeader: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMapDrawerOpen, setIsMapDrawerOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -16,7 +17,10 @@ export const MadioHeader: React.FC = () => {
 
   useEffect(() => {
     setIsMobileMenuOpen(false);
+    setIsMapDrawerOpen(false);
   }, [location]);
+
+  const isMapPage = location.pathname.startsWith("/map");
 
   const navLinks = [
     { path: "/",              label: "MADIO Furniture" },
@@ -25,10 +29,7 @@ export const MadioHeader: React.FC = () => {
     { path: "/contact?source=general",       label: "Contact" },
   ];
 
-  // MAP vertical subpages — surfaced via a dropdown under "MAP" since the
-  // unified header only shows top-level vertical links. Without this, these
-  // routes are unreachable from anywhere except /map's own body content
-  // (and /map/stencils had no link anywhere at all).
+  // MAP vertical subpages
   const mapSubLinks = [
     { path: "/map/about",    label: "About" },
     { path: "/map/products", label: "Collections" },
@@ -67,7 +68,7 @@ export const MadioHeader: React.FC = () => {
             />
           </Link>
 
-          {/* Desktop nav */}
+          {/* Desktop nav — standard way to choose vertical on every page */}
           <nav className="hidden md:flex items-center gap-x-6 lg:gap-x-10 flex-1 justify-center">
             {navLinks.map((link) =>
               link.path === "/map" ? (
@@ -103,7 +104,7 @@ export const MadioHeader: React.FC = () => {
             )}
           </nav>
 
-          {/* Right slot: email (lg) + mobile toggle */}
+          {/* Right slot: email (lg) + Map Hamburger + mobile toggle */}
           <div className="flex items-center space-x-6 shrink-0">
             <a
               href="mailto:info@madio.in"
@@ -111,6 +112,19 @@ export const MadioHeader: React.FC = () => {
             >
               info@madio.in
             </a>
+
+            {/* Desktop MAP Hamburger Button (only on MAP pages) */}
+            {isMapPage && (
+              <button
+                onClick={() => setIsMapDrawerOpen(!isMapDrawerOpen)}
+                className="hidden md:block transition-colors focus:outline-none text-[#1A1A1A] hover:text-[#B8956A] p-1"
+                aria-label="Toggle MAP sub-menu"
+                title="MAP Navigation"
+              >
+                <Menu size={22} />
+              </button>
+            )}
+
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="md:hidden transition-colors focus:outline-none text-[#1A1A1A] hover:text-[#B8956A]"
@@ -124,11 +138,11 @@ export const MadioHeader: React.FC = () => {
 
       {/* Full-screen mobile menu — always light cream */}
       <div
-        className={`fixed inset-0 z-40 bg-[#FAFAF7] transition-all duration-500 ease-in-out md:hidden flex flex-col justify-between ${
+        className={`fixed inset-0 z-40 bg-[#FAFAF7] transition-all duration-500 ease-in-out md:hidden flex flex-col pt-20 ${
           isMobileMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"
         }`}
       >
-        <div className="pt-28 px-10 flex flex-col space-y-8 overflow-y-auto">
+        <div className="flex-1 overflow-y-auto px-10 py-8 flex flex-col space-y-6">
           {navLinks.map((link) => (
             <div key={link.path}>
               <NavLink
@@ -164,12 +178,67 @@ export const MadioHeader: React.FC = () => {
             </div>
           ))}
         </div>
-        <div className="p-10 border-t border-[#EBE8E2] bg-[#F5F0EB]/60">
+        <div className="p-10 border-t border-[#EBE8E2] bg-[#F5F0EB]/60 shrink-0">
           <p className="text-[10px] tracking-[0.2em] uppercase text-[#B8956A] font-sans mb-2">
             MADIO Furniture | MAP | MADIO Doors &amp; Windows
           </p>
           <p className="text-xs text-[#6B6B6B] font-light mt-3">Kondapur, Hyderabad, India</p>
           <p className="text-xs text-[#6B6B6B] font-light mt-1">info@madio.in</p>
+        </div>
+      </div>
+
+      {/* MAP Desktop Side Drawer (Slide-out menu for MAP subpages) */}
+      <div 
+        className={`fixed inset-0 z-50 overflow-hidden md:flex justify-end hidden transition-all duration-500 ${
+          isMapDrawerOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        }`}
+      >
+        {/* Scrim */}
+        <div 
+          className="absolute inset-0 bg-black/40 backdrop-blur-sm" 
+          onClick={() => setIsMapDrawerOpen(false)}
+        />
+        {/* Drawer content */}
+        <div 
+          className={`relative w-[380px] h-full bg-[#FAFAF7] border-l border-[#EBE8E2] shadow-2xl p-12 flex flex-col justify-between z-10 transition-transform duration-500 ease-out ${
+            isMapDrawerOpen ? "translate-x-0" : "translate-x-full"
+          }`}
+        >
+          <div>
+            <div className="flex justify-between items-center mb-16">
+              <span className="text-[10px] tracking-[0.25em] uppercase text-[#B8956A] font-sans font-semibold">
+                MAP Finishes
+              </span>
+              <button 
+                onClick={() => setIsMapDrawerOpen(false)}
+                className="text-[#1A1A1A] hover:text-[#B8956A] transition-colors p-1"
+              >
+                <X size={20} />
+              </button>
+            </div>
+            <nav className="flex flex-col space-y-6">
+              {mapSubLinks.map((sub) => (
+                <NavLink
+                  key={sub.path}
+                  to={sub.path}
+                  className={({ isActive }) =>
+                    `text-2xl font-serif tracking-wide font-light transition-all duration-300 ${
+                      isActive ? "text-[#B8956A] pl-4 border-l-2 border-[#B8956A]" : "text-[#1A1A1A] hover:text-[#B8956A]"
+                    }`
+                  }
+                >
+                  {sub.label}
+                </NavLink>
+              ))}
+            </nav>
+          </div>
+          <div className="border-t border-[#EBE8E2] pt-8">
+            <p className="text-[9px] uppercase tracking-[0.2em] text-[#B8956A] font-sans font-medium mb-1">
+              Kondapur, Hyderabad
+            </p>
+            <p className="text-xs text-[#6B6B6B] font-light mt-2">info@madio.in</p>
+            <p className="text-xs text-[#6B6B6B] font-light mt-1">+91 99486 01899</p>
+          </div>
         </div>
       </div>
     </>

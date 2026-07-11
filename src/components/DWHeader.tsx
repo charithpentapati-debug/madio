@@ -66,14 +66,24 @@ export const DWHeader: React.FC = () => {
             ))}
           </nav>
 
-          {/* Right: back to MADIO + mobile toggle */}
+          {/* Right: Switch Vertical + mobile toggle */}
           <div className="flex items-center space-x-6 shrink-0">
-            <Link
-              to="/"
-              className="hidden lg:block text-[11px] tracking-[0.15em] uppercase font-sans text-[#6B6B6B] hover:text-[#16232B] transition-colors duration-300"
-            >
-              ← MADIO
-            </Link>
+            {/* Switch Vertical dropdown */}
+            <div className="hidden lg:block relative group py-2 -my-2">
+              <span className="text-[11px] tracking-[0.15em] uppercase font-sans text-[#6B6B6B] hover:text-[#16232B] transition-colors cursor-pointer select-none">
+                Switch Vertical
+              </span>
+              <div className="absolute top-full right-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                <div className="bg-[#FAFAF7] border border-[#EBE8E2] shadow-lg py-2 min-w-[200px] text-left">
+                  <Link to="/" className="block px-5 py-2.5 text-[11px] font-sans tracking-[0.1em] uppercase font-light text-[#1A1A1A] hover:text-[#B8956A] hover:bg-[#F5F0EB]">
+                    MADIO Furniture
+                  </Link>
+                  <Link to="/map" className="block px-5 py-2.5 text-[11px] font-sans tracking-[0.1em] uppercase font-light text-[#1A1A1A] hover:text-[#B8956A] hover:bg-[#F5F0EB]">
+                    MAP Finishes
+                  </Link>
+                </div>
+              </div>
+            </div>
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="md:hidden text-[#16232B] hover:text-[#6B6B6B] transition-colors focus:outline-none"
@@ -91,14 +101,14 @@ export const DWHeader: React.FC = () => {
           isMobileMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"
         }`}
       >
-        <div className="pt-28 px-10 flex flex-col space-y-8">
+        <div className="pt-24 px-10 flex flex-col space-y-6 overflow-y-auto max-h-[75vh]">
           {navLinks.map((link) => (
             <NavLink
               key={link.path}
               to={link.path}
               end={link.end}
               className={({ isActive }) =>
-                `text-3xl font-serif tracking-[0.06em] font-light transition-all duration-300 ${
+                `text-2xl font-serif tracking-[0.06em] font-light transition-all duration-300 ${
                   isActive ? "text-[#16232B] pl-4 border-l-2 border-[#B8956A]" : "text-[#6B6B6B] hover:text-[#16232B]"
                 }`
               }
@@ -106,12 +116,23 @@ export const DWHeader: React.FC = () => {
               {link.label}
             </NavLink>
           ))}
-          <Link
-            to="/"
-            className="text-3xl font-serif tracking-[0.06em] font-light text-[#6B6B6B] hover:text-[#16232B] transition-all duration-300"
-          >
-            MADIO
-          </Link>
+          <div className="pt-4 border-t border-[#EBE8E2] flex flex-col space-y-3">
+            <span className="text-[9px] uppercase tracking-[0.25em] text-[#B8956A] font-sans font-semibold">
+              Other Verticals
+            </span>
+            <Link
+              to="/"
+              className="text-lg font-serif font-light text-[#1A1A1A] hover:text-[#B8956A] transition-colors"
+            >
+              MADIO Furniture
+            </Link>
+            <Link
+              to="/map"
+              className="text-lg font-serif font-light text-[#1A1A1A] hover:text-[#B8956A] transition-colors"
+            >
+              MAP Finishes
+            </Link>
+          </div>
         </div>
         <div className="p-10 border-t border-[#EBE8E2]">
           <p className="text-[10px] tracking-[0.2em] uppercase text-[#B8956A] font-sans mb-2">
