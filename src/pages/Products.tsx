@@ -55,13 +55,13 @@ export const Products: React.FC = () => {
 
             {/* Title Block */}
             <div className="max-w-3xl mb-16">
-              <span className="text-[10px] tracking-[0.3em] uppercase text-[#B8956A] font-sans font-semibold block mb-4">
+              <span className="text-[10px] tracking-[0.3em] uppercase text-[#D4AF37] font-sans font-semibold block mb-4">
                 Collection Profile
               </span>
               <h1 className="text-4xl md:text-6xl font-serif font-light text-[#1A1A1A] mb-4">
                 {activeCollection.name}
               </h1>
-              <p className="text-xs uppercase tracking-[0.25em] text-[#B8956A] font-sans font-medium border-b border-[#EBE8E2] pb-6">
+              <p className="text-xs uppercase tracking-[0.25em] text-[#D4AF37] font-sans font-medium border-b border-[#EBE8E2] pb-6">
                 {activeCollection.tagline}{hasValue(activeCollection.shadesCount) ? ` — ${activeCollection.shadesCount}` : ""}
               </p>
             </div>
@@ -94,7 +94,7 @@ export const Products: React.FC = () => {
                     </p>
                     <Link
                       to={`/contact?source=map&collection=${activeCollection.id}`}
-                      className="text-xs font-semibold text-[#B8956A] hover:underline uppercase tracking-wider mt-3 inline-block"
+                      className="text-xs font-semibold text-[#D4AF37] hover:underline uppercase tracking-wider mt-3 inline-block"
                     >
                       Order Samples &rarr;
                     </Link>
@@ -128,7 +128,7 @@ export const Products: React.FC = () => {
                   return (
                     <div className="border-t border-[#EBE8E2] pt-8">
                       <h3 className="text-xs uppercase tracking-[0.2em] font-sans font-medium text-[#1A1A1A] mb-6 flex items-center space-x-2">
-                        <Settings size={14} className="text-[#B8956A]" />
+                        <Settings size={14} className="text-[#D4AF37]" />
                         <span>Technical Specification</span>
                       </h3>
                       <div className="space-y-4 text-xs">
@@ -154,7 +154,7 @@ export const Products: React.FC = () => {
                       The price field is already typed on Collection; label/action swap only. */}
                   <Link
                     to={`/contact?source=map&collection=${activeCollection.id}`}
-                    className="flex-1 bg-[#1A1A1A] text-white text-center py-4 text-xs uppercase tracking-[0.25em] font-sans font-medium hover:bg-[#B8956A] transition-all duration-300"
+                    className="flex-1 bg-[#1A1A1A] text-white text-center py-4 text-xs uppercase tracking-[0.25em] font-sans font-medium hover:bg-[#D4AF37] transition-all duration-300"
                   >
                     Request Quote for {activeCollection.name}
                   </Link>
@@ -181,7 +181,7 @@ export const Products: React.FC = () => {
                 </div>
                 <Link
                   to="/map/colors"
-                  className="text-xs uppercase tracking-[0.15em] font-sans text-[#B8956A] hover:underline font-medium"
+                  className="text-xs uppercase tracking-[0.15em] font-sans text-[#D4AF37] hover:underline font-medium"
                 >
                   View Full Library &rarr;
                 </Link>
@@ -199,7 +199,7 @@ export const Products: React.FC = () => {
                       style={{ backgroundColor: shade.hex }}
                     />
                     <div>
-                      <span className="text-[10px] uppercase tracking-wider font-mono text-[#B8956A] block">
+                      <span className="text-[10px] uppercase tracking-wider font-mono text-[#D4AF37] block">
                         {shade.code}
                       </span>
                       <span className="text-xs text-[#1A1A1A] font-medium block truncate mt-0.5">
@@ -218,11 +218,11 @@ export const Products: React.FC = () => {
           <div className="reveal-on-scroll">
             {/* Header Text */}
             <div className="max-w-3xl mb-16">
-              <span className="text-[10px] tracking-[0.3em] uppercase text-[#B8956A] font-sans font-semibold block mb-4">
+              <span className="text-[10px] tracking-[0.3em] uppercase text-[#D4AF37] font-sans font-semibold block mb-4">
                 Architectural Finishes
               </span>
               <h1 className="text-4xl md:text-6xl font-serif font-light text-[#1A1A1A] mb-6 leading-tight">
-                The MAP <span className="italic font-normal text-[#B8956A]">Collections</span>
+                The MAP <span className="italic font-normal text-[#D4AF37]">Collections</span>
               </h1>
               <p className="text-sm md:text-base text-[#6B6B6B] font-light leading-relaxed">
                 Explore our official architectural coating systems — premium interiors, facade treatments, concrete installations, and luxury metallic reflections.
@@ -234,7 +234,7 @@ export const Products: React.FC = () => {
               {collectionsData.map((col) => (
                 <div
                   key={col.id}
-                  className="bg-white border border-[#EBE8E2] hover:border-[#B8956A]/60 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between group"
+                  className="bg-white border border-[#EBE8E2] hover:border-[#D4AF37]/60 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between group"
                 >
                   <div>
                     {/* Collection Image */}
@@ -251,10 +251,10 @@ export const Products: React.FC = () => {
 
                     {/* Collection Info */}
                     <div className="p-8">
-                      <span className="text-[9px] tracking-[0.25em] uppercase text-[#B8956A] font-sans font-semibold mb-2 block">
+                      <span className="text-[9px] tracking-[0.25em] uppercase text-[#D4AF37] font-sans font-semibold mb-2 block">
                         {col.tagline}
                       </span>
-                      <h3 className="text-2xl font-serif font-light text-[#1A1A1A] mb-3 group-hover:text-[#B8956A] transition-colors duration-300">
+                      <h3 className="text-2xl font-serif font-light text-[#1A1A1A] mb-3 group-hover:text-[#D4AF37] transition-colors duration-300">
                         {col.name}
                       </h3>
                       <p className="text-xs text-[#6B6B6B] font-light leading-relaxed">
@@ -270,7 +270,7 @@ export const Products: React.FC = () => {
                     </span>
                     <button
                       onClick={() => selectCollection(col.id)}
-                      className="inline-flex items-center space-x-1.5 text-xs uppercase tracking-[0.2em] font-sans font-medium text-[#1A1A1A] hover:text-[#B8956A] transition-colors group/btn cursor-pointer"
+                      className="inline-flex items-center space-x-1.5 text-xs uppercase tracking-[0.2em] font-sans font-medium text-[#1A1A1A] hover:text-[#D4AF37] transition-colors group/btn cursor-pointer"
                     >
                       <span>Details</span>
                       <ArrowRight size={12} className="group-hover/btn:translate-x-1 transition-transform" />

@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import madioLogo from "../assets/madio-logo.png";
 
-const FURNITURE_ACCENT = "#B8956A";
+const FURNITURE_ACCENT = "#D4AF37";
 
 export const FurnitureHeader: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -21,8 +21,8 @@ export const FurnitureHeader: React.FC = () => {
 
   // Light glass header, consistent with the site-wide light theme.
   const scrolledBg = isScrolled
-    ? "bg-[#FAFAF7]/92 backdrop-blur-md border-b border-[#EBE8E2] shadow-sm"
-    : "bg-[#FAFAF7]/70 backdrop-blur-sm";
+    ? "bg-[#0A0A0A]/95 backdrop-blur-md border-b border-white/10 shadow-sm"
+    : "bg-[#0A0A0A]/70 backdrop-blur-sm";
 
   return (
     <>
@@ -37,6 +37,7 @@ export const FurnitureHeader: React.FC = () => {
               src={madioLogo}
               alt="MADIO Furniture"
               className="h-4 w-auto transition-opacity duration-300 group-hover:opacity-80"
+              style={{ filter: "brightness(0) invert(1)" }}
             />
             <span
               className="text-[8px] tracking-[0.35em] uppercase font-sans font-medium mt-[3px]"
@@ -55,7 +56,7 @@ export const FurnitureHeader: React.FC = () => {
               <Link
                 key={to}
                 to={to}
-                className="text-[10px] uppercase tracking-[0.2em] font-sans text-[#16232B]/75 hover:text-[#16232B] transition-colors duration-200"
+                className="text-[10px] uppercase tracking-[0.2em] font-sans text-white/70 hover:text-white transition-colors duration-200"
               >
                 {label}
               </Link>
@@ -63,15 +64,15 @@ export const FurnitureHeader: React.FC = () => {
 
             {/* Switch Vertical dropdown */}
             <div className="relative group py-2 -my-2">
-              <span className="text-[10px] tracking-[0.2em] uppercase font-sans text-[#16232B]/75 hover:text-[#16232B] transition-colors cursor-pointer select-none">
+              <span className="text-[10px] tracking-[0.2em] uppercase font-sans text-white/70 hover:text-white transition-colors cursor-pointer select-none">
                 Switch Vertical
               </span>
               <div className="absolute top-full right-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                 <div className="bg-[#FAFAF7] border border-[#EBE8E2] shadow-lg py-2 min-w-[200px] text-left">
-                  <Link to="/map" className="block px-5 py-2.5 text-[11px] font-sans tracking-[0.1em] uppercase font-light text-[#1A1A1A] hover:text-[#B8956A] hover:bg-[#F5F0EB]">
+                  <Link to="/map" className="block px-5 py-2.5 text-[11px] font-sans tracking-[0.1em] uppercase font-light text-[#1A1A1A] hover:text-[#D4AF37] hover:bg-[#F5F0EB]">
                     MAP Finishes
                   </Link>
-                  <Link to="/doors-windows" className="block px-5 py-2.5 text-[11px] font-sans tracking-[0.1em] uppercase font-light text-[#1A1A1A] hover:text-[#B8956A] hover:bg-[#F5F0EB]">
+                  <Link to="/doors-windows" className="block px-5 py-2.5 text-[11px] font-sans tracking-[0.1em] uppercase font-light text-[#1A1A1A] hover:text-[#D4AF37] hover:bg-[#F5F0EB]">
                     Doors &amp; Windows
                   </Link>
                 </div>
@@ -81,7 +82,7 @@ export const FurnitureHeader: React.FC = () => {
 
           {/* Mobile menu toggle */}
           <button
-            className="md:hidden p-2 text-[#16232B]/80 hover:text-[#16232B] transition-colors"
+            className="md:hidden p-2 text-white/80 hover:text-white transition-colors"
             onClick={() => setMenuOpen((o) => !o)}
             aria-label="Toggle navigation"
           >
@@ -93,7 +94,7 @@ export const FurnitureHeader: React.FC = () => {
 
       {/* Mobile drawer */}
       {menuOpen && (
-        <div className="fixed inset-0 z-40 bg-[#FAFAF7]/98 backdrop-blur-md flex flex-col justify-between pt-24 px-10 pb-12">
+        <div className="fixed inset-0 z-40 bg-[#0A0A0A]/98 backdrop-blur-md flex flex-col justify-between pt-24 px-10 pb-12">
           <div className="flex flex-col space-y-6 overflow-y-auto max-h-[75vh]">
             <span className="text-[9px] uppercase tracking-[0.3em] font-sans font-medium" style={{ color: FURNITURE_ACCENT }}>
               MADIO Furniture
@@ -105,33 +106,33 @@ export const FurnitureHeader: React.FC = () => {
               <Link
                 key={to}
                 to={to}
-                className="text-2xl font-serif font-light text-[#16232B] hover:text-[#B8956A] transition-colors duration-300"
+                className="text-2xl font-serif font-light text-white/85 hover:text-[#D4AF37] transition-colors duration-300"
               >
                 {label}
               </Link>
             ))}
             
-            <div className="pt-4 border-t border-[#EBE8E2] flex flex-col space-y-3">
-              <span className="text-[9px] uppercase tracking-[0.25em] text-[#B8956A] font-sans font-semibold">
+            <div className="pt-4 border-t border-white/10 flex flex-col space-y-3">
+              <span className="text-[9px] uppercase tracking-[0.25em] text-[#D4AF37] font-sans font-semibold">
                 Other Verticals
               </span>
               <Link
                 to="/map"
-                className="text-lg font-serif font-light text-[#1A1A1A] hover:text-[#B8956A] transition-colors"
+                className="text-lg font-serif font-light text-white/75 hover:text-[#D4AF37] transition-colors"
               >
                 MAP Finishes
               </Link>
               <Link
                 to="/doors-windows"
-                className="text-lg font-serif font-light text-[#1A1A1A] hover:text-[#B8956A] transition-colors"
+                className="text-lg font-serif font-light text-white/75 hover:text-[#D4AF37] transition-colors"
               >
                 Doors &amp; Windows
               </Link>
             </div>
           </div>
-          <div className="border-t border-[#EBE8E2] pt-6 bg-[#F5F0EB]/60 -mx-10 -mb-12 p-10">
-            <p className="text-xs text-[#1A1A1A] font-light">Kondapur, Hyderabad, India</p>
-            <p className="text-xs text-[#1A1A1A] font-light mt-1">info@madio.in</p>
+          <div className="border-t border-white/10 pt-6 bg-white/5 -mx-10 -mb-12 p-10">
+            <p className="text-xs text-white/50 font-light">Kondapur, Hyderabad, India</p>
+            <p className="text-xs text-white/50 font-light mt-1">info@madio.in</p>
           </div>
         </div>
       )}

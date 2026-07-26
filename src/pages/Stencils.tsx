@@ -47,11 +47,11 @@ export const Stencils: React.FC = () => {
 
         {/* Header */}
         <div className="max-w-3xl mb-16 reveal-on-scroll">
-          <span className="text-[10px] tracking-[0.3em] uppercase text-[#B8956A] font-sans font-semibold block mb-4">
+          <span className="text-[10px] tracking-[0.3em] uppercase text-[#D4AF37] font-sans font-semibold block mb-4">
             Stencil Library
           </span>
           <h1 className="text-4xl md:text-6xl font-serif font-light text-[#1A1A1A] mb-6 leading-tight">
-            ASN <span className="italic font-normal text-[#B8956A]">Stencil Designs</span>
+            ASN <span className="italic font-normal text-[#D4AF37]">Stencil Designs</span>
           </h1>
           <p className="text-sm md:text-base text-[#6B6B6B] font-light leading-relaxed">
             111 precision-cut stencil patterns available for use with MAP decorative surface systems. Each design is identified by its ASN code and can be specified alongside any MAP collection.
@@ -72,7 +72,7 @@ export const Stencils: React.FC = () => {
             >
               {/* Card */}
               <div
-                className="relative overflow-hidden rounded-[6px] border border-[#EBE8E2] bg-white/60 backdrop-blur-sm hover:border-[#B8956A]/50 hover:shadow-lg"
+                className="relative overflow-hidden rounded-[6px] border border-[#EBE8E2] bg-white/60 backdrop-blur-sm hover:border-[#D4AF37]/50 hover:shadow-lg"
                 style={{ transition: "border-color 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s cubic-bezier(0.16,1,0.3,1)" }}
               >
                 <div className="aspect-square overflow-hidden bg-[#F5F0EB]/40">
@@ -86,7 +86,7 @@ export const Stencils: React.FC = () => {
                 </div>
                 {/* Caption pill */}
                 <div className="px-2 py-1.5 text-center">
-                  <span className="text-[9px] tracking-[0.2em] uppercase font-sans font-medium text-[#B8956A]">
+                  <span className="text-[9px] tracking-[0.2em] uppercase font-sans font-medium text-[#D4AF37]">
                     {s.code}
                   </span>
                 </div>
@@ -104,7 +104,7 @@ export const Stencils: React.FC = () => {
       {/* Lightbox */}
       {lightbox && (
         <div
-          className="fixed inset-0 z-50 bg-[#1A1A1A]/95 flex items-center justify-center p-6"
+          className="fixed inset-0 z-50 bg-[#0A0A0A]/95 flex items-center justify-center p-6"
           onClick={() => setLightbox(null)}
         >
           <div
@@ -124,7 +124,7 @@ export const Stencils: React.FC = () => {
               alt={lightbox.code}
               className="w-full max-h-[400px] object-contain"
             />
-            <span className="text-sm tracking-[0.25em] uppercase font-sans font-medium text-[#B8956A]">
+            <span className="text-sm tracking-[0.25em] uppercase font-sans font-medium text-[#D4AF37]">
               {lightbox.code}
             </span>
           </div>

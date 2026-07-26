@@ -99,31 +99,31 @@ export const Contact: React.FC = () => {
   return (
     <div className="bg-[#FAFAF7] min-h-screen">
       {/* ── Dark Overlay Hero Section ── */}
-      <section className="relative h-[60vh] flex items-center justify-center bg-[#1A1A1A] overflow-hidden">
+      <section className="relative h-[60vh] flex items-center justify-center bg-[#0A0A0A] overflow-hidden">
         {/* Background/Texture Overlay */}
         <div className="absolute inset-0 z-0">
           <div
             className="absolute inset-0 opacity-[0.12]"
             style={{
               backgroundImage:
-                "repeating-linear-gradient(45deg, #B8956A 0, #B8956A 1px, transparent 0, transparent 50%)",
+                "repeating-linear-gradient(45deg, #D4AF37 0, #D4AF37 1px, transparent 0, transparent 50%)",
               backgroundSize: "24px 24px",
             }}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#1A1A1A]/80 via-transparent to-[#1A1A1A]/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/80 via-transparent to-[#0A0A0A]/40" />
         </div>
 
         {/* Hero Content */}
         <div className="relative z-10 max-w-4xl mx-auto px-6 md:px-12 text-center text-white flex flex-col items-center">
-          <div className="flex items-center space-x-2 border border-[#B8956A]/60 px-4 py-1.5 mb-6 animate-fade-in">
-            <Sparkles size={12} className="text-[#B8956A]" />
+          <div className="flex items-center space-x-2 border border-[#D4AF37]/60 px-4 py-1.5 mb-6 animate-fade-in">
+            <Sparkles size={12} className="text-[#D4AF37]" />
             <span className="text-[10px] tracking-[0.3em] uppercase font-sans text-[#EBE8E2]">
               Contact HQ
             </span>
           </div>
 
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-light tracking-wide leading-tight mb-6 animate-fade-in-up">
-            Get in <span className="italic font-normal text-[#B8956A]">touch</span>
+            Get in <span className="italic font-normal text-[#D4AF37]">touch</span>
           </h1>
 
           <p className="text-sm md:text-base tracking-wider font-light text-[#F5F0EB]/90 max-w-2xl mb-10 leading-relaxed animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
@@ -133,7 +133,7 @@ export const Contact: React.FC = () => {
           <div className="flex flex-col sm:flex-row items-center gap-5 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
             <a
               href="#form-section"
-              className="w-full sm:w-auto px-10 py-3.5 text-xs uppercase tracking-[0.25em] font-sans font-medium bg-[#B8956A] text-white hover:bg-white hover:text-[#1A1A1A] transition-all duration-300 shadow-md text-center"
+              className="w-full sm:w-auto px-10 py-3.5 text-xs uppercase tracking-[0.25em] font-sans font-medium bg-[#D4AF37] text-white hover:bg-white hover:text-[#0A0A0A] transition-all duration-300 shadow-md text-center"
             >
               Enquire Now
             </a>
@@ -141,7 +141,7 @@ export const Contact: React.FC = () => {
               href="https://wa.me/919948601899"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto px-10 py-3.5 text-xs uppercase tracking-[0.25em] font-sans font-medium border border-white text-white hover:bg-white hover:text-[#1A1A1A] transition-all duration-300 text-center"
+              className="w-full sm:w-auto px-10 py-3.5 text-xs uppercase tracking-[0.25em] font-sans font-medium border border-white text-white hover:bg-white hover:text-[#0A0A0A] transition-all duration-300 text-center"
             >
               Chat on WhatsApp
             </a>
@@ -170,7 +170,7 @@ export const Contact: React.FC = () => {
               <div className="space-y-6 text-sm font-light">
                 {/* Location */}
                 <div className="flex items-start space-x-4">
-                  <MapPin size={20} className="text-[#B8956A] shrink-0 mt-0.5" />
+                  <MapPin size={20} className="text-[#D4AF37] shrink-0 mt-0.5" />
                   <div>
                     <span className="text-[10px] uppercase text-[#6B6B6B] tracking-wider block font-sans font-semibold mb-1">
                       HQ Address
@@ -183,16 +183,16 @@ export const Contact: React.FC = () => {
 
                 {/* Phone */}
                 <div className="flex items-start space-x-4">
-                  <Phone size={18} className="text-[#B8956A] shrink-0 mt-0.5" />
+                  <Phone size={18} className="text-[#D4AF37] shrink-0 mt-0.5" />
                   <div>
                     <span className="text-[10px] uppercase text-[#6B6B6B] tracking-wider block font-sans font-semibold mb-1">
                       Contact Numbers
                     </span>
                     <div className="flex flex-col text-[#1A1A1A] font-medium">
-                      <a href="tel:+919948601899" className="hover:text-[#B8956A] transition-colors">
+                      <a href="tel:+919948601899" className="hover:text-[#D4AF37] transition-colors">
                         +91 99486 01899
                       </a>
-                      <a href="tel:+919948601599" className="hover:text-[#B8956A] transition-colors mt-0.5">
+                      <a href="tel:+919948601599" className="hover:text-[#D4AF37] transition-colors mt-0.5">
                         +91 99486 01599
                       </a>
                     </div>
@@ -201,16 +201,16 @@ export const Contact: React.FC = () => {
 
                 {/* Email & Web */}
                 <div className="flex items-start space-x-4">
-                  <Mail size={18} className="text-[#B8956A] shrink-0 mt-0.5" />
+                  <Mail size={18} className="text-[#D4AF37] shrink-0 mt-0.5" />
                   <div>
                     <span className="text-[10px] uppercase text-[#6B6B6B] tracking-wider block font-sans font-semibold mb-1">
                       Online Channels
                     </span>
                     <div className="flex flex-col text-[#1A1A1A]">
-                      <a href="mailto:info@madio.in" className="hover:text-[#B8956A] transition-colors font-medium">
+                      <a href="mailto:info@madio.in" className="hover:text-[#D4AF37] transition-colors font-medium">
                         info@madio.in
                       </a>
-                      <a href="http://www.madio.in" target="_blank" rel="noopener noreferrer" className="hover:text-[#B8956A] transition-colors mt-0.5">
+                      <a href="http://www.madio.in" target="_blank" rel="noopener noreferrer" className="hover:text-[#D4AF37] transition-colors mt-0.5">
                         www.madio.in
                       </a>
                     </div>
@@ -221,7 +221,7 @@ export const Contact: React.FC = () => {
 
             {/* WhatsApp CTA */}
             <div className="bg-[#F5F0EB]/60 p-8 border border-[#EBE8E2] space-y-4">
-              <span className="text-[9px] uppercase tracking-[0.2em] text-[#B8956A] font-sans font-bold block">
+              <span className="text-[9px] uppercase tracking-[0.2em] text-[#D4AF37] font-sans font-bold block">
                 Instant Chat
               </span>
               <h3 className="text-xl font-serif font-light text-[#1A1A1A]">
@@ -247,7 +247,7 @@ export const Contact: React.FC = () => {
           <div className="lg:col-span-7 bg-white border border-[#EBE8E2] p-8 md:p-12 shadow-sm reveal-on-scroll" style={{ transitionDelay: "0.15s" }}>
             {isSubmitted ? (
               <div className="text-center py-12 flex flex-col items-center space-y-6">
-                <CheckCircle size={48} className="text-[#B8956A] animate-pulse" />
+                <CheckCircle size={48} className="text-[#D4AF37] animate-pulse" />
                 <h2 className="text-2xl font-serif font-light text-[#1A1A1A]">
                   Inquiry Transmitted
                 </h2>
@@ -256,7 +256,7 @@ export const Contact: React.FC = () => {
                 </p>
                 <button
                   onClick={() => setIsSubmitted(false)}
-                  className="mt-6 px-8 py-3 bg-[#1A1A1A] text-white text-[10px] uppercase tracking-widest font-sans font-medium hover:bg-[#B8956A] transition-colors duration-300 rounded-[4px]"
+                  className="mt-6 px-8 py-3 bg-[#1A1A1A] text-white text-[10px] uppercase tracking-widest font-sans font-medium hover:bg-[#D4AF37] transition-colors duration-300 rounded-[4px]"
                 >
                   Send Another Message
                 </button>
@@ -285,7 +285,7 @@ export const Contact: React.FC = () => {
                     required
                     value={formData.name}
                     onChange={handleChange}
-                    className="border border-[#EBE8E2] px-4 py-3 text-sm focus:outline-none focus:border-[#B8956A] focus:ring-1 focus:ring-[#B8956A] bg-[#FAFAF7] rounded-[4px] transition-colors duration-300 font-light text-[#16232B] placeholder-[#6B6B6B]/60 focus:bg-white"
+                    className="border border-[#EBE8E2] px-4 py-3 text-sm focus:outline-none focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37] bg-[#FAFAF7] rounded-[4px] transition-colors duration-300 font-light text-[#16232B] placeholder-[#6B6B6B]/60 focus:bg-white"
                   />
                 </div>
 
@@ -301,7 +301,7 @@ export const Contact: React.FC = () => {
                     required
                     value={formData.email}
                     onChange={handleChange}
-                    className="border border-[#EBE8E2] px-4 py-3 text-sm focus:outline-none focus:border-[#B8956A] focus:ring-1 focus:ring-[#B8956A] bg-[#FAFAF7] rounded-[4px] transition-colors duration-300 font-light text-[#16232B] placeholder-[#6B6B6B]/60 focus:bg-white"
+                    className="border border-[#EBE8E2] px-4 py-3 text-sm focus:outline-none focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37] bg-[#FAFAF7] rounded-[4px] transition-colors duration-300 font-light text-[#16232B] placeholder-[#6B6B6B]/60 focus:bg-white"
                   />
                 </div>
 
@@ -315,7 +315,7 @@ export const Contact: React.FC = () => {
                     name="interestedIn"
                     value={formData.interestedIn}
                     onChange={handleChange}
-                    className="border border-[#EBE8E2] px-4 py-3 text-sm focus:outline-none focus:border-[#B8956A] focus:ring-1 focus:ring-[#B8956A] bg-[#FAFAF7] rounded-[4px] transition-colors duration-300 font-light text-[#16232B] appearance-none pr-10 bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23B8956A%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E')] bg-[right_1rem_center] bg-[length:1.25em_1.25em] bg-no-repeat focus:bg-white"
+                    className="border border-[#EBE8E2] px-4 py-3 text-sm focus:outline-none focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37] bg-[#FAFAF7] rounded-[4px] transition-colors duration-300 font-light text-[#16232B] appearance-none pr-10 bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23B8956A%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E')] bg-[right_1rem_center] bg-[length:1.25em_1.25em] bg-no-repeat focus:bg-white"
                   >
                     <option value="General">General Inquiry</option>
                     <option value="Furniture">MADIO Furniture</option>
@@ -334,7 +334,7 @@ export const Contact: React.FC = () => {
                     name="subject"
                     value={formData.subject}
                     onChange={handleChange}
-                    className="border border-[#EBE8E2] px-4 py-3 text-sm focus:outline-none focus:border-[#B8956A] focus:ring-1 focus:ring-[#B8956A] bg-[#FAFAF7] rounded-[4px] transition-colors duration-300 font-light text-[#16232B] appearance-none pr-10 bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23B8956A%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E')] bg-[right_1rem_center] bg-[length:1.25em_1.25em] bg-no-repeat focus:bg-white"
+                    className="border border-[#EBE8E2] px-4 py-3 text-sm focus:outline-none focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37] bg-[#FAFAF7] rounded-[4px] transition-colors duration-300 font-light text-[#16232B] appearance-none pr-10 bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23B8956A%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E')] bg-[right_1rem_center] bg-[length:1.25em_1.25em] bg-no-repeat focus:bg-white"
                   >
                     <option value="Architectural Consultation">Architectural Consultation</option>
                     <option value="Dealer / Distribution Inquiry">Dealer / Distribution Inquiry</option>
@@ -357,7 +357,7 @@ export const Contact: React.FC = () => {
                     placeholder="Describe your inquiry details..."
                     value={formData.message}
                     onChange={handleChange}
-                    className="border border-[#EBE8E2] px-4 py-3 text-sm focus:outline-none focus:border-[#B8956A] focus:ring-1 focus:ring-[#B8956A] bg-[#FAFAF7] rounded-[4px] transition-colors duration-300 font-light text-[#16232B] placeholder-[#6B6B6B]/60 focus:bg-white resize-none"
+                    className="border border-[#EBE8E2] px-4 py-3 text-sm focus:outline-none focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37] bg-[#FAFAF7] rounded-[4px] transition-colors duration-300 font-light text-[#16232B] placeholder-[#6B6B6B]/60 focus:bg-white resize-none"
                   />
                 </div>
 
@@ -365,7 +365,7 @@ export const Contact: React.FC = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`w-full bg-[#B8956A] text-white py-4 text-xs uppercase tracking-[0.25em] font-sans font-semibold hover:bg-[#1A1A1A] transition-colors duration-300 flex items-center justify-center space-x-2 cursor-pointer shadow-sm rounded-[4px] ${
+                  className={`w-full bg-[#D4AF37] text-white py-4 text-xs uppercase tracking-[0.25em] font-sans font-semibold hover:bg-[#1A1A1A] transition-colors duration-300 flex items-center justify-center space-x-2 cursor-pointer shadow-sm rounded-[4px] ${
                     isSubmitting ? "opacity-60 cursor-not-allowed" : ""
                   }`}
                 >

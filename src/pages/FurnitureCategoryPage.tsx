@@ -9,7 +9,7 @@ import {
 import type { FurnitureProduct } from "../data/furniture";
 import { usePageMeta } from "../hooks/usePageMeta";
 
-const FURNITURE_ACCENT = "#B8956A";
+const FURNITURE_ACCENT = "#D4AF37";
 
 // Product card for the listing grid
 const ProductCard: React.FC<{ product: FurnitureProduct; categoryId: string }> = ({
@@ -20,7 +20,7 @@ const ProductCard: React.FC<{ product: FurnitureProduct; categoryId: string }> =
   return (
   <Link
     to={`/furniture/${categoryId}/${product.id}`}
-    className="group flex flex-col overflow-hidden border border-[#EBE8E2] bg-white hover:border-[#B8956A]/30 transition-all duration-400 reveal-on-scroll"
+    className="group flex flex-col overflow-hidden border border-[#EBE8E2] bg-white hover:border-[#D4AF37]/30 transition-all duration-400 reveal-on-scroll"
   >
     {/* Image — real photo when available, placeholder otherwise */}
     <div
@@ -41,7 +41,7 @@ const ProductCard: React.FC<{ product: FurnitureProduct; categoryId: string }> =
             className="absolute inset-0 opacity-[0.05]"
             style={{
               backgroundImage:
-                "repeating-linear-gradient(45deg, #B8956A 0, #B8956A 1px, transparent 0, transparent 50%)",
+                "repeating-linear-gradient(45deg, #D4AF37 0, #D4AF37 1px, transparent 0, transparent 50%)",
               backgroundSize: "18px 18px",
             }}
           />
@@ -50,7 +50,7 @@ const ProductCard: React.FC<{ product: FurnitureProduct; categoryId: string }> =
           </span>
         </>
       )}
-      <div className="absolute inset-0 bg-[#B8956A]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
+      <div className="absolute inset-0 bg-[#D4AF37]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
     </div>
 
     {/* Card body */}
@@ -63,7 +63,7 @@ const ProductCard: React.FC<{ product: FurnitureProduct; categoryId: string }> =
           {product.subcategory}
         </span>
       )}
-      <p className="text-sm font-serif font-light text-[#16232B] group-hover:text-[#B8956A] transition-colors duration-300 mb-auto">
+      <p className="text-sm font-serif font-light text-[#16232B] group-hover:text-[#D4AF37] transition-colors duration-300 mb-auto">
         {product.name}
       </p>
       <div className="flex items-center justify-between mt-3 pt-3 border-t border-[#EBE8E2]">
@@ -72,7 +72,7 @@ const ProductCard: React.FC<{ product: FurnitureProduct; categoryId: string }> =
         </span>
         <ArrowRight
           size={11}
-          className="text-[#B8956A] group-hover:translate-x-0.5 transition-transform duration-300"
+          className="text-[#D4AF37] group-hover:translate-x-0.5 transition-transform duration-300"
         />
       </div>
     </div>
@@ -138,7 +138,7 @@ export const FurnitureCategoryPage: React.FC = () => {
           className="absolute inset-0 opacity-[0.04]"
           style={{
             backgroundImage:
-              "repeating-linear-gradient(-45deg, #B8956A 0, #B8956A 1px, transparent 0, transparent 50%)",
+              "repeating-linear-gradient(-45deg, #D4AF37 0, #D4AF37 1px, transparent 0, transparent 50%)",
             backgroundSize: "20px 20px",
           }}
         />

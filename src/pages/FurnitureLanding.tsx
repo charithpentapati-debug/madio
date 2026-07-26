@@ -11,7 +11,7 @@ import heroBedImg from "../assets/furniture/beds/MFB-015.png";
 const categoryThumbnail = (categoryId: FurnitureCategoryMeta["id"]): string | undefined =>
   getProductsByCategory(categoryId).find((p) => p.images.length > 0)?.images[0];
 
-const FURNITURE_ACCENT = "#B8956A";
+const FURNITURE_ACCENT = "#D4AF37";
 
 // Subtle olive stripe texture — placeholder visual for all hero/image areas
 const OliveTexture: React.FC<{ className?: string; opacity?: string }> = ({
@@ -22,7 +22,7 @@ const OliveTexture: React.FC<{ className?: string; opacity?: string }> = ({
     className={`absolute inset-0 ${className}`}
     style={{
       backgroundImage:
-        "repeating-linear-gradient(45deg, #B8956A 0, #B8956A 1px, transparent 0, transparent 50%)",
+        "repeating-linear-gradient(45deg, #D4AF37 0, #D4AF37 1px, transparent 0, transparent 50%)",
       backgroundSize: "20px 20px",
       opacity,
     }}
@@ -39,7 +39,7 @@ const CategoryCard: React.FC<{ cat: FurnitureCategoryMeta; index: number }> = ({
   return (
   <Link
     to={`/furniture/${cat.id}`}
-    className="group relative flex flex-col overflow-hidden border border-[#EBE8E2] bg-white hover:border-[#B8956A]/30 transition-all duration-500 reveal-on-scroll"
+    className="group relative flex flex-col overflow-hidden border border-[#EBE8E2] bg-white hover:border-[#D4AF37]/30 transition-all duration-500 reveal-on-scroll"
     style={{ animationDelay: `${index * 60}ms` }}
   >
     {/* Real product photo when available, textured placeholder otherwise */}
@@ -57,7 +57,7 @@ const CategoryCard: React.FC<{ cat: FurnitureCategoryMeta; index: number }> = ({
       ) : (
         <OliveTexture />
       )}
-      <div className="absolute inset-0 bg-[#B8956A]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      <div className="absolute inset-0 bg-[#D4AF37]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       {/* Coming soon badge for unpopulated categories */}
       {!cat.isPopulated && (
         <div className="absolute top-3 right-3 text-[8px] uppercase tracking-[0.25em] font-sans border border-[#243040] text-[#C4B9A8] px-2.5 py-1">
@@ -82,13 +82,13 @@ const CategoryCard: React.FC<{ cat: FurnitureCategoryMeta; index: number }> = ({
 
     {/* Card body */}
     <div className="p-6 flex flex-col flex-grow">
-      <h3 className="text-lg font-serif font-light text-[#16232B] mb-2 group-hover:text-[#B8956A] transition-colors duration-300">
+      <h3 className="text-lg font-serif font-light text-[#16232B] mb-2 group-hover:text-[#D4AF37] transition-colors duration-300">
         {cat.name}
       </h3>
       <p className="text-xs text-[#6B6B6B] font-light leading-relaxed flex-grow">
         {cat.description}
       </p>
-      <div className="flex items-center space-x-1.5 mt-5 text-[10px] uppercase tracking-[0.2em] font-sans font-medium text-[#B8956A]">
+      <div className="flex items-center space-x-1.5 mt-5 text-[10px] uppercase tracking-[0.2em] font-sans font-medium text-[#D4AF37]">
         <span>{cat.isPopulated ? "Explore" : "View"}</span>
         <ArrowRight
           size={11}
@@ -112,7 +112,7 @@ export const FurnitureLanding: React.FC = () => {
     {/* ================================================================
         HERO — MAP-style full viewport dark overlay
         ================================================================ */}
-    <section className="relative h-[95vh] flex items-center justify-center bg-[#1A1A1A] overflow-hidden">
+    <section className="relative h-[95vh] flex items-center justify-center bg-[#0A0A0A] overflow-hidden">
       {/* Background Image with Dark/Warm Overlay */}
       <div className="absolute inset-0 z-0">
         <img
@@ -120,13 +120,13 @@ export const FurnitureLanding: React.FC = () => {
           alt="MADIO Furniture — Beds collection"
           className="w-full h-full object-cover brightness-[0.75] contrast-[1.05]"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#1A1A1A]/70 via-transparent to-[#1A1A1A]/35" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/70 via-transparent to-[#0A0A0A]/35" />
       </div>
 
       {/* Hero Content */}
       <div className="relative z-10 max-w-5xl mx-auto px-6 md:px-12 text-center text-white flex flex-col items-center">
-        <div className="flex items-center space-x-2 border border-[#B8956A]/60 px-4 py-1.5 mb-8 animate-fade-in">
-          <Sparkles size={12} className="text-[#B8956A]" />
+        <div className="flex items-center space-x-2 border border-[#D4AF37]/60 px-4 py-1.5 mb-8 animate-fade-in">
+          <Sparkles size={12} className="text-[#D4AF37]" />
           <span className="text-[10px] tracking-[0.3em] uppercase font-sans text-[#EBE8E2]">
             Furniture Brand
           </span>
@@ -134,7 +134,7 @@ export const FurnitureLanding: React.FC = () => {
 
         <h1 className="text-4xl md:text-7xl lg:text-8xl font-serif font-light tracking-wide leading-[1.1] mb-6 animate-fade-in-up">
           Design-led <br />
-          <span className="italic font-normal text-[#B8956A]">furniture.</span>
+          <span className="italic font-normal text-[#D4AF37]">furniture.</span>
         </h1>
 
         <p className="text-sm md:text-lg tracking-wider font-light text-[#F5F0EB]/95 max-w-2xl mb-12 leading-relaxed animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
@@ -144,13 +144,13 @@ export const FurnitureLanding: React.FC = () => {
         <div className="flex flex-col sm:flex-row items-center gap-5 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
           <a
             href="#categories"
-            className="w-full sm:w-auto px-10 py-4 text-xs uppercase tracking-[0.25em] font-sans font-medium bg-[#B8956A] text-white hover:bg-white hover:text-[#1A1A1A] transition-all duration-300 shadow-md text-center"
+            className="w-full sm:w-auto px-10 py-4 text-xs uppercase tracking-[0.25em] font-sans font-medium bg-[#D4AF37] text-white hover:bg-white hover:text-[#0A0A0A] transition-all duration-300 shadow-md text-center"
           >
             Explore Collections
           </a>
           <Link
             to="/contact?source=furniture"
-            className="w-full sm:w-auto px-10 py-4 text-xs uppercase tracking-[0.25em] font-sans font-medium border border-white text-white hover:bg-white hover:text-[#1A1A1A] transition-all duration-300 text-center"
+            className="w-full sm:w-auto px-10 py-4 text-xs uppercase tracking-[0.25em] font-sans font-medium border border-white text-white hover:bg-white hover:text-[#0A0A0A] transition-all duration-300 text-center"
           >
             Request a Quote
           </Link>
@@ -209,7 +209,7 @@ export const FurnitureLanding: React.FC = () => {
           </Link>
           <Link
             to="/"
-            className="inline-flex items-center space-x-2 border border-[#16232B] text-[#16232B] px-8 py-3.5 text-xs uppercase tracking-[0.25em] font-sans font-medium hover:border-[#B8956A] hover:text-[#B8956A] transition-all duration-300 reveal-on-scroll"
+            className="inline-flex items-center space-x-2 border border-[#16232B] text-[#16232B] px-8 py-3.5 text-xs uppercase tracking-[0.25em] font-sans font-medium hover:border-[#D4AF37] hover:text-[#D4AF37] transition-all duration-300 reveal-on-scroll"
           >
             <span>← Back to MADIO</span>
           </Link>

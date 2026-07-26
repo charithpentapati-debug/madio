@@ -10,7 +10,7 @@ import {
 import type { FurnitureProductSpec } from "../data/furniture";
 import { usePageMeta } from "../hooks/usePageMeta";
 
-const FURNITURE_ACCENT = "#B8956A";
+const FURNITURE_ACCENT = "#D4AF37";
 
 // Guard: hides empty / placeholder spec fields in the UI
 const hasValue = (v: string | undefined): v is string =>
@@ -69,7 +69,7 @@ export const FurnitureProductDetail: React.FC = () => {
           className="absolute inset-0 opacity-[0.04]"
           style={{
             backgroundImage:
-              "repeating-linear-gradient(-45deg, #B8956A 0, #B8956A 1px, transparent 0, transparent 50%)",
+              "repeating-linear-gradient(-45deg, #D4AF37 0, #D4AF37 1px, transparent 0, transparent 50%)",
             backgroundSize: "20px 20px",
           }}
         />
@@ -127,7 +127,7 @@ export const FurnitureProductDetail: React.FC = () => {
                   className="absolute inset-0 opacity-[0.05]"
                   style={{
                     backgroundImage:
-                      "repeating-linear-gradient(45deg, #B8956A 0, #B8956A 1px, transparent 0, transparent 50%)",
+                      "repeating-linear-gradient(45deg, #D4AF37 0, #D4AF37 1px, transparent 0, transparent 50%)",
                     backgroundSize: "18px 18px",
                   }}
                 />

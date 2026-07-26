@@ -124,11 +124,11 @@ export const TextureGallery: React.FC = () => {
         
         {/* Header Section */}
         <div className="max-w-3xl mb-16 reveal-on-scroll">
-          <span className="text-[10px] tracking-[0.3em] uppercase text-[#B8956A] font-sans font-semibold block mb-4">
+          <span className="text-[10px] tracking-[0.3em] uppercase text-[#D4AF37] font-sans font-semibold block mb-4">
             Aesthetic Portfolio
           </span>
           <h1 className="text-4xl md:text-6xl font-serif font-light text-[#1A1A1A] mb-6 leading-tight">
-            The Texture <span className="italic font-normal text-[#B8956A]">Gallery</span>
+            The Texture <span className="italic font-normal text-[#D4AF37]">Gallery</span>
           </h1>
           <p className="text-sm md:text-base text-[#6B6B6B] font-light leading-relaxed">
             A visual curation of architectural projects throughout India utilizing MAP surface technologies. Browse slaked-lime Venetian finishes, monolithic floor systems, and mineral facade plasters in situ.
@@ -143,7 +143,7 @@ export const TextureGallery: React.FC = () => {
               onClick={() => setActiveFilter(filter.value)}
               className={`text-xs uppercase tracking-[0.2em] font-sans transition-all duration-300 pb-2 border-b relative -bottom-[2px] cursor-pointer ${
                 activeFilter === filter.value
-                  ? "text-[#B8956A] border-[#B8956A] font-medium"
+                  ? "text-[#D4AF37] border-[#D4AF37] font-medium"
                   : "text-[#6B6B6B] border-transparent hover:text-[#1A1A1A]"
               }`}
             >
@@ -179,10 +179,10 @@ export const TextureGallery: React.FC = () => {
 
               {/* Caption */}
               <div className="p-6">
-                <span className="text-[9px] tracking-[0.2em] uppercase text-[#B8956A] font-sans font-semibold">
+                <span className="text-[9px] tracking-[0.2em] uppercase text-[#D4AF37] font-sans font-semibold">
                   {item.collectionName}
                 </span>
-                <h3 className="text-lg font-serif font-light text-[#1A1A1A] mt-1 group-hover:text-[#B8956A] transition-colors duration-300">
+                <h3 className="text-lg font-serif font-light text-[#1A1A1A] mt-1 group-hover:text-[#D4AF37] transition-colors duration-300">
                   {item.title}
                 </h3>
               </div>
@@ -192,7 +192,7 @@ export const TextureGallery: React.FC = () => {
 
         {/* Lightbox Modal */}
         {selectedItem && (
-          <div className="fixed inset-0 z-50 bg-[#1A1A1A]/95 flex items-center justify-center p-4 md:p-8 animate-fade-in">
+          <div className="fixed inset-0 z-50 bg-[#0A0A0A]/95 flex items-center justify-center p-4 md:p-8 animate-fade-in">
             {/* Close trigger background */}
             <div className="absolute inset-0 cursor-zoom-out" onClick={() => setSelectedItem(null)} />
 
@@ -202,7 +202,7 @@ export const TextureGallery: React.FC = () => {
               {/* Close Button */}
               <button
                 onClick={() => setSelectedItem(null)}
-                className="absolute top-4 right-4 z-20 p-2 bg-white/90 hover:bg-white text-[#1A1A1A] hover:text-[#B8956A] transition-all shadow-sm focus:outline-none"
+                className="absolute top-4 right-4 z-20 p-2 bg-white/90 hover:bg-white text-[#1A1A1A] hover:text-[#D4AF37] transition-all shadow-sm focus:outline-none"
                 aria-label="Close Lightbox"
               >
                 <X size={20} />
@@ -221,7 +221,7 @@ export const TextureGallery: React.FC = () => {
               <div className="lg:col-span-4 p-8 md:p-10 flex flex-col justify-between h-full bg-[#FAFAF7]">
                 <div className="space-y-8">
                   <div>
-                    <span className="text-[10px] tracking-[0.25em] uppercase text-[#B8956A] font-sans font-semibold block mb-2">
+                    <span className="text-[10px] tracking-[0.25em] uppercase text-[#D4AF37] font-sans font-semibold block mb-2">
                       Project Highlight
                     </span>
                     <h2 className="text-2xl md:text-3xl font-serif font-light text-[#1A1A1A] leading-tight">
@@ -235,7 +235,7 @@ export const TextureGallery: React.FC = () => {
 
                   <div className="border-t border-[#EBE8E2] pt-6 space-y-4 text-xs">
                     <div className="flex items-center space-x-3.5">
-                      <Layers size={15} className="text-[#B8956A]" />
+                      <Layers size={15} className="text-[#D4AF37]" />
                       <div>
                         <span className="text-[10px] uppercase text-[#6B6B6B] block">Finish System</span>
                         <span className="text-[#1A1A1A] font-medium">{selectedItem.collectionName} Collection</span>
@@ -247,7 +247,7 @@ export const TextureGallery: React.FC = () => {
                 <div className="pt-8 border-t border-[#EBE8E2] mt-12 flex flex-col sm:flex-row gap-4">
                   <Link
                     to={`/contact?source=map&collection=${selectedItem.collectionName.toLowerCase().replace(" ", "-")}`}
-                    className="flex-1 bg-[#1A1A1A] text-white text-center py-3 text-[10px] uppercase tracking-[0.2em] font-sans font-medium hover:bg-[#B8956A] transition-colors"
+                    className="flex-1 bg-[#1A1A1A] text-white text-center py-3 text-[10px] uppercase tracking-[0.2em] font-sans font-medium hover:bg-[#D4AF37] transition-colors"
                   >
                     Request Sample Spec
                   </Link>

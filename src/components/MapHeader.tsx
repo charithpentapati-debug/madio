@@ -47,15 +47,15 @@ export const MapHeader: React.FC = () => {
           <div className="flex items-center space-x-6 md:space-x-8 shrink-0">
             {/* Switch Vertical dropdown */}
             <div className="hidden md:block relative group py-2 -my-2">
-              <span className="text-[11px] tracking-[0.15em] uppercase font-sans text-[#6B6B6B] hover:text-[#B8956A] transition-colors cursor-pointer select-none">
+              <span className="text-[11px] tracking-[0.15em] uppercase font-sans text-[#6B6B6B] hover:text-[#D4AF37] transition-colors cursor-pointer select-none">
                 Switch Vertical
               </span>
               <div className="absolute top-full right-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                 <div className="bg-[#FAFAF7] border border-[#EBE8E2] shadow-lg py-2 min-w-[200px] text-left">
-                  <Link to="/" className="block px-5 py-2.5 text-[11px] font-sans tracking-[0.1em] uppercase font-light text-[#1A1A1A] hover:text-[#B8956A] hover:bg-[#F5F0EB]">
+                  <Link to="/" className="block px-5 py-2.5 text-[11px] font-sans tracking-[0.1em] uppercase font-light text-[#1A1A1A] hover:text-[#D4AF37] hover:bg-[#F5F0EB]">
                     MADIO Furniture
                   </Link>
-                  <Link to="/doors-windows" className="block px-5 py-2.5 text-[11px] font-sans tracking-[0.1em] uppercase font-light text-[#1A1A1A] hover:text-[#B8956A] hover:bg-[#F5F0EB]">
+                  <Link to="/doors-windows" className="block px-5 py-2.5 text-[11px] font-sans tracking-[0.1em] uppercase font-light text-[#1A1A1A] hover:text-[#D4AF37] hover:bg-[#F5F0EB]">
                     Doors &amp; Windows
                   </Link>
                 </div>
@@ -65,7 +65,7 @@ export const MapHeader: React.FC = () => {
             {/* Request Quote button */}
             <Link
               to="/contact?source=map"
-              className="hidden md:flex items-center space-x-2 border border-[#B8956A]/60 px-6 py-2.5 text-xs tracking-[0.2em] uppercase font-sans text-[#1A1A1A] hover:bg-[#B8956A] hover:text-white hover:border-[#B8956A] transition-all duration-300"
+              className="hidden md:flex items-center space-x-2 border border-[#D4AF37]/60 px-6 py-2.5 text-xs tracking-[0.2em] uppercase font-sans text-[#1A1A1A] hover:bg-[#D4AF37] hover:text-white hover:border-[#D4AF37] transition-all duration-300"
             >
               <span>Request Quote</span>
               <ArrowRight size={14} />
@@ -74,7 +74,7 @@ export const MapHeader: React.FC = () => {
             {/* Hamburger Button (Always Visible) */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-[#1A1A1A] hover:text-[#B8956A] transition-colors focus:outline-none p-2 -mr-2"
+              className="text-[#1A1A1A] hover:text-[#D4AF37] transition-colors focus:outline-none p-2 -mr-2"
               aria-label="Toggle Menu"
             >
               {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -97,7 +97,7 @@ export const MapHeader: React.FC = () => {
               end={link.path === "/map"}
               className={({ isActive }) =>
                 `text-2xl md:text-4xl font-serif tracking-[0.05em] font-light transition-all duration-300 ${
-                  isActive ? "text-[#B8956A] border-b border-[#B8956A] pb-1" : "text-[#1A1A1A] hover:text-[#B8956A]"
+                  isActive ? "text-[#D4AF37] border-b border-[#D4AF37] pb-1" : "text-[#1A1A1A] hover:text-[#D4AF37]"
                 }`
               }
             >
@@ -106,18 +106,18 @@ export const MapHeader: React.FC = () => {
           ))}
           
           <div className="pt-6 border-t border-[#EBE8E2] w-full max-w-xs flex flex-col space-y-3">
-            <span className="text-[9px] uppercase tracking-[0.25em] text-[#B8956A] font-sans font-semibold">
+            <span className="text-[9px] uppercase tracking-[0.25em] text-[#D4AF37] font-sans font-semibold">
               Other Verticals
             </span>
             <Link
               to="/"
-              className="text-lg font-serif font-light text-[#1A1A1A] hover:text-[#B8956A] transition-colors"
+              className="text-lg font-serif font-light text-[#1A1A1A] hover:text-[#D4AF37] transition-colors"
             >
               MADIO Furniture
             </Link>
             <Link
               to="/doors-windows"
-              className="text-lg font-serif font-light text-[#1A1A1A] hover:text-[#B8956A] transition-colors"
+              className="text-lg font-serif font-light text-[#1A1A1A] hover:text-[#D4AF37] transition-colors"
             >
               Doors &amp; Windows
             </Link>

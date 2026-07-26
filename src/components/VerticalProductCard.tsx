@@ -82,7 +82,7 @@ export const VerticalProductCard: React.FC<VerticalProductCardProps> = ({
             <div
               className="absolute inset-0 opacity-[0.05]"
               style={{
-                backgroundImage: "repeating-linear-gradient(45deg, #B8956A 0, #B8956A 1px, transparent 0, transparent 50%)",
+                backgroundImage: "repeating-linear-gradient(45deg, #D4AF37 0, #D4AF37 1px, transparent 0, transparent 50%)",
                 backgroundSize: "20px 20px",
               }}
             />
@@ -103,7 +103,7 @@ export const VerticalProductCard: React.FC<VerticalProductCardProps> = ({
             {category}
           </span>
         )}
-        <h3 className="text-xl font-serif font-light text-[#16232B] mb-2 group-hover:text-[#B8956A] transition-colors duration-300">
+        <h3 className="text-xl font-serif font-light text-[#16232B] mb-2 group-hover:text-[#D4AF37] transition-colors duration-300">
           {name}
         </h3>
         <p className="text-xs text-[#6B6B6B] font-light leading-relaxed flex-grow">

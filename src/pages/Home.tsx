@@ -32,13 +32,13 @@ export const Home: React.FC = () => {
             alt="Luxury architectural space with textured finishes"
             className="w-full h-full object-cover brightness-[0.75] contrast-[1.05]"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#1A1A1A]/70 via-transparent to-[#1A1A1A]/35" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/70 via-transparent to-[#0A0A0A]/35" />
         </div>
 
         {/* Hero Content */}
         <div className="relative z-10 max-w-5xl mx-auto px-6 md:px-12 text-center text-white flex flex-col items-center">
-          <div className="flex items-center space-x-2 border border-[#B8956A]/60 px-4 py-1.5 mb-8 animate-fade-in">
-            <Sparkles size={12} className="text-[#B8956A]" />
+          <div className="flex items-center space-x-2 border border-[#D4AF37]/60 px-4 py-1.5 mb-8 animate-fade-in">
+            <Sparkles size={12} className="text-[#D4AF37]" />
             <span className="text-[10px] tracking-[0.3em] uppercase font-sans text-[#EBE8E2]">
               Architectural Surfaces Brand
             </span>
@@ -46,7 +46,7 @@ export const Home: React.FC = () => {
 
           <h1 className="text-4xl md:text-7xl lg:text-8xl font-serif font-light tracking-wide leading-[1.1] mb-6 animate-fade-in-up">
             Sculpting Space <br />
-            <span className="italic font-normal text-[#B8956A]">With Texture</span>
+            <span className="italic font-normal text-[#D4AF37]">With Texture</span>
           </h1>
 
           <p className="text-sm md:text-lg tracking-wider font-light text-[#F5F0EB]/95 max-w-2xl mb-12 leading-relaxed animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
@@ -56,13 +56,13 @@ export const Home: React.FC = () => {
           <div className="flex flex-col sm:flex-row items-center gap-5 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
             <Link
               to="/map/products"
-              className="w-full sm:w-auto px-10 py-4 text-xs uppercase tracking-[0.25em] font-sans font-medium bg-[#B8956A] text-white hover:bg-white hover:text-[#1A1A1A] transition-all duration-300 shadow-md"
+              className="w-full sm:w-auto px-10 py-4 text-xs uppercase tracking-[0.25em] font-sans font-medium bg-[#D4AF37] text-white hover:bg-white hover:text-[#0A0A0A] transition-all duration-300 shadow-md"
             >
               Explore Collections
             </Link>
             <Link
               to="/contact?source=map"
-              className="w-full sm:w-auto px-10 py-4 text-xs uppercase tracking-[0.25em] font-sans font-medium border border-white text-white hover:bg-white hover:text-[#1A1A1A] transition-all duration-300"
+              className="w-full sm:w-auto px-10 py-4 text-xs uppercase tracking-[0.25em] font-sans font-medium border border-white text-white hover:bg-white hover:text-[#0A0A0A] transition-all duration-300"
             >
               Request Sample
             </Link>
@@ -80,11 +80,11 @@ export const Home: React.FC = () => {
       <section className="py-24 md:py-32 bg-[#FAFAF7]">
         <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
           <div className="lg:col-span-5 reveal-on-scroll">
-            <span className="text-[10px] tracking-[0.25em] uppercase text-[#B8956A] font-sans font-medium block mb-4">
+            <span className="text-[10px] tracking-[0.25em] uppercase text-[#D4AF37] font-sans font-medium block mb-4">
               The MAP Philosophy
             </span>
             <h2 className="text-3xl md:text-5xl font-serif font-light text-[#1A1A1A] leading-tight mb-8">
-              Moving beyond paint to create <span className="italic font-normal text-[#B8956A]">architectural depth</span>.
+              Moving beyond paint to create <span className="italic font-normal text-[#D4AF37]">architectural depth</span>.
             </h2>
             <p className="text-sm text-[#6B6B6B] font-light leading-relaxed mb-6">
               MAP is not a paint shop. We are a luxury architectural finishes brand that curates premium decorative surfaces which become an integral element of structural expression.
@@ -94,7 +94,7 @@ export const Home: React.FC = () => {
             </p>
             <Link
               to="/map/about"
-              className="inline-flex items-center space-x-2 text-xs uppercase tracking-[0.2em] font-sans font-medium text-[#1A1A1A] hover:text-[#B8956A] transition-colors group"
+              className="inline-flex items-center space-x-2 text-xs uppercase tracking-[0.2em] font-sans font-medium text-[#1A1A1A] hover:text-[#D4AF37] transition-colors group"
             >
               <span>Our Story</span>
               <ArrowRight size={14} className="group-hover:translate-x-1.5 transition-transform duration-300" />
@@ -125,7 +125,7 @@ export const Home: React.FC = () => {
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 reveal-on-scroll">
             <div>
-              <span className="text-[10px] tracking-[0.25em] uppercase text-[#B8956A] font-sans font-medium block mb-4">
+              <span className="text-[10px] tracking-[0.25em] uppercase text-[#D4AF37] font-sans font-medium block mb-4">
                 Curated Materials
               </span>
               <h2 className="text-3xl md:text-5xl font-serif font-light text-[#1A1A1A]">
@@ -134,7 +134,7 @@ export const Home: React.FC = () => {
             </div>
             <Link
               to="/map/products"
-              className="inline-flex items-center space-x-2 text-xs uppercase tracking-[0.2em] font-sans font-medium text-[#1A1A1A] hover:text-[#B8956A] transition-colors mt-6 md:mt-0 group"
+              className="inline-flex items-center space-x-2 text-xs uppercase tracking-[0.2em] font-sans font-medium text-[#1A1A1A] hover:text-[#D4AF37] transition-colors mt-6 md:mt-0 group"
             >
               <span>View All Collections</span>
               <ArrowRight size={14} className="group-hover:translate-x-1.5 transition-transform duration-300" />
@@ -161,7 +161,7 @@ export const Home: React.FC = () => {
                     </div>
                   </div>
                   <div className="p-8 md:p-10">
-                    <span className="text-[10px] tracking-[0.2em] uppercase text-[#B8956A] font-sans font-semibold mb-2 block">
+                    <span className="text-[10px] tracking-[0.2em] uppercase text-[#D4AF37] font-sans font-semibold mb-2 block">
                       {col.tagline}
                     </span>
                     <h3 className="text-2xl md:text-3xl font-serif font-light text-[#1A1A1A] mb-4">
@@ -175,7 +175,7 @@ export const Home: React.FC = () => {
                 <div className="px-8 pb-8 pt-0">
                   <Link
                     to={`/products?collection=${col.id}`}
-                    className="inline-flex items-center space-x-2 text-xs uppercase tracking-[0.2em] font-sans text-[#1A1A1A] hover:text-[#B8956A] transition-colors font-medium border-b border-[#1A1A1A] hover:border-[#B8956A] pb-1"
+                    className="inline-flex items-center space-x-2 text-xs uppercase tracking-[0.2em] font-sans text-[#1A1A1A] hover:text-[#D4AF37] transition-colors font-medium border-b border-[#1A1A1A] hover:border-[#D4AF37] pb-1"
                   >
                     <span>View Specifications</span>
                     <ArrowRight size={12} />
@@ -190,7 +190,7 @@ export const Home: React.FC = () => {
       {/* 4. TEXTURE GALLERY PEEK */}
       <section className="py-24 md:py-32 bg-[#FAFAF7]">
         <div className="max-w-7xl mx-auto px-6 md:px-12 text-center mb-16 reveal-on-scroll">
-          <span className="text-[10px] tracking-[0.25em] uppercase text-[#B8956A] font-sans font-medium block mb-4">
+          <span className="text-[10px] tracking-[0.25em] uppercase text-[#D4AF37] font-sans font-medium block mb-4">
             Visual Portfolio
           </span>
           <h2 className="text-3xl md:text-5xl font-serif font-light text-[#1A1A1A] max-w-2xl mx-auto leading-tight">
@@ -207,7 +207,7 @@ export const Home: React.FC = () => {
             />
             <div className="absolute inset-0 bg-[#1A1A1A]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             <div className="absolute bottom-6 left-6 text-white translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-              <span className="text-[9px] uppercase tracking-[0.2em] text-[#B8956A] font-medium">Cimento System</span>
+              <span className="text-[9px] uppercase tracking-[0.2em] text-[#D4AF37] font-medium">Cimento System</span>
               <p className="text-lg font-serif font-light tracking-wide mt-1">Minimalist Concrete Lounge</p>
             </div>
           </div>
@@ -220,7 +220,7 @@ export const Home: React.FC = () => {
             />
             <div className="absolute inset-0 bg-[#1A1A1A]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             <div className="absolute bottom-6 left-6 text-white translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-              <span className="text-[9px] uppercase tracking-[0.2em] text-[#B8956A] font-medium">Marbre</span>
+              <span className="text-[9px] uppercase tracking-[0.2em] text-[#D4AF37] font-medium">Marbre</span>
               <p className="text-lg font-serif font-light tracking-wide mt-1">Venetian Plaster Finish</p>
             </div>
           </div>
@@ -233,7 +233,7 @@ export const Home: React.FC = () => {
             />
             <div className="absolute inset-0 bg-[#1A1A1A]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             <div className="absolute bottom-6 left-6 text-white translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-              <span className="text-[9px] uppercase tracking-[0.2em] text-[#B8956A] font-medium">Exterior Stucco</span>
+              <span className="text-[9px] uppercase tracking-[0.2em] text-[#D4AF37] font-medium">Exterior Stucco</span>
               <p className="text-lg font-serif font-light tracking-wide mt-1">Architectural Facade Plaster</p>
             </div>
           </div>
@@ -252,15 +252,15 @@ export const Home: React.FC = () => {
       {/* 5. LUXURY QUOTE CTA SECTION */}
       <section className="py-24 md:py-32 bg-[#C4B9A8] text-[#16232B] relative overflow-hidden">
         {/* Abstract Gold Glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#B8956A]/10 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#D4AF37]/10 rounded-full blur-[120px] pointer-events-none" />
 
         <div className="relative z-10 max-w-4xl mx-auto px-6 text-center reveal-on-scroll">
-          <span className="text-[10px] tracking-[0.3em] uppercase text-[#B8956A] font-sans font-semibold mb-6 block">
+          <span className="text-[10px] tracking-[0.3em] uppercase text-[#D4AF37] font-sans font-semibold mb-6 block">
             Collaborate With Us
           </span>
           <h2 className="text-3xl md:text-5xl lg:text-6xl font-serif font-light leading-tight mb-8">
             Elevate Your Next <br />
-            <span className="italic font-normal text-[#B8956A]">Architectural Narrative</span>
+            <span className="italic font-normal text-[#D4AF37]">Architectural Narrative</span>
           </h2>
           <p className="text-xs md:text-sm text-[#6B6B6B] font-light leading-relaxed max-w-2xl mx-auto mb-12">
             Are you planning a residential estate, a premium boutique store, or a high-end commercial lobby? Request physical texture boards, custom shade swatches, or schedule a technical consultation with our Hyderabad design advisors.
@@ -268,13 +268,13 @@ export const Home: React.FC = () => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               to="/contact?source=map"
-              className="w-full sm:w-auto px-10 py-4 text-xs uppercase tracking-[0.25em] font-sans font-medium bg-[#B8956A] text-white hover:bg-[#16232B] hover:text-white transition-all duration-300"
+              className="w-full sm:w-auto px-10 py-4 text-xs uppercase tracking-[0.25em] font-sans font-medium bg-[#D4AF37] text-white hover:bg-[#16232B] hover:text-white transition-all duration-300"
             >
               Request a Quote
             </Link>
             <Link
               to="/contact?source=map"
-              className="w-full sm:w-auto px-10 py-4 text-xs uppercase tracking-[0.25em] font-sans font-medium border border-[#16232B] text-[#16232B] hover:border-[#B8956A] hover:text-[#B8956A] transition-all duration-300"
+              className="w-full sm:w-auto px-10 py-4 text-xs uppercase tracking-[0.25em] font-sans font-medium border border-[#16232B] text-[#16232B] hover:border-[#D4AF37] hover:text-[#D4AF37] transition-all duration-300"
             >
               Contact HQ
             </Link>

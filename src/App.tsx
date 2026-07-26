@@ -35,7 +35,7 @@ const App: React.FC = () => (
         {/* Doors & Windows vertical routes */}
         <Route path="doors-windows">
           <Route index element={<DoorsWindows />} />
-          <Route path=":productId" element={<DoorsWindowsDetail />} />
+          <Route path=":category" element={<DoorsWindowsDetail />} />
         </Route>
 
         {/* MAP vertical routes */}

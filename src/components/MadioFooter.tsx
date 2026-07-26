@@ -18,7 +18,7 @@ export const MadioFooter: React.FC = () => {
               className="h-8 w-auto brightness-0 invert"
             />
           </Link>
-          <p className="text-[10px] tracking-[0.2em] uppercase font-sans text-[#B8956A] font-medium">
+          <p className="text-[10px] tracking-[0.2em] uppercase font-sans text-[#D4AF37] font-medium">
             MADIO Furniture | MAP | MADIO Doors &amp; Windows
           </p>
           <p className="text-xs text-[#C4B9A8] font-light leading-relaxed max-w-xs mt-2">
@@ -28,7 +28,7 @@ export const MadioFooter: React.FC = () => {
 
         {/* Verticals */}
         <div className="md:col-span-3">
-          <h4 className="text-[10px] uppercase tracking-[0.2em] font-sans font-medium text-[#B8956A] mb-5">
+          <h4 className="text-[10px] uppercase tracking-[0.2em] font-sans font-medium text-[#D4AF37] mb-5">
             Our Brands
           </h4>
           <ul className="space-y-3 text-xs text-[#C4B9A8] font-light">
@@ -52,7 +52,7 @@ export const MadioFooter: React.FC = () => {
 
         {/* Contact */}
         <div className="md:col-span-3 md:col-start-9">
-          <h4 className="text-[10px] uppercase tracking-[0.2em] font-sans font-medium text-[#B8956A] mb-5">
+          <h4 className="text-[10px] uppercase tracking-[0.2em] font-sans font-medium text-[#D4AF37] mb-5">
             Contact
           </h4>
           <ul className="space-y-3 text-xs text-[#C4B9A8] font-light">
@@ -77,7 +77,7 @@ export const MadioFooter: React.FC = () => {
           </ul>
           <Link
             to="/contact?source=general"
-            className="inline-block mt-6 text-[10px] uppercase tracking-[0.2em] font-sans border border-[#B8956A] text-[#B8956A] px-4 py-2 hover:bg-[#B8956A] hover:text-white transition-all duration-300"
+            className="inline-block mt-6 text-[10px] uppercase tracking-[0.2em] font-sans border border-[#D4AF37] text-[#D4AF37] px-4 py-2 hover:bg-[#D4AF37] hover:text-white transition-all duration-300"
           >
             Get in Touch
           </Link>
@@ -92,7 +92,7 @@ export const MadioFooter: React.FC = () => {
             href="https://wa.me/919948601899"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[#B8956A] hover:underline transition-colors"
+            className="text-[#D4AF37] hover:underline transition-colors"
           >
             WhatsApp
           </a>

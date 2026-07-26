@@ -25,7 +25,7 @@ export const MadioContact: React.FC = () => {
 
         {/* Left: headline + detail */}
         <div>
-          <span className="text-[10px] tracking-[0.3em] uppercase text-[#B8956A] font-sans font-medium block mb-5">
+          <span className="text-[10px] tracking-[0.3em] uppercase text-[#D4AF37] font-sans font-medium block mb-5">
             Contact
           </span>
           <h1 className="text-4xl md:text-6xl font-serif font-light text-[#16232B] leading-tight mb-8">
@@ -38,7 +38,7 @@ export const MadioContact: React.FC = () => {
           <div className="space-y-6 border-t border-[#EBE8E2] pt-10">
             <div className="flex items-start space-x-4">
               <div className="p-2.5 bg-[#F5F0EB] border border-[#EBE8E2] shrink-0">
-                <Mail size={15} className="text-[#B8956A]" />
+                <Mail size={15} className="text-[#D4AF37]" />
               </div>
               <div>
                 <span className="text-[10px] uppercase tracking-[0.15em] text-[#6B6B6B] font-sans block mb-0.5">
@@ -46,7 +46,7 @@ export const MadioContact: React.FC = () => {
                 </span>
                 <a
                   href="mailto:info@madio.in"
-                  className="text-sm text-[#16232B] font-light hover:text-[#B8956A] transition-colors"
+                  className="text-sm text-[#16232B] font-light hover:text-[#D4AF37] transition-colors"
                 >
                   info@madio.in
                 </a>
@@ -55,16 +55,16 @@ export const MadioContact: React.FC = () => {
 
             <div className="flex items-start space-x-4">
               <div className="p-2.5 bg-[#F5F0EB] border border-[#EBE8E2] shrink-0">
-                <Phone size={15} className="text-[#B8956A]" />
+                <Phone size={15} className="text-[#D4AF37]" />
               </div>
               <div>
                 <span className="text-[10px] uppercase tracking-[0.15em] text-[#6B6B6B] font-sans block mb-0.5">
                   Phone
                 </span>
-                <a href="tel:+919948601899" className="text-sm text-[#16232B] font-light hover:text-[#B8956A] transition-colors block">
+                <a href="tel:+919948601899" className="text-sm text-[#16232B] font-light hover:text-[#D4AF37] transition-colors block">
                   +91 99486 01899
                 </a>
-                <a href="tel:+919948601599" className="text-sm text-[#16232B] font-light hover:text-[#B8956A] transition-colors block mt-0.5">
+                <a href="tel:+919948601599" className="text-sm text-[#16232B] font-light hover:text-[#D4AF37] transition-colors block mt-0.5">
                   +91 99486 01599
                 </a>
               </div>
@@ -72,7 +72,7 @@ export const MadioContact: React.FC = () => {
 
             <div className="flex items-start space-x-4">
               <div className="p-2.5 bg-[#F5F0EB] border border-[#EBE8E2] shrink-0">
-                <MapPin size={15} className="text-[#B8956A]" />
+                <MapPin size={15} className="text-[#D4AF37]" />
               </div>
               <div>
                 <span className="text-[10px] uppercase tracking-[0.15em] text-[#6B6B6B] font-sans block mb-0.5">
@@ -94,9 +94,9 @@ export const MadioContact: React.FC = () => {
           </h3>
           <div className="space-y-4">
             {[
-              { path: "/",              label: "MADIO Furniture",          accent: "#B8956A", sub: "Design-led furniture" },
-              { path: "/map/quote",     label: "MAP Finishes",             accent: "#B8956A", sub: "Architectural surface finishes" },
-              { path: "/doors-windows", label: "MADIO Doors & Windows",    accent: "#B8956A", sub: "Fenestration systems" },
+              { path: "/",              label: "MADIO Furniture",          accent: "#D4AF37", sub: "Design-led furniture" },
+              { path: "/map/quote",     label: "MAP Finishes",             accent: "#D4AF37", sub: "Architectural surface finishes" },
+              { path: "/doors-windows", label: "MADIO Doors & Windows",    accent: "#D4AF37", sub: "Fenestration systems" },
             ].map((v) => (
               <Link
                 key={v.path}
@@ -110,7 +110,7 @@ export const MadioContact: React.FC = () => {
                   >
                     {v.sub}
                   </span>
-                  <span className="text-sm font-serif font-light text-[#16232B] group-hover:text-[#B8956A] transition-colors">
+                  <span className="text-sm font-serif font-light text-[#16232B] group-hover:text-[#D4AF37] transition-colors">
                     {v.label}
                   </span>
                 </div>
@@ -127,7 +127,7 @@ export const MadioContact: React.FC = () => {
           </div>
 
           <p className="text-[10px] text-[#6B6B6B] font-light mt-8 leading-relaxed">
-            For general enquiries, email <a href="mailto:info@madio.in" className="underline hover:text-[#B8956A] transition-colors">info@madio.in</a> and we'll route your message to the right team.
+            For general enquiries, email <a href="mailto:info@madio.in" className="underline hover:text-[#D4AF37] transition-colors">info@madio.in</a> and we'll route your message to the right team.
           </p>
         </div>
 

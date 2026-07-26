@@ -23,7 +23,7 @@ export const ColorCollections: React.FC = () => {
       {items.map((col, i) => (
         <div
           key={col.id}
-          className="group relative overflow-hidden rounded-[4px] border border-[#EBE8E2] bg-white/60 backdrop-blur-sm hover:border-[#B8956A]/60 hover:shadow-lg reveal-on-scroll cursor-pointer"
+          className="group relative overflow-hidden rounded-[4px] border border-[#EBE8E2] bg-white/60 backdrop-blur-sm hover:border-[#D4AF37]/60 hover:shadow-lg reveal-on-scroll cursor-pointer"
           style={{
             transitionDelay: `${i * 0.06}s`,
             transition: "border-color 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s cubic-bezier(0.16,1,0.3,1)",
@@ -62,7 +62,7 @@ export const ColorCollections: React.FC = () => {
           {/* Label */}
           <div className="px-5 py-4 flex items-center justify-between">
             <div>
-              <h3 className="text-base font-serif font-light text-[#1A1A1A] group-hover:text-[#B8956A]"
+              <h3 className="text-base font-serif font-light text-[#1A1A1A] group-hover:text-[#D4AF37]"
                 style={{ transition: "color 0.3s cubic-bezier(0.16,1,0.3,1)" }}>
                 {col.name}
               </h3>
@@ -73,7 +73,7 @@ export const ColorCollections: React.FC = () => {
             <Link
               to={`/quote?collection=${col.id}`}
               onClick={(e) => e.stopPropagation()}
-              className="shrink-0 ml-4 px-3 py-1.5 text-[9px] uppercase tracking-[0.15em] font-sans font-medium border border-[#B8956A]/60 text-[#B8956A] hover:bg-[#B8956A] hover:text-white"
+              className="shrink-0 ml-4 px-3 py-1.5 text-[9px] uppercase tracking-[0.15em] font-sans font-medium border border-[#D4AF37]/60 text-[#D4AF37] hover:bg-[#D4AF37] hover:text-white"
               style={{ transition: "all 0.3s cubic-bezier(0.16,1,0.3,1)" }}
             >
               Sample
@@ -90,11 +90,11 @@ export const ColorCollections: React.FC = () => {
 
         {/* Header */}
         <div className="max-w-3xl mb-16 reveal-on-scroll">
-          <span className="text-[10px] tracking-[0.3em] uppercase text-[#B8956A] font-sans font-semibold block mb-4">
+          <span className="text-[10px] tracking-[0.3em] uppercase text-[#D4AF37] font-sans font-semibold block mb-4">
             Finish Library
           </span>
           <h1 className="text-4xl md:text-6xl font-serif font-light text-[#1A1A1A] mb-6 leading-tight">
-            The Finish <span className="italic font-normal text-[#B8956A]">Library</span>
+            The Finish <span className="italic font-normal text-[#D4AF37]">Library</span>
           </h1>
           <p className="text-sm md:text-base text-[#6B6B6B] font-light leading-relaxed">
             Browse all 9 MAP finish systems. Each card shows the real applied finish — click to view full detail, or request a physical sample board.
@@ -104,7 +104,7 @@ export const ColorCollections: React.FC = () => {
         {/* Exterior section */}
         <div className="mb-16 reveal-on-scroll">
           <div className="flex items-center gap-4 mb-8">
-            <span className="text-[10px] uppercase tracking-[0.25em] font-sans font-semibold text-[#B8956A]">
+            <span className="text-[10px] uppercase tracking-[0.25em] font-sans font-semibold text-[#D4AF37]">
               Exterior Systems
             </span>
             <div className="flex-1 h-px bg-[#EBE8E2]" />
@@ -116,7 +116,7 @@ export const ColorCollections: React.FC = () => {
         {/* Interior section */}
         <div className="reveal-on-scroll">
           <div className="flex items-center gap-4 mb-8">
-            <span className="text-[10px] uppercase tracking-[0.25em] font-sans font-semibold text-[#B8956A]">
+            <span className="text-[10px] uppercase tracking-[0.25em] font-sans font-semibold text-[#D4AF37]">
               Interior Systems
             </span>
             <div className="flex-1 h-px bg-[#EBE8E2]" />
@@ -132,7 +132,7 @@ export const ColorCollections: React.FC = () => {
           </p>
           <Link
             to="/contact?source=map"
-            className="shrink-0 inline-flex items-center space-x-2 px-8 py-3 bg-[#1A1A1A] text-white text-[10px] uppercase tracking-[0.25em] font-sans font-medium hover:bg-[#B8956A]"
+            className="shrink-0 inline-flex items-center space-x-2 px-8 py-3 bg-[#1A1A1A] text-white text-[10px] uppercase tracking-[0.25em] font-sans font-medium hover:bg-[#D4AF37]"
             style={{ transition: "background-color 0.3s cubic-bezier(0.16,1,0.3,1)" }}
           >
             <span>Request Sample Boards</span>
@@ -144,7 +144,7 @@ export const ColorCollections: React.FC = () => {
       {/* Lightbox */}
       {lightbox && (
         <div
-          className="fixed inset-0 z-50 bg-[#1A1A1A]/95 flex items-center justify-center p-6"
+          className="fixed inset-0 z-50 bg-[#0A0A0A]/95 flex items-center justify-center p-6"
           onClick={() => setLightbox(null)}
         >
           <div
@@ -153,7 +153,7 @@ export const ColorCollections: React.FC = () => {
           >
             <button
               onClick={() => setLightbox(null)}
-              className="absolute top-4 right-4 z-10 p-2 bg-white/90 text-[#1A1A1A] hover:text-[#B8956A]"
+              className="absolute top-4 right-4 z-10 p-2 bg-white/90 text-[#1A1A1A] hover:text-[#D4AF37]"
               style={{ transition: "color 0.3s cubic-bezier(0.16,1,0.3,1)" }}
               aria-label="Close"
             >
@@ -167,11 +167,11 @@ export const ColorCollections: React.FC = () => {
             <div className="p-6 flex items-center justify-between">
               <div>
                 <h2 className="text-xl font-serif font-light text-[#1A1A1A]">{lightbox.name}</h2>
-                <span className="text-[10px] uppercase tracking-[0.2em] text-[#B8956A] font-sans">{lightbox.tagline}</span>
+                <span className="text-[10px] uppercase tracking-[0.2em] text-[#D4AF37] font-sans">{lightbox.tagline}</span>
               </div>
               <Link
                 to="/contact?source=map"
-                className="px-6 py-2.5 bg-[#B8956A] text-white text-[10px] uppercase tracking-[0.2em] font-sans font-medium hover:bg-[#1A1A1A]"
+                className="px-6 py-2.5 bg-[#D4AF37] text-white text-[10px] uppercase tracking-[0.2em] font-sans font-medium hover:bg-[#1A1A1A]"
                 style={{ transition: "background-color 0.3s cubic-bezier(0.16,1,0.3,1)" }}
                 onClick={() => setLightbox(null)}
               >

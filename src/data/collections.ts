@@ -150,14 +150,14 @@ export const collectionsData: Collection[] = [
       const metallicColors = [
         "#D4AF37", "#C5A059", "#D4C9B8", "#E6E8EA",
         "#C0C0C0", "#A8A9AD", "#8C7853", "#7A6348",
-        "#A3704C", "#B8956A", "#C9A075", "#DDC0A0",
+        "#A3704C", "#D4AF37", "#C9A075", "#DDC0A0",
         "#DEC39D", "#CAA57C", "#8B7D6B", "#706357",
         "#4F473E", "#2B2925"
       ];
       return {
         code: `A2D-${formattedCode}`,
         name: `Pearl ${getMetallicName(codeNum)}`,
-        hex: metallicColors[i] || "#B8956A"
+        hex: metallicColors[i] || "#D4AF37"
       };
     }),
     specs: {

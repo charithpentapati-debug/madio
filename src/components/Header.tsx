@@ -63,10 +63,10 @@ export const Header: React.FC = () => {
                 key={link.path}
                 to={link.path}
                 className={({ isActive }) =>
-                  `text-[11px] font-sans tracking-[0.12em] uppercase font-light transition-all duration-300 hover:text-[#B8956A] relative pb-1 whitespace-nowrap ${
+                  `text-[11px] font-sans tracking-[0.12em] uppercase font-light transition-all duration-300 hover:text-[#D4AF37] relative pb-1 whitespace-nowrap ${
                     isActive
-                      ? "text-[#B8956A] after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px] after:bg-[#B8956A]"
-                      : "text-[#1A1A1A] after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-[#B8956A] hover:after:w-full after:transition-all after:duration-300"
+                      ? "text-[#D4AF37] after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px] after:bg-[#D4AF37]"
+                      : "text-[#1A1A1A] after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-[#D4AF37] hover:after:w-full after:transition-all after:duration-300"
                   }`
                 }
               >
@@ -79,7 +79,7 @@ export const Header: React.FC = () => {
           <div className="flex items-center space-x-6">
             <Link
               to="/map/quote"
-              className="hidden lg:flex items-center space-x-2 border border-[#B8956A]/60 px-6 py-2.5 text-xs tracking-[0.2em] uppercase font-sans text-[#1A1A1A] hover:bg-[#B8956A] hover:text-white hover:border-[#B8956A] transition-all duration-300"
+              className="hidden lg:flex items-center space-x-2 border border-[#D4AF37]/60 px-6 py-2.5 text-xs tracking-[0.2em] uppercase font-sans text-[#1A1A1A] hover:bg-[#D4AF37] hover:text-white hover:border-[#D4AF37] transition-all duration-300"
             >
               <span>Request Quote</span>
               <ArrowRight size={14} />
@@ -87,7 +87,7 @@ export const Header: React.FC = () => {
 
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden text-[#1A1A1A] hover:text-[#B8956A] transition-colors focus:outline-none"
+              className="md:hidden text-[#1A1A1A] hover:text-[#D4AF37] transition-colors focus:outline-none"
               aria-label="Toggle Menu"
             >
               {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -111,7 +111,7 @@ export const Header: React.FC = () => {
               to={link.path}
               className={({ isActive }) =>
                 `text-2xl font-serif tracking-[0.1em] font-light transition-all duration-300 ${
-                  isActive ? "text-[#B8956A] pl-4 border-l-2 border-[#B8956A]" : "text-[#1A1A1A]"
+                  isActive ? "text-[#D4AF37] pl-4 border-l-2 border-[#D4AF37]" : "text-[#1A1A1A]"
                 }`
               }
             >
@@ -120,7 +120,7 @@ export const Header: React.FC = () => {
           ))}
           <Link
             to="/map/quote"
-            className="inline-flex items-center justify-between border-b border-[#B8956A]/40 pb-2 text-base tracking-[0.2em] uppercase font-sans text-[#B8956A] pt-4"
+            className="inline-flex items-center justify-between border-b border-[#D4AF37]/40 pb-2 text-base tracking-[0.2em] uppercase font-sans text-[#D4AF37] pt-4"
           >
             <span>Request a Quote</span>
             <ArrowRight size={18} />
