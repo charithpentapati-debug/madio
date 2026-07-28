@@ -20,8 +20,6 @@ export const MadioHeader: React.FC = () => {
     setIsMapDrawerOpen(false);
   }, [location]);
 
-  const isMapPage = location.pathname.startsWith("/map");
-
   const navLinks = [
     { path: "/",              label: "MADIO Furniture" },
     { path: "/map",           label: "MAP" },
@@ -114,17 +112,16 @@ export const MadioHeader: React.FC = () => {
               info@madio.in
             </a>
 
-            {/* Desktop MAP Hamburger Button (only on MAP pages) */}
-            {isMapPage && (
-              <button
-                onClick={() => setIsMapDrawerOpen(!isMapDrawerOpen)}
-                className="hidden md:block transition-colors focus:outline-none text-white/80 hover:text-[#D4AF37] p-1"
-                aria-label="Toggle MAP sub-menu"
-                title="MAP Navigation"
-              >
-                <Menu size={22} />
-              </button>
-            )}
+            {/* Desktop MAP Hamburger Button — visible on every page so MAP
+                subpages are reachable without first navigating into /map */}
+            <button
+              onClick={() => setIsMapDrawerOpen(!isMapDrawerOpen)}
+              className="hidden md:block transition-colors focus:outline-none text-white/80 hover:text-[#D4AF37] p-1"
+              aria-label="Toggle site navigation"
+              title="Site Navigation"
+            >
+              <Menu size={22} />
+            </button>
 
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -188,7 +185,7 @@ export const MadioHeader: React.FC = () => {
         </div>
       </div>
 
-      {/* MAP Desktop Side Drawer (Slide-out menu for MAP subpages) */}
+      {/* Desktop Site Navigation Drawer — all verticals plus MAP subpages */}
       <div 
         className={`fixed inset-0 z-50 overflow-hidden md:flex justify-end hidden transition-all duration-500 ${
           isMapDrawerOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
@@ -205,25 +202,48 @@ export const MadioHeader: React.FC = () => {
             isMapDrawerOpen ? "translate-x-0" : "translate-x-full"
           }`}
         >
-          <div>
-            <div className="flex justify-between items-center mb-16">
+          <div className="overflow-y-auto">
+            <div className="flex justify-between items-center mb-10">
               <span className="text-[10px] tracking-[0.25em] uppercase text-[#D4AF37] font-sans font-semibold">
-                MAP Finishes
+                Site Navigation
               </span>
-              <button 
+              <button
                 onClick={() => setIsMapDrawerOpen(false)}
                 className="text-[#1A1A1A] hover:text-[#D4AF37] transition-colors p-1"
               >
                 <X size={20} />
               </button>
             </div>
-            <nav className="flex flex-col space-y-6">
+
+            {/* All pages — every vertical, reachable from anywhere */}
+            <nav className="flex flex-col space-y-4 mb-8 pb-8 border-b border-[#EBE8E2]">
+              {navLinks.map((link) => (
+                <NavLink
+                  key={link.path}
+                  to={link.path}
+                  end={link.path === "/"}
+                  className={({ isActive }) =>
+                    `text-base font-serif tracking-wide font-light transition-all duration-300 ${
+                      isActive ? "text-[#D4AF37] pl-4 border-l-2 border-[#D4AF37]" : "text-[#1A1A1A] hover:text-[#D4AF37]"
+                    }`
+                  }
+                >
+                  {link.label}
+                </NavLink>
+              ))}
+            </nav>
+
+            {/* MAP Finishes — deep links into the MAP vertical */}
+            <span className="text-[10px] tracking-[0.25em] uppercase text-[#D4AF37] font-sans font-semibold block mb-6">
+              MAP Finishes
+            </span>
+            <nav className="flex flex-col space-y-4">
               {mapSubLinks.map((sub) => (
                 <NavLink
                   key={sub.path}
                   to={sub.path}
                   className={({ isActive }) =>
-                    `text-2xl font-serif tracking-wide font-light transition-all duration-300 ${
+                    `text-base font-serif tracking-wide font-light transition-all duration-300 ${
                       isActive ? "text-[#D4AF37] pl-4 border-l-2 border-[#D4AF37]" : "text-[#1A1A1A] hover:text-[#D4AF37]"
                     }`
                   }

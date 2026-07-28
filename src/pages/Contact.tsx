@@ -5,7 +5,7 @@ import { usePageMeta } from "../hooks/usePageMeta";
 
 export const Contact: React.FC = () => {
   usePageMeta(
-    "Contact MADIO | Furniture, Architectural Finishes & Doors",
+    "Contact MADIO | Furniture, Architectural Plasters & Doors",
     "Get in touch with MADIO — reach our Furniture, MAP Finishes, or Doors & Windows teams."
   );
 
@@ -319,7 +319,7 @@ export const Contact: React.FC = () => {
                   >
                     <option value="General">General Inquiry</option>
                     <option value="Furniture">MADIO Furniture</option>
-                    <option value="MAP Finishes">MAP (Premium Architectural Finishes)</option>
+                    <option value="MAP Finishes">MAP (Premium Architectural Plasters)</option>
                     <option value="Doors & Windows">MADIO Doors &amp; Windows</option>
                   </select>
                 </div>

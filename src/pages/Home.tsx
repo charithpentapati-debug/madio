@@ -12,7 +12,7 @@ import { usePageMeta } from "../hooks/usePageMeta";
 
 export const Home: React.FC = () => {
   usePageMeta(
-    "MAP | Premium Architectural Finishes & Decorative Surfaces",
+    "MAP | Premium Architectural Plasters & Decorative Surfaces",
     "MAP offers premium decorative surfaces, Venetian plasters, microcement systems, and luxury architectural finishes across India."
   );
 
@@ -50,7 +50,7 @@ export const Home: React.FC = () => {
           </h1>
 
           <p className="text-sm md:text-lg tracking-wider font-light text-[#F5F0EB]/95 max-w-2xl mb-12 leading-relaxed animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
-            Premium acrylic systems, microcements, and lime washes engineered for the discerning architect and luxury designer.
+            Premium architectural plaster systems, microcements, and lime washes engineered for the discerning architect and luxury designer.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center gap-5 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>

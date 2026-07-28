@@ -18,7 +18,7 @@ export const Products: React.FC = () => {
   usePageMeta(
     activeCollection
       ? `${activeCollection.name} | MAP Collections`
-      : "MAP Collections | Premium Architectural Finishes & Decorative Surfaces",
+      : "MAP Collections | Premium Architectural Plasters & Decorative Surfaces",
     activeCollection?.description ??
       "Explore MAP's collections of premium decorative surfaces, Venetian plasters, and microcement systems."
   );
@@ -219,7 +219,7 @@ export const Products: React.FC = () => {
             {/* Header Text */}
             <div className="max-w-3xl mb-16">
               <span className="text-[10px] tracking-[0.3em] uppercase text-[#D4AF37] font-sans font-semibold block mb-4">
-                Architectural Finishes
+                Architectural Plasters
               </span>
               <h1 className="text-4xl md:text-6xl font-serif font-light text-[#1A1A1A] mb-6 leading-tight">
                 The MAP <span className="italic font-normal text-[#D4AF37]">Collections</span>

@@ -39,7 +39,7 @@ export const MadioFooter: React.FC = () => {
             </li>
             <li>
               <Link to="/map" className="hover:text-white transition-colors duration-300">
-                MAP — Architectural Finishes
+                MAP — Architectural Plasters
               </Link>
             </li>
             <li>

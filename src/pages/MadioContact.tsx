@@ -5,7 +5,7 @@ import { usePageMeta } from "../hooks/usePageMeta";
 
 export const MadioContact: React.FC = () => {
   usePageMeta(
-    "Contact MADIO | Furniture, Architectural Finishes & Doors",
+    "Contact MADIO | Furniture, Architectural Plasters & Doors",
     "Get in touch with MADIO — reach our Furniture, MAP Finishes, or Doors & Windows teams."
   );
 
@@ -95,7 +95,7 @@ export const MadioContact: React.FC = () => {
           <div className="space-y-4">
             {[
               { path: "/",              label: "MADIO Furniture",          accent: "#D4AF37", sub: "Design-led furniture" },
-              { path: "/map/quote",     label: "MAP Finishes",             accent: "#D4AF37", sub: "Architectural surface finishes" },
+              { path: "/map/quote",     label: "MAP Finishes",             accent: "#D4AF37", sub: "Architectural plaster systems" },
               { path: "/doors-windows", label: "MADIO Doors & Windows",    accent: "#D4AF37", sub: "Fenestration systems" },
             ].map((v) => (
               <Link

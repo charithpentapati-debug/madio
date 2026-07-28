@@ -6,7 +6,7 @@ import { usePageMeta } from "../hooks/usePageMeta";
 
 export const About: React.FC = () => {
   usePageMeta(
-    "About MAP | Premium Architectural Finishes & Decorative Surfaces",
+    "About MAP | Premium Architectural Plasters & Decorative Surfaces",
     "Learn about MAP — India's premium decorative surfaces and architectural finishes brand."
   );
 
@@ -24,7 +24,7 @@ export const About: React.FC = () => {
             To Create <span className="italic font-normal text-[#D4AF37]">Architectural Surfaces</span>.
           </h1>
           <p className="text-base md:text-lg text-[#6B6B6B] font-light leading-relaxed">
-            MAP (Premium Acrylic Paints) is an elite decorative surfaces brand. We do not sell paint buckets. We curate and supply high-performance plaster systems, microcements, and mineral washes designed to serve as organic extensions of architectural structures.
+            MAP (Premium Architectural Plasters) is an elite decorative surfaces brand. We do not sell paint buckets. We curate and supply high-performance plaster systems, microcements, and mineral washes designed to serve as organic extensions of architectural structures.
           </p>
         </div>
 

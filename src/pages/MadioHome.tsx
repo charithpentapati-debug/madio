@@ -129,7 +129,7 @@ export const MadioHome: React.FC = () => (
             <div className="relative z-10 p-6 md:p-8">
               <div className="w-8 h-[2px] bg-[#D4AF37] mb-4 transition-all duration-300 group-hover:w-12" />
               <span className="text-[9px] uppercase tracking-[0.2em] text-[#D4AF37] font-sans font-medium block mb-1">
-                Architectural Finishes
+                Architectural Plasters
               </span>
               <h2 className="text-2xl font-serif font-light text-white mb-4">MAP</h2>
               <span className="inline-flex items-center space-x-2 text-[11px] uppercase tracking-[0.2em] font-sans font-medium text-white group-hover:space-x-3 transition-all duration-300">

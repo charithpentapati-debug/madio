@@ -9,7 +9,7 @@ const INTERIOR_IDS = ["texture-bubbles", "metallics-2d", "marbre", "oyster", "ma
 
 export const ColorCollections: React.FC = () => {
   usePageMeta(
-    "Color Library | MAP Architectural Finishes",
+    "Color Library | MAP Architectural Plasters",
     "Browse MAP's full shade and color library across all decorative surface collections."
   );
 

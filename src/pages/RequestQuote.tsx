@@ -6,7 +6,7 @@ import { usePageMeta } from "../hooks/usePageMeta";
 
 export const RequestQuote: React.FC = () => {
   usePageMeta(
-    "Request a Quote | MAP Architectural Finishes",
+    "Request a Quote | MAP Architectural Plasters",
     "Request a quote for MAP's premium decorative surfaces and architectural finishes."
   );
 

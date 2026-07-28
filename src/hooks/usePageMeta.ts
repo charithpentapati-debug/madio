@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-const DEFAULT_TITLE = "MADIO | Furniture, Architectural Finishes & Doors";
+const DEFAULT_TITLE = "MADIO | Furniture, Architectural Plasters & Doors";
 
 /**
  * Sets document.title and the <meta name="description"> tag for the

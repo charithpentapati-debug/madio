@@ -4,7 +4,7 @@ import { ArrowRight, Sparkles, ChevronDown } from "lucide-react";
 import { furnitureCategories, getProductsByCategory } from "../data/furniture";
 import type { FurnitureCategoryMeta } from "../data/furniture";
 import { usePageMeta } from "../hooks/usePageMeta";
-import heroBedImg from "../assets/furniture/beds/MFB-015.png";
+import heroImg from "../assets/furniture/home-hero.jpeg";
 
 // First available real product photo for a category, or undefined if the
 // category has no clean photography yet (renders the placeholder instead).
@@ -116,8 +116,8 @@ export const FurnitureLanding: React.FC = () => {
       {/* Background Image with Dark/Warm Overlay */}
       <div className="absolute inset-0 z-0">
         <img
-          src={heroBedImg}
-          alt="MADIO Furniture — Beds collection"
+          src={heroImg}
+          alt="MADIO Furniture — living room showroom"
           className="w-full h-full object-cover brightness-[0.75] contrast-[1.05]"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/70 via-transparent to-[#0A0A0A]/35" />

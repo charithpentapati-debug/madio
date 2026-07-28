@@ -98,7 +98,7 @@ const galleryItems: GalleryItem[] = [
 
 export const TextureGallery: React.FC = () => {
   usePageMeta(
-    "Texture Gallery | MAP Architectural Finishes",
+    "Texture Gallery | MAP Architectural Plasters",
     "Browse MAP's gallery of Venetian plasters, microcement, and decorative surface textures in real architectural settings."
   );
 

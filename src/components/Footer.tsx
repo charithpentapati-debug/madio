@@ -128,7 +128,7 @@ export const Footer: React.FC = () => {
       {/* Footer Bottom */}
       <div className="max-w-7xl mx-auto px-6 md:px-12 pt-8 border-t border-[#3D3D3D] flex flex-col md:flex-row items-center justify-between text-[11px] text-[#6B6B6B] font-light">
         <div className="mb-4 md:mb-0">
-          &copy; {currentYear} MAP (Premium Acrylic Paints). All rights reserved.
+          &copy; {currentYear} MAP (Premium Architectural Plasters). All rights reserved.
         </div>
         <div className="flex space-x-6">
           <span>Pan-India Supply</span>

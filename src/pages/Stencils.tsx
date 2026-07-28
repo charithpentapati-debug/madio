@@ -35,7 +35,7 @@ const stencils = STENCIL_CODES.map((code) => ({ code, img: resolveImg(code) }));
 
 export const Stencils: React.FC = () => {
   usePageMeta(
-    "Stencils | MAP Architectural Finishes",
+    "Stencils | MAP Architectural Plasters",
     "Explore MAP's decorative wall stencil designs for interior and exterior applications."
   );
 
