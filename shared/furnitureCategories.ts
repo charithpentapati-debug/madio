@@ -7,8 +7,9 @@
 //   - Vercel serverless functions (api/*.ts) that need to validate
 //     an upload's target category/folder server-side.
 //
-// The Cloudinary folder for a category is always its `id` — e.g.
-// category "beds" -> Cloudinary folder "beds".
+// The upload-provider folder for a category is always its `id` — e.g.
+// category "beds" -> folder "beds". (Currently Cloudinary; see
+// scripts/imageProvider.ts for the one place that's provider-specific.)
 // ============================================================
 
 export type FurnitureCategoryId =

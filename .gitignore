@@ -29,3 +29,7 @@ dist-ssr
 .env.*.local
 .vercel
 .env*
+
+# Regenerated at build/dev time by scripts/generate-image-data.ts — always
+# fresh from live Cloudinary data, never something to commit or diff.
+src/data/categoryPhotos.generated.ts

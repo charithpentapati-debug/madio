@@ -8,8 +8,41 @@ import {
 } from "../data/furniture";
 import type { FurnitureProduct } from "../data/furniture";
 import { usePageMeta } from "../hooks/usePageMeta";
+// Generated at build/dev time by scripts/generate-image-data.ts from the
+// client's uploaded photos (src/data/categoryPhotos.generated.ts,
+// gitignored — always regenerated fresh, never committed).
+// Independent of the isPopulated flag above: isPopulated tracks the PDF-
+// sourced product catalogue, this tracks whatever the client has uploaded
+// via /admin/upload, which can exist for any category regardless of
+// catalogue status.
+import categoryPhotosByCategory from "../data/categoryPhotos.generated";
 
 const FURNITURE_ACCENT = "#D4AF37";
+
+// Client-uploaded photo gallery for this category. Renders nothing if the
+// client hasn't uploaded anything here yet — same hasValue-style guard used
+// throughout the rest of the site.
+const CategoryGallery: React.FC<{ images: string[] }> = ({ images }) => {
+  if (images.length === 0) return null;
+  return (
+    <section className="mb-14">
+      <h2
+        className="text-xs uppercase tracking-[0.25em] font-sans font-medium mb-6 flex items-center space-x-3"
+        style={{ color: FURNITURE_ACCENT }}
+      >
+        <span>Gallery</span>
+        <span className="text-[#C4B9A8]">— {images.length}</span>
+      </h2>
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+        {images.map((src) => (
+          <div key={src} className="relative h-44 overflow-hidden bg-[#EBE8E2] border border-[#EBE8E2]">
+            <img src={src} alt="" loading="lazy" className="w-full h-full object-cover" />
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+};
 
 // Product card for the listing grid
 const ProductCard: React.FC<{ product: FurnitureProduct; categoryId: string }> = ({
@@ -123,6 +156,7 @@ export const FurnitureCategoryPage: React.FC = () => {
 
   const meta = furnitureCategories.find((c) => c.id === category);
   const products = getProductsByCategory(category);
+  const galleryImages = categoryPhotosByCategory[category] ?? [];
 
   // Group beds by subcategory for clearer listing
   const beds = products.filter((p) => p.subcategory === "bed");
@@ -180,6 +214,9 @@ export const FurnitureCategoryPage: React.FC = () => {
 
       {/* ── Content area ── */}
       <div className="max-w-7xl mx-auto px-6 md:px-12 py-16">
+
+        {/* Client-uploaded photos — independent of catalogue isPopulated status */}
+        <CategoryGallery images={galleryImages} />
 
         {!meta?.isPopulated ? (
           // Un-populated category: coming soon
