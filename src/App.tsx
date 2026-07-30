@@ -13,10 +13,15 @@ import { TextureGallery } from "./pages/TextureGallery";
 import { ColorCollections } from "./pages/ColorCollections";
 import { Contact } from "./pages/Contact";
 import { Stencils } from "./pages/Stencils";
+import { AdminUpload } from "./pages/admin/AdminUpload";
 
 const App: React.FC = () => (
   <BrowserRouter>
     <Routes>
+      {/* Admin tool — deliberately outside MadioLayout (no public header/nav/footer)
+          and not linked from anywhere in the site. Password-gated in the page itself. */}
+      <Route path="admin/upload" element={<AdminUpload />} />
+
       {/* All pages share the unified MadioLayout which includes the vertical switcher header */}
       <Route element={<MadioLayout />}>
         {/* Flagship Furniture Homepage */}
