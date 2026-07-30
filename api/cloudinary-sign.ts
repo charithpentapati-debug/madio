@@ -9,23 +9,7 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import crypto from "node:crypto";
 import { isFurnitureCategoryId } from "../shared/furnitureCategories";
-
-function verifyToken(token: string): boolean {
-  const [expiresAtStr, hmac] = token.split(".");
-  if (!expiresAtStr || !hmac) return false;
-
-  const expiresAt = Number(expiresAtStr);
-  if (!Number.isFinite(expiresAt) || expiresAt < Date.now()) return false;
-
-  const secret = process.env.SESSION_SIGNING_SECRET;
-  if (!secret) return false;
-
-  const expected = crypto.createHmac("sha256", secret).update(expiresAtStr).digest("hex");
-  const a = Buffer.from(hmac);
-  const b = Buffer.from(expected);
-  if (a.length !== b.length) return false;
-  return crypto.timingSafeEqual(a, b);
-}
+import { verifySessionToken } from "./_lib/session";
 
 // Cloudinary's signing algorithm: sort params alphabetically, join as
 // key=value&key=value, append the API secret, SHA-1 hash the result.
@@ -48,7 +32,7 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
     paramsToSign?: Record<string, string | number>;
   };
 
-  if (typeof token !== "string" || !verifyToken(token)) {
+  if (!verifySessionToken(token)) {
     return res.status(401).json({ error: "Unauthorized" });
   }
 

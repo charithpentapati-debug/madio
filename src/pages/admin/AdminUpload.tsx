@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { furnitureCategories } from "../../data/furniture";
 import type { FurnitureCategoryId } from "../../data/furniture";
 import { UploadWidget } from "../../components/admin/UploadWidget";
@@ -25,10 +25,10 @@ function readStoredSession(): StoredSession | null {
   }
 }
 
-interface UploadedItem {
+interface CategoryPhoto {
   publicId: string;
   secureUrl: string;
-  category: string;
+  productCode?: string;
 }
 
 export const AdminUpload: React.FC = () => {
@@ -37,7 +37,12 @@ export const AdminUpload: React.FC = () => {
   const [loginError, setLoginError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [category, setCategory] = useState<FurnitureCategoryId>(furnitureCategories[0].id);
-  const [uploaded, setUploaded] = useState<UploadedItem[]>([]);
+
+  const [photos, setPhotos] = useState<CategoryPhoto[]>([]);
+  const [photosLoading, setPhotosLoading] = useState(false);
+  const [photosError, setPhotosError] = useState<string | null>(null);
+  const [assigningCode, setAssigningCode] = useState(false);
+  const [deletingId, setDeletingId] = useState<string | null>(null);
 
   // Keep this page out of search results — it's reachable by URL only, but
   // best not to let it get indexed if a crawler ever finds it.
@@ -51,6 +56,36 @@ export const AdminUpload: React.FC = () => {
       document.head.removeChild(meta);
     };
   }, []);
+
+  const fetchPhotos = useCallback(async (token: string, cat: FurnitureCategoryId) => {
+    setPhotosLoading(true);
+    setPhotosError(null);
+    try {
+      const res = await fetch("/api/admin-list-photos", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token, category: cat }),
+      });
+      const data = (await res.json()) as { assets?: CategoryPhoto[]; error?: string };
+      if (!res.ok || !data.assets) {
+        setPhotosError(data.error ?? "Could not load photos for this category.");
+        setPhotos([]);
+        return;
+      }
+      setPhotos(data.assets);
+    } catch {
+      setPhotosError("Could not reach the server. Check your connection and try again.");
+      setPhotos([]);
+    } finally {
+      setPhotosLoading(false);
+    }
+  }, []);
+
+  // Refresh the photo list whenever we're logged in and whenever the
+  // selected category changes.
+  useEffect(() => {
+    if (session) void fetchPhotos(session.token, category);
+  }, [session, category, fetchPhotos]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -81,6 +116,60 @@ export const AdminUpload: React.FC = () => {
   const handleLogout = () => {
     sessionStorage.removeItem(SESSION_STORAGE_KEY);
     setSession(null);
+  };
+
+  const handleUploaded = async (info: { secureUrl: string; publicId: string }) => {
+    if (!session) return;
+    // Optimistically show the new photo right away (code arrives moments later).
+    setPhotos((prev) => [...prev, { publicId: info.publicId, secureUrl: info.secureUrl }]);
+    setAssigningCode(true);
+    try {
+      const res = await fetch("/api/admin-assign-code", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token: session.token, category, publicId: info.publicId }),
+      });
+      const data = (await res.json()) as { productCode?: string; error?: string };
+      if (res.ok && data.productCode) {
+        setPhotos((prev) =>
+          prev.map((p) => (p.publicId === info.publicId ? { ...p, productCode: data.productCode } : p)),
+        );
+      } else {
+        setPhotosError(data.error ?? "Photo uploaded, but assigning its product code failed.");
+      }
+    } catch {
+      setPhotosError("Photo uploaded, but could not reach the server to assign its product code.");
+    } finally {
+      setAssigningCode(false);
+      // Re-sync with Cloudinary regardless, so the list reflects reality.
+      void fetchPhotos(session.token, category);
+    }
+  };
+
+  const handleDelete = async (photo: CategoryPhoto) => {
+    if (!session) return;
+    const label = photo.productCode ?? photo.publicId;
+    if (!window.confirm(`Delete ${label}? This can't be undone.`)) return;
+
+    setDeletingId(photo.publicId);
+    setPhotosError(null);
+    try {
+      const res = await fetch("/api/admin-delete-photo", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token: session.token, publicId: photo.publicId }),
+      });
+      const data = (await res.json()) as { success?: boolean; error?: string };
+      if (!res.ok || !data.success) {
+        setPhotosError(data.error ?? "Could not delete this photo.");
+        return;
+      }
+      setPhotos((prev) => prev.filter((p) => p.publicId !== photo.publicId));
+    } catch {
+      setPhotosError("Could not reach the server. Check your connection and try again.");
+    } finally {
+      setDeletingId(null);
+    }
   };
 
   if (!session) {
@@ -122,13 +211,13 @@ export const AdminUpload: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#FAFAF7] px-6 py-16">
-      <div className="max-w-xl mx-auto bg-white border border-[#EBE8E2] p-10 shadow-sm">
+      <div className="max-w-2xl mx-auto bg-white border border-[#EBE8E2] p-10 shadow-sm">
         <div className="flex items-start justify-between mb-8">
           <div>
             <h1 className="text-xl font-serif font-light text-[#16232B] mb-1">Admin Upload</h1>
             <p className="text-xs text-[#6B6B6B] font-light">
-              Choose a category, then upload photos. New photos go live on the site within 1–2
-              minutes.
+              Choose a category, then upload or remove photos. Changes go live on the site within
+              1–2 minutes.
             </p>
           </div>
           <button
@@ -154,33 +243,54 @@ export const AdminUpload: React.FC = () => {
           ))}
         </select>
 
-        <UploadWidget
-          category={category}
-          sessionToken={session.token}
-          onUploaded={(info) =>
-            setUploaded((prev) => [{ publicId: info.publicId, secureUrl: info.secureUrl, category }, ...prev])
-          }
-        />
+        <UploadWidget category={category} sessionToken={session.token} onUploaded={handleUploaded} />
 
-        {uploaded.length > 0 && (
-          <div className="mt-10 pt-8 border-t border-[#EBE8E2]">
-            <h2 className="text-[10px] uppercase tracking-[0.2em] font-sans font-medium text-[#6B6B6B] mb-4">
-              Uploaded this session
-            </h2>
-            <div className="grid grid-cols-3 gap-3">
-              {uploaded.map((item) => (
-                <div key={item.publicId} className="space-y-1">
-                  <img
-                    src={item.secureUrl}
-                    alt={item.publicId}
-                    className="w-full h-20 object-cover border border-[#EBE8E2]"
-                  />
-                  <p className="text-[9px] text-[#6B6B6B] font-light truncate">{item.category}</p>
-                </div>
-              ))}
-            </div>
-          </div>
+        {assigningCode && (
+          <p className="text-xs text-[#6B6B6B] font-light mt-4">Assigning product code…</p>
         )}
+
+        <div className="mt-10 pt-8 border-t border-[#EBE8E2]">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-[10px] uppercase tracking-[0.2em] font-sans font-medium text-[#6B6B6B]">
+              Photos in this category
+            </h2>
+            {photosLoading && (
+              <span className="text-[10px] text-[#6B6B6B] font-light">Loading…</span>
+            )}
+          </div>
+
+          {photosError && (
+            <p className="text-xs text-red-600 mb-4 bg-red-50 border border-red-200 px-3 py-2">
+              {photosError}
+            </p>
+          )}
+
+          {!photosLoading && photos.length === 0 && !photosError && (
+            <p className="text-xs text-[#6B6B6B] font-light">No photos uploaded to this category yet.</p>
+          )}
+
+          <div className="grid grid-cols-3 gap-4">
+            {photos.map((photo) => (
+              <div key={photo.publicId} className="space-y-2">
+                <img
+                  src={photo.secureUrl}
+                  alt={photo.productCode ?? photo.publicId}
+                  className="w-full h-24 object-cover border border-[#EBE8E2]"
+                />
+                <p className="text-[10px] font-mono text-[#16232B] truncate">
+                  {photo.productCode ?? "Assigning…"}
+                </p>
+                <button
+                  onClick={() => handleDelete(photo)}
+                  disabled={deletingId === photo.publicId}
+                  className="w-full text-[9px] uppercase tracking-[0.15em] font-sans text-red-600 border border-red-200 py-1.5 hover:bg-red-50 transition-colors disabled:opacity-40"
+                >
+                  {deletingId === photo.publicId ? "Deleting…" : "Delete"}
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
