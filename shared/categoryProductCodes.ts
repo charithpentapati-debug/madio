@@ -4,7 +4,7 @@
 // — the first uploaded Beds photo becomes MFB-053 — rather than starting a
 // separate sequence. If the static catalogue's SKU range ever grows, update
 // baselineMax to match.
-import type { FurnitureCategoryId } from "./furnitureCategories";
+import type { FurnitureCategoryId } from "./furnitureCategories.js";
 
 export interface CategoryProductCodeConfig {
   prefix: string;

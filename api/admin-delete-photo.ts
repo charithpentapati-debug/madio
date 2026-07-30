@@ -4,10 +4,10 @@
 // to delete assets elsewhere in the Cloudinary account even by an
 // authenticated caller.
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { verifySessionToken } from "./_lib/session";
-import { deleteAsset } from "./_lib/cloudinaryAdmin";
-import { triggerRebuild } from "./_lib/deployHook";
-import { isFurnitureCategoryId } from "../shared/furnitureCategories";
+import { verifySessionToken } from "../api-lib/session.js";
+import { deleteAsset } from "../api-lib/cloudinaryAdmin.js";
+import { triggerRebuild } from "../api-lib/deployHook.js";
+import { isFurnitureCategoryId } from "../shared/furnitureCategories.js";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== "POST") {

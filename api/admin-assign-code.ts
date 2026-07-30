@@ -8,11 +8,11 @@
 // somehow uploaded to the same category at the exact same instant — not a
 // realistic concern for this single-admin tool.
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { verifySessionToken } from "./_lib/session";
-import { listCategoryAssets, setAssetProductCode } from "./_lib/cloudinaryAdmin";
-import { triggerRebuild } from "./_lib/deployHook";
-import { isFurnitureCategoryId } from "../shared/furnitureCategories";
-import { categoryProductCodeConfig, parseProductCodeNumber, formatProductCode } from "../shared/categoryProductCodes";
+import { verifySessionToken } from "../api-lib/session.js";
+import { listCategoryAssets, setAssetProductCode } from "../api-lib/cloudinaryAdmin.js";
+import { triggerRebuild } from "../api-lib/deployHook.js";
+import { isFurnitureCategoryId } from "../shared/furnitureCategories.js";
+import { categoryProductCodeConfig, parseProductCodeNumber, formatProductCode } from "../shared/categoryProductCodes.js";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== "POST") {

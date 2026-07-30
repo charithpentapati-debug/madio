@@ -2,9 +2,9 @@
 // permanently-assigned product code (read straight from Cloudinary context —
 // no recomputation, so this always reflects exactly what's live).
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { verifySessionToken } from "./_lib/session";
-import { listCategoryAssets } from "./_lib/cloudinaryAdmin";
-import { isFurnitureCategoryId } from "../shared/furnitureCategories";
+import { verifySessionToken } from "../api-lib/session.js";
+import { listCategoryAssets } from "../api-lib/cloudinaryAdmin.js";
+import { isFurnitureCategoryId } from "../shared/furnitureCategories.js";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== "POST") {

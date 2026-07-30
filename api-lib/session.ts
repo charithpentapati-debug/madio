@@ -1,6 +1,8 @@
 // Shared by every authenticated admin endpoint (cloudinary-sign, list-photos,
-// delete-photo, assign-code). Underscore-prefixed folder — Vercel excludes
-// `_lib` from routing, so this is a plain shared module, not an endpoint.
+// delete-photo, assign-code). Lives outside api/ deliberately — Vercel
+// excludes `api/_lib/*` from the deployed function bundle entirely (not
+// just from routing), which broke this in production; a sibling top-level
+// folder works the same way shared/ already does for the api/ functions.
 import crypto from "node:crypto";
 
 export function verifySessionToken(token: unknown): boolean {

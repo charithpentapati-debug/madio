@@ -8,8 +8,8 @@
 // send Cloudinary directly.
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import crypto from "node:crypto";
-import { isFurnitureCategoryId } from "../shared/furnitureCategories";
-import { verifySessionToken } from "./_lib/session";
+import { isFurnitureCategoryId } from "../shared/furnitureCategories.js";
+import { verifySessionToken } from "../api-lib/session.js";
 
 // Cloudinary's signing algorithm: sort params alphabetically, join as
 // key=value&key=value, append the API secret, SHA-1 hash the result.
