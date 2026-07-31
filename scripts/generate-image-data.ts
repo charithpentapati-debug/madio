@@ -12,7 +12,7 @@
 import { writeFileSync, mkdirSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { getCategoryImages } from "./imageProvider.ts";
+import { getCategoryImages, type CategoryPhoto } from "./imageProvider.ts";
 import { furnitureCategories } from "../shared/furnitureCategories.ts";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -24,7 +24,7 @@ async function main() {
     !!process.env.CLOUDINARY_API_KEY &&
     !!process.env.CLOUDINARY_API_SECRET;
 
-  const result: Record<string, string[]> = {};
+  const result: Record<string, CategoryPhoto[]> = {};
 
   for (const cat of furnitureCategories) {
     if (!hasCredentials) {
@@ -32,9 +32,9 @@ async function main() {
       continue;
     }
     try {
-      const images = await getCategoryImages(cat.id);
-      result[cat.id] = images;
-      console.log(`[generate-image-data] ${cat.id}: ${images.length} image(s)`);
+      const photos = await getCategoryImages(cat.id);
+      result[cat.id] = photos;
+      console.log(`[generate-image-data] ${cat.id}: ${photos.length} image(s)`);
     } catch (err) {
       console.warn(`[generate-image-data] Failed to fetch "${cat.id}" — using empty list:`, (err as Error).message);
       result[cat.id] = [];
@@ -53,7 +53,8 @@ async function main() {
     "// Regenerated fresh on every `npm run dev` / `npm run build` from the\n" +
     "// current upload provider. Gitignored — see .gitignore.\n" +
     `import type { FurnitureCategoryId } from "../../shared/furnitureCategories";\n\n` +
-    `const categoryPhotosByCategory: Record<FurnitureCategoryId, string[]> = ${JSON.stringify(result, null, 2)};\n\n` +
+    `export interface CategoryPhoto {\n  secureUrl: string;\n  productCode: string;\n}\n\n` +
+    `const categoryPhotosByCategory: Record<FurnitureCategoryId, CategoryPhoto[]> = ${JSON.stringify(result, null, 2)};\n\n` +
     "export default categoryPhotosByCategory;\n";
 
   mkdirSync(path.dirname(OUT_PATH), { recursive: true });

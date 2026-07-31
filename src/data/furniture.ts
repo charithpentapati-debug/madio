@@ -21,6 +21,7 @@ export type { FurnitureCategoryId, FurnitureCategoryMeta } from "../../shared/fu
 export { furnitureCategories, isFurnitureCategoryId } from "../../shared/furnitureCategories";
 import type { FurnitureCategoryId, FurnitureCategoryMeta } from "../../shared/furnitureCategories";
 import { furnitureCategories } from "../../shared/furnitureCategories";
+import categoryPhotosByCategory from "./categoryPhotos.generated";
 
 // --------------- Product types ---------------
 
@@ -62,6 +63,13 @@ export interface FurnitureProduct {
   variants?: FurnitureProductVariant[];
   price?: string;
   stock?: number;
+
+  // True for synthetic entries built below from client-uploaded Cloudinary
+  // photos (see clientUploadedProducts) rather than the static PDF catalogue.
+  // Lets category pages show client photos even for a category whose static
+  // catalogue is pulled back to Coming Soon for an unrelated reason (e.g.
+  // Bar Chairs' branded source images) without un-hiding that static catalogue.
+  isClientUploaded?: boolean;
 }
 
 // --------------- BEDS — Phase 4A (fully populated) ---------------
@@ -4117,6 +4125,28 @@ const clockProducts: FurnitureProduct[] = [
   },
 ];
 
+// Client-uploaded photos (via /admin/upload), one synthetic FurnitureProduct
+// per photo so they render through the exact same ProductCard/detail-page
+// path as the static PDF catalogue. Each photo's Cloudinary context.custom
+// .product_code (assigned by api/admin-assign-code.ts right after upload,
+// continuing the static catalogue's own numbering — see
+// shared/categoryProductCodes.ts) becomes its sku/name/id. Beds photos default
+// to subcategory "bed" so they land in the "Bed Frames" grid/count rather than
+// a separate ungrouped section — the only category with a bed/bedside split.
+const clientUploadedProducts: FurnitureProduct[] = furnitureCategories.flatMap((cat) =>
+  (categoryPhotosByCategory[cat.id] ?? []).map((photo) => ({
+    id: photo.productCode.toLowerCase(),
+    sku: photo.productCode,
+    name: photo.productCode,
+    category: cat.id,
+    subcategory: cat.id === "beds" ? "bed" : undefined,
+    description: "",
+    images: [photo.secureUrl],
+    specs: {},
+    isClientUploaded: true,
+  })),
+);
+
 export const furnitureProducts: FurnitureProduct[] = [
   ...bedsProducts,
   ...barChairsProducts,
@@ -4127,6 +4157,7 @@ export const furnitureProducts: FurnitureProduct[] = [
   ...mirrorsProducts,
   ...wallArtProducts,
   ...clockProducts,
+  ...clientUploadedProducts,
 ];
 
 // --------------- Helpers ---------------

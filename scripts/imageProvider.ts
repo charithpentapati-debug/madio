@@ -15,17 +15,21 @@
 // Cloudinary folders are just the furniture category id — e.g. category
 // "beds" -> Cloudinary asset folder "beds" (see shared/furnitureCategories.ts
 // and api/cloudinary-sign.ts, which upload into the same folder names).
+//
+// Reuses api-lib/cloudinaryAdmin.ts's listCategoryAssets (same function the
+// admin list/delete/assign-code endpoints use) rather than duplicating the
+// Cloudinary call here — this is what carries each photo's assigned
+// product_code (from Cloudinary context metadata) through to the generated
+// data file, which is what lets the frontend render client-uploaded photos
+// as real product cards instead of a bare, code-less image gallery.
+import { listCategoryAssets } from "../api-lib/cloudinaryAdmin.ts";
 
-interface CloudinaryResource {
-  secure_url: string;
+export interface CategoryPhoto {
+  secureUrl: string;
+  productCode: string;
 }
 
-interface CloudinaryByAssetFolderResponse {
-  resources?: CloudinaryResource[];
-  next_cursor?: string | null;
-}
-
-export async function getCategoryImages(category: string): Promise<string[]> {
+export async function getCategoryImages(category: string): Promise<CategoryPhoto[]> {
   const cloudName = process.env.VITE_CLOUDINARY_CLOUD_NAME;
   const apiKey = process.env.CLOUDINARY_API_KEY;
   const apiSecret = process.env.CLOUDINARY_API_SECRET;
@@ -36,31 +40,12 @@ export async function getCategoryImages(category: string): Promise<string[]> {
     );
   }
 
-  const auth = Buffer.from(`${apiKey}:${apiSecret}`).toString("base64");
-  const urls: string[] = [];
-  let cursor: string | undefined;
+  const assets = await listCategoryAssets(category);
 
-  do {
-    const params = new URLSearchParams({
-      asset_folder: category,
-      max_results: "500",
-      ...(cursor ? { next_cursor: cursor } : {}),
-    });
-    const res = await fetch(
-      `https://api.cloudinary.com/v1_1/${cloudName}/resources/by_asset_folder?${params.toString()}`,
-      { headers: { Authorization: `Basic ${auth}` } },
-    );
-
-    if (!res.ok) {
-      throw new Error(
-        `Cloudinary Admin API request failed for folder "${category}": ${res.status} ${res.statusText}`,
-      );
-    }
-
-    const data = (await res.json()) as CloudinaryByAssetFolderResponse;
-    urls.push(...(data.resources ?? []).map((r) => r.secure_url));
-    cursor = data.next_cursor ?? undefined;
-  } while (cursor);
-
-  return urls;
+  // Skip anything without a product code (shouldn't happen — admin-assign-code
+  // runs immediately after every upload — but a code-less photo has nothing
+  // sensible to render as a SKU/name, so it's excluded rather than shown broken).
+  return assets
+    .filter((a) => !!a.productCode)
+    .map((a) => ({ secureUrl: a.secureUrl, productCode: a.productCode! }));
 }
