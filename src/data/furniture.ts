@@ -23,6 +23,24 @@ import type { FurnitureCategoryId, FurnitureCategoryMeta } from "../../shared/fu
 import { furnitureCategories } from "../../shared/furnitureCategories";
 import categoryPhotosByCategory from "./categoryPhotos.generated";
 
+// Cloudinary image-unification migration, Loop 2: catalogue product images
+// now resolve by product_code lookup against Cloudinary first (all real
+// catalogue images were migrated there — see
+// scripts/migrate-catalogue-images.ts — verified 449/449, 0 mismatches).
+// The static import.meta.glob calls below each category are intentionally
+// left in place as a safety-net fallback, not yet removed — only used if a
+// code is somehow missing from Cloudinary. Removing them entirely is a
+// separate, explicitly-gated later step, once the Cloudinary path has been
+// verified end to end. Bar Chairs is excluded — its images are quarantined,
+// never migrated, and this function will simply find nothing for it.
+function cloudinaryImagesFor(category: FurnitureCategoryId): Map<string, string> {
+  const map = new Map<string, string>();
+  for (const photo of categoryPhotosByCategory[category] ?? []) {
+    map.set(photo.productCode, photo.secureUrl);
+  }
+  return map;
+}
+
 // --------------- Product types ---------------
 
 export interface FurnitureProductSpec {
@@ -89,8 +107,11 @@ const _bedImgs = import.meta.glob<string>(
   "../assets/furniture/beds/*.png",
   { eager: true, import: "default" },
 );
+const _bedCloudinaryImgs = cloudinaryImagesFor("beds");
 
 function bedImg(sku: string): string[] {
+  const cloudinary = _bedCloudinaryImgs.get(sku);
+  if (cloudinary) return [cloudinary];
   const url = _bedImgs[`../assets/furniture/beds/${sku}.png`];
   return url ? [url] : [];
 }
@@ -372,8 +393,11 @@ const _coffeeTableImgs = import.meta.glob<string>(
   '../assets/furniture/coffee-cafe-tables/*.{png,jpeg,jpg,webp}',
   { eager: true, import: 'default' }
 );
+const _coffeeTableCloudinaryImgs = cloudinaryImagesFor("coffee-cafe-tables");
 
 function coffeeTableImg(sku: string): string[] {
+  const cloudinary = _coffeeTableCloudinaryImgs.get(sku);
+  if (cloudinary) return [cloudinary];
   const png = _coffeeTableImgs[`../assets/furniture/coffee-cafe-tables/${sku}.png`];
   if (png) return [png];
   const jpeg = _coffeeTableImgs[`../assets/furniture/coffee-cafe-tables/${sku}.jpeg`];
@@ -707,8 +731,11 @@ const _daybedImgs = import.meta.glob<string>(
   '../assets/furniture/daybeds/*.{png,jpeg,jpg,webp}',
   { eager: true, import: 'default' }
 );
+const _daybedCloudinaryImgs = cloudinaryImagesFor("daybeds");
 
 function daybedImg(sku: string): string[] {
+  const cloudinary = _daybedCloudinaryImgs.get(sku);
+  if (cloudinary) return [cloudinary];
   const png = _daybedImgs[`../assets/furniture/daybeds/${sku}.png`];
   if (png) return [png];
   const jpeg = _daybedImgs[`../assets/furniture/daybeds/${sku}.jpeg`];
@@ -834,8 +861,11 @@ const _officeImgs = import.meta.glob<string>(
   '../assets/furniture/office-furniture-sofa/*.{png,jpeg,jpg,webp}',
   { eager: true, import: 'default' }
 );
+const _officeCloudinaryImgs = cloudinaryImagesFor("office-furniture-sofa");
 
 function officeImg(sku: string): string[] {
+  const cloudinary = _officeCloudinaryImgs.get(sku);
+  if (cloudinary) return [cloudinary];
   const png = _officeImgs[`../assets/furniture/office-furniture-sofa/${sku}.png`];
   if (png) return [png];
   const jpeg = _officeImgs[`../assets/furniture/office-furniture-sofa/${sku}.jpeg`];
@@ -1436,8 +1466,11 @@ const _outdoorImgs = import.meta.glob<string>(
   '../assets/furniture/outdoor/*.{png,jpeg,jpg,webp}',
   { eager: true, import: 'default' }
 );
+const _outdoorCloudinaryImgs = cloudinaryImagesFor("outdoor");
 
 function outdoorImg(sku: string): string[] {
+  const cloudinary = _outdoorCloudinaryImgs.get(sku);
+  if (cloudinary) return [cloudinary];
   const png = _outdoorImgs[`../assets/furniture/outdoor/${sku}.png`];
   if (png) return [png];
   const jpeg = _outdoorImgs[`../assets/furniture/outdoor/${sku}.jpeg`];
@@ -1823,8 +1856,11 @@ const _mirrorImgs = import.meta.glob<string>(
   '../assets/furniture/mirrors/*.{png,jpeg,jpg,webp}',
   { eager: true, import: 'default' }
 );
+const _mirrorCloudinaryImgs = cloudinaryImagesFor("mirrors");
 
 function mirrorImg(sku: string): string[] {
+  const cloudinary = _mirrorCloudinaryImgs.get(sku);
+  if (cloudinary) return [cloudinary];
   const png = _mirrorImgs[`../assets/furniture/mirrors/${sku}.png`];
   if (png) return [png];
   const jpeg = _mirrorImgs[`../assets/furniture/mirrors/${sku}.jpeg`];
@@ -2198,8 +2234,11 @@ const _wallArtImgs = import.meta.glob<string>(
   '../assets/furniture/wall-art/*.{png,jpeg,jpg,webp}',
   { eager: true, import: 'default' }
 );
+const _wallArtCloudinaryImgs = cloudinaryImagesFor("wall-art");
 
 function wallArtImg(sku: string): string[] {
+  const cloudinary = _wallArtCloudinaryImgs.get(sku);
+  if (cloudinary) return [cloudinary];
   const png = _wallArtImgs[`../assets/furniture/wall-art/${sku}.png`];
   if (png) return [png];
   const jpeg = _wallArtImgs[`../assets/furniture/wall-art/${sku}.jpeg`];
@@ -3670,8 +3709,11 @@ const _clockImgs = import.meta.glob<string>(
   '../assets/furniture/clocks/*.{png,jpeg,jpg,webp}',
   { eager: true, import: 'default' }
 );
+const _clockCloudinaryImgs = cloudinaryImagesFor("clocks");
 
 function clockImg(sku: string): string[] {
+  const cloudinary = _clockCloudinaryImgs.get(sku);
+  if (cloudinary) return [cloudinary];
   const png = _clockImgs[`../assets/furniture/clocks/${sku}.png`];
   if (png) return [png];
   const jpeg = _clockImgs[`../assets/furniture/clocks/${sku}.jpeg`];
@@ -4133,18 +4175,40 @@ const clockProducts: FurnitureProduct[] = [
 // shared/categoryProductCodes.ts) becomes its sku/name/id. Beds photos default
 // to subcategory "bed" so they land in the "Bed Frames" grid/count rather than
 // a separate ungrouped section — the only category with a bed/bedside split.
+// Product codes already claimed by the static catalogue — including the 449
+// migrated in Loop 1, whose Cloudinary photo is that product's own image via
+// cloudinaryImagesFor() above, not a new product. Only a Cloudinary photo
+// whose code ISN'T in this set is a genuinely new client upload (e.g.
+// MFB-053) — without this filter, every migrated catalogue photo would show
+// up twice: once as the real product, once as a duplicate synthetic one.
+const staticProductCodes = new Set(
+  [
+    ...bedsProducts,
+    ...barChairsProducts,
+    ...coffeeTablesProducts,
+    ...daybedsProducts,
+    ...officeFurnitureSofaProducts,
+    ...outdoorProducts,
+    ...mirrorsProducts,
+    ...wallArtProducts,
+    ...clockProducts,
+  ].map((p) => p.sku),
+);
+
 const clientUploadedProducts: FurnitureProduct[] = furnitureCategories.flatMap((cat) =>
-  (categoryPhotosByCategory[cat.id] ?? []).map((photo) => ({
-    id: photo.productCode.toLowerCase(),
-    sku: photo.productCode,
-    name: photo.productCode,
-    category: cat.id,
-    subcategory: cat.id === "beds" ? "bed" : undefined,
-    description: "",
-    images: [photo.secureUrl],
-    specs: {},
-    isClientUploaded: true,
-  })),
+  (categoryPhotosByCategory[cat.id] ?? [])
+    .filter((photo) => !staticProductCodes.has(photo.productCode))
+    .map((photo) => ({
+      id: photo.productCode.toLowerCase(),
+      sku: photo.productCode,
+      name: photo.productCode,
+      category: cat.id,
+      subcategory: cat.id === "beds" ? "bed" : undefined,
+      description: "",
+      images: [photo.secureUrl],
+      specs: {},
+      isClientUploaded: true,
+    })),
 );
 
 export const furnitureProducts: FurnitureProduct[] = [
