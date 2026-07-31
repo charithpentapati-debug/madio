@@ -14,6 +14,7 @@
 
 export type FurnitureCategoryId =
   | "beds"
+  | "bedside-tables"
   | "bar-chairs"
   | "coffee-cafe-tables"
   | "daybeds"
@@ -34,7 +35,13 @@ export const furnitureCategories: FurnitureCategoryMeta[] = [
   {
     id:          "beds",
     name:        "Beds",
-    description: "Bed frames and bedside tables — solid wood and upholstered construction.",
+    description: "Bed frames in solid wood and upholstered construction.",
+    isPopulated: true,
+  },
+  {
+    id:          "bedside-tables",
+    name:        "Bedside Tables",
+    description: "Bedside tables in solid wood and upholstered construction.",
     isPopulated: true,
   },
   {

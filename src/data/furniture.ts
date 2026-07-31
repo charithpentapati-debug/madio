@@ -90,27 +90,41 @@ export interface FurnitureProduct {
   isClientUploaded?: boolean;
 }
 
-// --------------- BEDS — Phase 4A (fully populated) ---------------
+// --------------- BEDS & BEDSIDE TABLES — Phase 4A (fully populated) ---------------
 //
 // Source: "BEDS PORTFOLIO. Frnij.pdf"
 //
-// 52 bed frames (catalogue pp. 3–19)  → MADIO codes MFB-001 to MFB-052
-// 28 bedside tables (catalogue pp. 21–27) → MADIO codes MFBS-001 to MFBS-028
+// 52 bed frames (catalogue pp. 3–19)  → MADIO codes MFB-001 to MFB-052, category "beds"
+// 28 bedside tables (catalogue pp. 21–27) → MADIO codes MFBS-001 to MFBS-028,
+// category "bedside-tables" (split into its own category from "beds" —
+// separate client requirement, separate Cloudinary asset_folder — see
+// scripts/move-bedside-tables-cloudinary-folder.ts for the one-time move).
 //
 // Photography extracted from the client catalogue PDF (supplier suppressed per
 // project rules — no FRN codes or supplier names are exposed in the UI).
 // Product names and specs not present in the PDF — those fields remain TODO.
 
-// Vite glob: imports all extracted bed PNGs at build time as resolved URLs.
-// The Record key is the module path; the value is the asset URL string.
+// Vite glob: imports all extracted bed + bedside PNGs at build time as
+// resolved URLs. Deliberately still one glob covering both — the source
+// files themselves were never moved on disk (only their Cloudinary copies
+// were, into a new asset_folder), so this is still the correct static
+// fallback location for both categories' image resolvers below.
 const _bedImgs = import.meta.glob<string>(
   "../assets/furniture/beds/*.png",
   { eager: true, import: "default" },
 );
 const _bedCloudinaryImgs = cloudinaryImagesFor("beds");
+const _bedsideTableCloudinaryImgs = cloudinaryImagesFor("bedside-tables");
 
 function bedImg(sku: string): string[] {
   const cloudinary = _bedCloudinaryImgs.get(sku);
+  if (cloudinary) return [cloudinary];
+  const url = _bedImgs[`../assets/furniture/beds/${sku}.png`];
+  return url ? [url] : [];
+}
+
+function bedsideTableImg(sku: string): string[] {
+  const cloudinary = _bedsideTableCloudinaryImgs.get(sku);
   if (cloudinary) return [cloudinary];
   const url = _bedImgs[`../assets/furniture/beds/${sku}.png`];
   return url ? [url] : [];
@@ -131,6 +145,9 @@ const bedsProducts: FurnitureProduct[] = [
       specs:        {},              // TODO: client to provide specs / dimensions
     };
   }),
+];
+
+const bedsideTablesProducts: FurnitureProduct[] = [
   ...Array.from({ length: 28 }, (_, i): FurnitureProduct => {
     const num = String(i + 1).padStart(3, "0");
     const sku  = `MFBS-${num}`;
@@ -138,10 +155,10 @@ const bedsProducts: FurnitureProduct[] = [
       id:           `mfbs-${num}`,
       sku,
       name:         sku,
-      category:     "beds",
-      subcategory:  "bedside",
+      category:     "bedside-tables",
+      subcategory:  "bedside table",
       description:  "",
-      images:       bedImg(sku),
+      images:       bedsideTableImg(sku),
       specs:        {},
     };
   }),
@@ -4184,6 +4201,7 @@ const clockProducts: FurnitureProduct[] = [
 const staticProductCodes = new Set(
   [
     ...bedsProducts,
+    ...bedsideTablesProducts,
     ...barChairsProducts,
     ...coffeeTablesProducts,
     ...daybedsProducts,
@@ -4203,7 +4221,7 @@ const clientUploadedProducts: FurnitureProduct[] = furnitureCategories.flatMap((
       sku: photo.productCode,
       name: photo.productCode,
       category: cat.id,
-      subcategory: cat.id === "beds" ? "bed" : undefined,
+      subcategory: cat.id === "beds" ? "bed" : cat.id === "bedside-tables" ? "bedside table" : undefined,
       description: "",
       images: [photo.secureUrl],
       specs: {},
@@ -4213,6 +4231,7 @@ const clientUploadedProducts: FurnitureProduct[] = furnitureCategories.flatMap((
 
 export const furnitureProducts: FurnitureProduct[] = [
   ...bedsProducts,
+  ...bedsideTablesProducts,
   ...barChairsProducts,
   ...coffeeTablesProducts,
   ...daybedsProducts,

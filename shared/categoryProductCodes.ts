@@ -13,6 +13,7 @@ export interface CategoryProductCodeConfig {
 
 export const categoryProductCodeConfig: Record<FurnitureCategoryId, CategoryProductCodeConfig> = {
   beds: { prefix: "MFB", baselineMax: 52 },
+  "bedside-tables": { prefix: "MFBS", baselineMax: 28 },
   "bar-chairs": { prefix: "MFBC", baselineMax: 24 },
   "coffee-cafe-tables": { prefix: "MFCT", baselineMax: 35 },
   daybeds: { prefix: "MFDB", baselineMax: 12 },

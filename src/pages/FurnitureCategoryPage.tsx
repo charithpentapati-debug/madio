@@ -131,10 +131,15 @@ export const FurnitureCategoryPage: React.FC = () => {
   // static catalogue; for a populated category, show everything merged.
   const visibleProducts = meta?.isPopulated ? products : products.filter((p) => p.isClientUploaded);
 
-  // Group beds by subcategory for clearer listing
-  const beds = visibleProducts.filter((p) => p.subcategory === "bed");
-  const bedsides = visibleProducts.filter((p) => p.subcategory === "bedside");
-  const ungrouped = visibleProducts.filter((p) => !p.subcategory);
+  // Beds and Bedside Tables (split into separate categories, but both still
+  // came from the same dense catalogue import) keep the tighter 6-column
+  // grid they've always used; every other category keeps its existing
+  // looser 4-column grid. Preserved as-is rather than unified, so this split
+  // doesn't visually change any category's existing layout.
+  const isDenseGrid = category === "beds" || category === "bedside-tables";
+  const gridClassName = isDenseGrid
+    ? "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3"
+    : "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4";
 
   return (
     <div className="bg-[#FAFAF7]">
@@ -204,51 +209,12 @@ export const FurnitureCategoryPage: React.FC = () => {
               </p>
             </div>
 
-            {/* Bed frames */}
-            {beds.length > 0 && (
-              <section className="mb-14">
-                <h2
-                  className="text-xs uppercase tracking-[0.25em] font-sans font-medium mb-6 flex items-center space-x-3"
-                  style={{ color: FURNITURE_ACCENT }}
-                >
-                  <span>Bed Frames</span>
-                  <span className="text-[#C4B9A8]">— {beds.length}</span>
-                </h2>
-                {/* TODO: add pagination when product count warrants it */}
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
-                  {beds.map((p) => (
-                    <ProductCard key={p.id} product={p} categoryId={category} />
-                  ))}
-                </div>
-              </section>
-            )}
-
-            {/* Bedside tables */}
-            {bedsides.length > 0 && (
-              <section className="mb-14 pt-8 border-t border-[#EBE8E2]">
-                <h2
-                  className="text-xs uppercase tracking-[0.25em] font-sans font-medium mb-6 flex items-center space-x-3"
-                  style={{ color: FURNITURE_ACCENT }}
-                >
-                  <span>Bedside Tables</span>
-                  <span className="text-[#C4B9A8]">— {bedsides.length}</span>
-                </h2>
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
-                  {bedsides.map((p) => (
-                    <ProductCard key={p.id} product={p} categoryId={category} />
-                  ))}
-                </div>
-              </section>
-            )}
-
-            {/* Ungrouped products (future categories) */}
-            {ungrouped.length > 0 && (
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                {ungrouped.map((p) => (
-                  <ProductCard key={p.id} product={p} categoryId={category} />
-                ))}
-              </div>
-            )}
+            {/* TODO: add pagination when product count warrants it */}
+            <div className={gridClassName}>
+              {visibleProducts.map((p) => (
+                <ProductCard key={p.id} product={p} categoryId={category} />
+              ))}
+            </div>
 
             {/* CTA strip */}
             <div className="border-t border-[#EBE8E2] mt-16 pt-10 flex flex-col sm:flex-row gap-4 items-start">
