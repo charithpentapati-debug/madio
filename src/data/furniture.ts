@@ -14,14 +14,40 @@
 // ============================================================
 
 // --------------- Category types ---------------
-// Single source of truth lives in shared/furnitureCategories.ts so that
-// Vercel serverless functions (api/*.ts) can validate against the same
-// category list without pulling in Vite-only code (import.meta.glob etc.).
-export type { FurnitureCategoryId, FurnitureCategoryMeta } from "../../shared/furnitureCategories";
-export { furnitureCategories, isFurnitureCategoryId } from "../../shared/furnitureCategories";
-import type { FurnitureCategoryId, FurnitureCategoryMeta } from "../../shared/furnitureCategories";
-import { furnitureCategories } from "../../shared/furnitureCategories";
+// The static baseline (categories with real PDF-sourced catalogue data)
+// lives in shared/furnitureCategories.ts so Vercel serverless functions
+// (api/*.ts) can validate against it without pulling in Vite-only code
+// (import.meta.glob etc.). Admin-created categories (category management,
+// Phase A) have no catalogue data by construction — they're fetched fresh
+// from Cloudinary at build time (see api-lib/dynamicCategories.ts /
+// scripts/generate-image-data.ts) and merged in below, so FurnitureCategoryId
+// widens to plain `string` here rather than staying the static union —
+// dynamic ids can't be known at compile time. shared/furnitureCategories.ts
+// itself is untouched and still strictly typed, since that's what the
+// per-category product arrays below (bedsProducts etc, all static) rely on.
+export type FurnitureCategoryId = string;
+export interface FurnitureCategoryMeta {
+  id: FurnitureCategoryId;
+  name: string;
+  description: string;
+  isPopulated: boolean;
+}
+import { furnitureCategories as staticFurnitureCategories, isFurnitureCategoryId as isStaticFurnitureCategoryId } from "../../shared/furnitureCategories";
+import { dynamicFurnitureCategories } from "./dynamicCategories.generated";
 import categoryPhotosByCategory from "./categoryPhotos.generated";
+
+export const furnitureCategories: FurnitureCategoryMeta[] = [
+  ...staticFurnitureCategories,
+  ...dynamicFurnitureCategories.map((dc) => ({
+    id: dc.id,
+    name: dc.name,
+    description: "",
+    isPopulated: false, // a dynamic category never has static catalogue data
+  })),
+];
+
+export const isFurnitureCategoryId = (s: string): boolean =>
+  isStaticFurnitureCategoryId(s) || dynamicFurnitureCategories.some((dc) => dc.id === s);
 
 // Cloudinary image-unification migration, Loop 2: catalogue product images
 // now resolve by product_code lookup against Cloudinary first (all real

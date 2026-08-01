@@ -9,7 +9,7 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { verifySessionToken } from "../api-lib/session.js";
 import { deleteAsset } from "../api-lib/cloudinaryAdmin.js";
-import { isKnownCategoryId } from "../shared/verticals.js";
+import { isKnownCategoryIdAsync } from "../api-lib/categoryValidation.js";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== "POST") {
@@ -27,7 +27,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   const folder = publicId.slice(0, publicId.lastIndexOf("/"));
-  if (!isKnownCategoryId(folder)) {
+  if (!(await isKnownCategoryIdAsync(folder))) {
     return res.status(400).json({ error: "publicId is not in a recognised category folder" });
   }
 

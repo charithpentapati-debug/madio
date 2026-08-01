@@ -24,15 +24,40 @@
 // ============================================================
 
 // --------------- Category types ---------------
-// Single source of truth lives in shared/doorsWindowsCategories.ts so that
-// Vercel serverless functions (api/*.ts) can validate against the same
-// category list without pulling in Vite-only code (import.meta.glob etc.) —
-// same reasoning as furniture.ts / shared/furnitureCategories.ts.
-export type { DoorsWindowsCategoryId as DWCategoryId, DoorsWindowsCategoryMeta as DWCategoryMeta } from "../../shared/doorsWindowsCategories";
-export { doorsWindowsCategories as dwCategories, isDoorsWindowsCategoryId as isDWCategoryId } from "../../shared/doorsWindowsCategories";
-import type { DoorsWindowsCategoryId as DWCategoryId, DoorsWindowsCategoryMeta } from "../../shared/doorsWindowsCategories";
-import { doorsWindowsCategories as dwCategories } from "../../shared/doorsWindowsCategories";
+// The static baseline (categories with real client-supplied catalogue data)
+// lives in shared/doorsWindowsCategories.ts so Vercel serverless functions
+// (api/*.ts) can validate against it without pulling in Vite-only code
+// (import.meta.glob etc.) — same reasoning as furniture.ts /
+// shared/furnitureCategories.ts. Admin-created categories (category
+// management, Phase A) have no catalogue data by construction, are fetched
+// fresh from Cloudinary at build time, and are merged in below — so
+// DWCategoryId widens to plain `string` here rather than staying the static
+// union, same as furniture.ts's FurnitureCategoryId.
+export type DWCategoryId = string;
+export interface DWCategoryMeta {
+  id: DWCategoryId;
+  name: string;
+  description: string;
+  isPopulated: boolean;
+  confirmedNote?: string;
+  panelConfigs?: string[];
+}
+import { doorsWindowsCategories as staticDWCategories, isDoorsWindowsCategoryId as isStaticDWCategoryId } from "../../shared/doorsWindowsCategories";
+import { dynamicDoorsWindowsCategories } from "./dynamicCategories.generated";
 import dwCategoryPhotosByCategory from "./dwCategoryPhotos.generated";
+
+export const dwCategories: DWCategoryMeta[] = [
+  ...staticDWCategories,
+  ...dynamicDoorsWindowsCategories.map((dc) => ({
+    id: dc.id,
+    name: dc.name,
+    description: "",
+    isPopulated: false,
+  })),
+];
+
+export const isDWCategoryId = (s: string): boolean =>
+  isStaticDWCategoryId(s) || dynamicDoorsWindowsCategories.some((dc) => dc.id === s);
 
 // --------------- Product (populated systems) types ---------------
 
@@ -392,7 +417,7 @@ export const performanceStandards = [
 
 // --------------- Helpers ---------------
 
-export const getCategoryMeta = (id: string): DoorsWindowsCategoryMeta | undefined =>
+export const getCategoryMeta = (id: string): DWCategoryMeta | undefined =>
   dwCategories.find((c) => c.id === id);
 
 export const getSystemById = (id: string): DWSystem | undefined =>

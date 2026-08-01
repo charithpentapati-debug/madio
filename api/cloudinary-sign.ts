@@ -8,7 +8,7 @@
 // signature no matter what they send Cloudinary directly.
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import crypto from "node:crypto";
-import { isKnownCategoryId } from "../shared/verticals.js";
+import { isKnownCategoryIdAsync } from "../api-lib/categoryValidation.js";
 import { verifySessionToken } from "../api-lib/session.js";
 
 // Cloudinary's signing algorithm: sort params alphabetically, join as
@@ -21,7 +21,7 @@ function signCloudinaryParams(params: Record<string, string | number>, apiSecret
   return crypto.createHash("sha1").update(toSign + apiSecret).digest("hex");
 }
 
-export default function handler(req: VercelRequest, res: VercelResponse) {
+export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
     return res.status(405).json({ error: "Method not allowed" });
@@ -41,7 +41,7 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   const folder = paramsToSign.folder;
-  if (typeof folder === "string" && !isKnownCategoryId(folder)) {
+  if (typeof folder === "string" && !(await isKnownCategoryIdAsync(folder))) {
     return res.status(400).json({ error: "Unknown category folder" });
   }
 

@@ -34,3 +34,4 @@ dist-ssr
 # fresh from live Cloudinary data, never something to commit or diff.
 src/data/categoryPhotos.generated.ts
 src/data/dwCategoryPhotos.generated.ts
+src/data/dynamicCategories.generated.ts

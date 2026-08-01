@@ -26,8 +26,9 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { verifySessionToken } from "../api-lib/session.js";
 import { listCategoryAssets, setAssetProductCode, type CategoryAsset } from "../api-lib/cloudinaryAdmin.js";
-import { isKnownCategoryId } from "../shared/verticals.js";
-import { resolveProductCodeScope, parseProductCodeNumber, formatProductCode } from "../shared/categoryProductCodes.js";
+import { isKnownCategoryIdAsync } from "../api-lib/categoryValidation.js";
+import { resolveProductCodeScope } from "../api-lib/productCodeScope.js";
+import { parseProductCodeNumber, formatProductCode } from "../shared/categoryProductCodes.js";
 
 const MAX_ATTEMPTS = 6;
 
@@ -104,7 +105,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (!verifySessionToken(token)) {
     return res.status(401).json({ error: "Unauthorized" });
   }
-  if (typeof category !== "string" || !isKnownCategoryId(category)) {
+  if (typeof category !== "string" || !(await isKnownCategoryIdAsync(category))) {
     return res.status(400).json({ error: "Unknown category" });
   }
   if (typeof publicId !== "string" || !publicId.startsWith(`${category}/`)) {
@@ -115,7 +116,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     // Both verticals number per-category — scope is just this one category's
     // own prefix + numbering. See resolveProductCodeScope for how Furniture
     // and Doors & Windows each resolve their config from the same call.
-    const { config, folders } = resolveProductCodeScope(category);
+    const { config, folders } = await resolveProductCodeScope(category);
 
     const productCode = await assignProductCode(publicId, config, folders);
     // No direct rebuild trigger here — Cloudinary's account-level webhook

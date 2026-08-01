@@ -11,8 +11,7 @@
 // Furniture's PDF-sourced ranges), so every category starts at baselineMax 0
 // — the first photo uploaded to any D&W category becomes ...-001.
 import type { FurnitureCategoryId } from "./furnitureCategories.js";
-import { isFurnitureCategoryId } from "./furnitureCategories.js";
-import { isDoorsWindowsCategoryId, type DoorsWindowsCategoryId } from "./doorsWindowsCategories.js";
+import type { DoorsWindowsCategoryId } from "./doorsWindowsCategories.js";
 
 export interface CategoryProductCodeConfig {
   prefix: string;
@@ -61,23 +60,11 @@ export function formatProductCode(prefix: string, num: number): string {
   return `${prefix}-${String(num).padStart(3, "0")}`;
 }
 
-// Given ANY category id from either vertical, returns the product-code
-// config to use and the list of Cloudinary category folders to scan when
-// computing the next number. Both verticals number per-category — config
-// and folder scope are always just that one category — so this is really
-// just "look up the right config map," but keeping it as a function (rather
-// than inlining the lookup at each of the 2 call sites) means
-// admin-assign-code.ts's increment loop is identical code for both
-// verticals, and a future fix to it can never silently apply to only one.
-export function resolveProductCodeScope(category: string): {
-  config: CategoryProductCodeConfig;
-  folders: string[];
-} {
-  if (isFurnitureCategoryId(category)) {
-    return { config: categoryProductCodeConfig[category], folders: [category] };
-  }
-  if (isDoorsWindowsCategoryId(category)) {
-    return { config: doorsWindowsProductCodeConfig[category], folders: [category] };
-  }
-  throw new Error(`resolveProductCodeScope: unknown category "${category}"`);
-}
+// resolveProductCodeScope (static-categories lookup) lives in
+// api-lib/productCodeScope.ts, not here — it needs to fall back to Cloudinary-
+// stored dynamic (admin-created) categories for categories this static
+// config doesn't know about, which means importing api-lib/dynamicCategories.ts
+// (Node-only: process.env, fetch to the Cloudinary Admin API). This file
+// stays framework-agnostic on purpose — it's imported by frontend code too
+// (indirectly, nothing here currently is, but the sibling shared/*.ts files
+// this one imports are) — so nothing Node-only belongs in it.
