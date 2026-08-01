@@ -106,10 +106,16 @@ function dwImg(id: string): string[] {
 export interface DWCategoryPhoto {
   productCode: string;
   secureUrl: string;
+  createdAt: string;
 }
 
+// Most recently uploaded first — same reasoning as Furniture's
+// FurnitureCategoryPage.tsx: Cloudinary's own creation timestamp, not code
+// order, is the correct sort key.
 export const getCategoryPhotos = (id: DWCategoryId): DWCategoryPhoto[] =>
-  dwCategoryPhotosByCategory[id] ?? [];
+  [...(dwCategoryPhotosByCategory[id] ?? [])].sort((a, b) =>
+    a.createdAt < b.createdAt ? 1 : a.createdAt > b.createdAt ? -1 : 0,
+  );
 
 export const dwSystems: DWSystem[] = [
   {

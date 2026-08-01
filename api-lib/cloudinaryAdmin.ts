@@ -22,6 +22,11 @@ export interface CategoryAsset {
   publicId: string;
   secureUrl: string;
   productCode?: string;
+  // Cloudinary's own creation timestamp (ISO string) — the source of truth
+  // for "recently uploaded first" ordering (see FurnitureCategoryPage.tsx /
+  // AdminUpload.tsx) and for deterministic tie-breaking when two uploads
+  // race for the same product code (see admin-assign-code.ts).
+  createdAt: string;
 }
 
 export async function listCategoryAssets(category: string): Promise<CategoryAsset[]> {
@@ -50,6 +55,7 @@ export async function listCategoryAssets(category: string): Promise<CategoryAsse
       resources?: Array<{
         public_id: string;
         secure_url: string;
+        created_at: string;
         context?: { custom?: { product_code?: string } };
       }>;
       next_cursor?: string | null;
@@ -60,6 +66,7 @@ export async function listCategoryAssets(category: string): Promise<CategoryAsse
         publicId: r.public_id,
         secureUrl: r.secure_url,
         productCode: r.context?.custom?.product_code,
+        createdAt: r.created_at,
       });
     }
     cursor = data.next_cursor ?? undefined;

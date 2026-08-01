@@ -56,7 +56,7 @@ async function generate(opts: GenerateOptions): Promise<void> {
     "// Regenerated fresh on every `npm run dev` / `npm run build` from the\n" +
     "// current upload provider. Gitignored — see .gitignore.\n" +
     `${opts.categoryIdTypeImport}\n\n` +
-    `export interface CategoryPhoto {\n  secureUrl: string;\n  productCode: string;\n}\n\n` +
+    `export interface CategoryPhoto {\n  secureUrl: string;\n  productCode: string;\n  createdAt: string;\n}\n\n` +
     `const ${opts.varName}: Record<${opts.categoryIdType}, CategoryPhoto[]> = ${JSON.stringify(result, null, 2)};\n\n` +
     `export default ${opts.varName};\n`;
 

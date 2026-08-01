@@ -88,6 +88,14 @@ export interface FurnitureProduct {
   // catalogue is pulled back to Coming Soon for an unrelated reason (e.g.
   // Bar Chairs' branded source images) without un-hiding that static catalogue.
   isClientUploaded?: boolean;
+
+  // Cloudinary's creation timestamp for this product's photo, when it has
+  // one — undefined for products with no Cloudinary image at all (rare: a
+  // migrated code that was later deleted, or one that never had a photo).
+  // This is what "most recently uploaded first" sorting uses (see
+  // FurnitureCategoryPage.tsx) instead of sku/code order, since code order
+  // isn't guaranteed to match real chronological order.
+  createdAt?: string;
 }
 
 // --------------- BEDS & BEDSIDE TABLES — Phase 4A (fully populated) ---------------
@@ -4226,7 +4234,19 @@ const clientUploadedProducts: FurnitureProduct[] = furnitureCategories.flatMap((
       images: [photo.secureUrl],
       specs: {},
       isClientUploaded: true,
+      createdAt: photo.createdAt,
     })),
+);
+
+// Cloudinary creation timestamp per product code, across every category —
+// used to backfill createdAt on the static catalogue products above (their
+// literals don't set it individually; every one of them already has its
+// photo sourced from Cloudinary via cloudinaryImagesFor, so this single
+// lookup covers all of them without touching each product literal).
+const createdAtByCode = new Map<string, string>(
+  furnitureCategories.flatMap((cat) =>
+    (categoryPhotosByCategory[cat.id] ?? []).map((photo): [string, string] => [photo.productCode, photo.createdAt]),
+  ),
 );
 
 export const furnitureProducts: FurnitureProduct[] = [
@@ -4241,7 +4261,7 @@ export const furnitureProducts: FurnitureProduct[] = [
   ...wallArtProducts,
   ...clockProducts,
   ...clientUploadedProducts,
-];
+].map((p) => (p.createdAt ? p : { ...p, createdAt: createdAtByCode.get(p.sku) }));
 
 // --------------- Helpers ---------------
 

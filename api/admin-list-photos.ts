@@ -23,14 +23,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   try {
     const assets = await listCategoryAssets(category);
-    // Assets without a code yet (shouldn't normally happen, but a legacy or
-    // interrupted upload could lack one) sort to the end rather than crash.
-    assets.sort((a, b) => {
-      if (!a.productCode && !b.productCode) return 0;
-      if (!a.productCode) return 1;
-      if (!b.productCode) return -1;
-      return a.productCode.localeCompare(b.productCode);
-    });
+    // Most recently uploaded first — sorted by Cloudinary's own creation
+    // timestamp, not product code. Code order and upload order should
+    // normally match, but the timestamp is the more correct source of
+    // truth (and the only one guaranteed unaffected by the duplicate-code
+    // race condition this replaces relying on).
+    assets.sort((a, b) => (a.createdAt < b.createdAt ? 1 : a.createdAt > b.createdAt ? -1 : 0));
     return res.status(200).json({ assets });
   } catch (err) {
     console.error("[admin-list-photos] Error:", err);

@@ -129,7 +129,20 @@ export const FurnitureCategoryPage: React.FC = () => {
   // — not because the category is empty). For a category pulled back like
   // that, show ONLY client-uploaded photos in the grid, never the hidden
   // static catalogue; for a populated category, show everything merged.
-  const visibleProducts = meta?.isPopulated ? products : products.filter((p) => p.isClientUploaded);
+  //
+  // Sorted most-recently-uploaded first, by Cloudinary's own creation
+  // timestamp — not by product code — since code order isn't guaranteed to
+  // match real upload order. Anything with no photo at all (no createdAt —
+  // a migrated code whose photo was later deleted, or one that never had
+  // one) sorts to the end rather than clumping at an arbitrary position.
+  const visibleProducts = (meta?.isPopulated ? products : products.filter((p) => p.isClientUploaded))
+    .slice()
+    .sort((a, b) => {
+      if (!a.createdAt && !b.createdAt) return 0;
+      if (!a.createdAt) return 1;
+      if (!b.createdAt) return -1;
+      return a.createdAt < b.createdAt ? 1 : a.createdAt > b.createdAt ? -1 : 0;
+    });
 
   // Beds and Bedside Tables (split into separate categories, but both still
   // came from the same dense catalogue import) keep the tighter 6-column

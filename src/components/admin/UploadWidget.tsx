@@ -22,6 +22,8 @@ interface CloudinaryUploadWidgetOptions {
   multiple: boolean;
   maxFiles: number;
   clientAllowedFormats: string[];
+  cropping: boolean;
+  croppingShowDimensions: boolean;
   uploadSignature: (
     callback: (signature: string) => void,
     paramsToSign: Record<string, string | number>
@@ -121,6 +123,14 @@ export const UploadWidget: React.FC<UploadWidgetProps> = ({ category, sessionTok
         multiple: true,
         maxFiles: 20,
         clientAllowedFormats: ["png", "jpg", "jpeg", "webp"],
+        // Client-requested: crop before upload, using Cloudinary's built-in
+        // cropping UI rather than building a custom one. Free-form (no fixed
+        // croppingAspectRatio) — products across categories vary in real
+        // aspect ratio and the display grid already crops-to-fill via
+        // object-cover, so a forced ratio here isn't needed for correct
+        // display, just for the client's own control over composition.
+        cropping: true,
+        croppingShowDimensions: true,
         uploadSignature: (callback, paramsToSign) => {
           requestSignature(sessionToken, paramsToSign)
             .then(callback)

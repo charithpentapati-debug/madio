@@ -30,6 +30,9 @@ import { listCategoryAssets } from "../api-lib/cloudinaryAdmin.ts";
 export interface CategoryPhoto {
   secureUrl: string;
   productCode: string;
+  // Cloudinary's creation timestamp (ISO string) — used for "most recently
+  // uploaded first" sort order on the public category pages.
+  createdAt: string;
 }
 
 export async function getCategoryImages(category: string): Promise<CategoryPhoto[]> {
@@ -50,5 +53,5 @@ export async function getCategoryImages(category: string): Promise<CategoryPhoto
   // sensible to render as a SKU/name, so it's excluded rather than shown broken).
   return assets
     .filter((a) => !!a.productCode)
-    .map((a) => ({ secureUrl: a.secureUrl, productCode: a.productCode! }));
+    .map((a) => ({ secureUrl: a.secureUrl, productCode: a.productCode!, createdAt: a.createdAt }));
 }
