@@ -10,7 +10,6 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { verifySessionToken } from "../api-lib/session.js";
 import { listCategoryAssets, setAssetProductCode } from "../api-lib/cloudinaryAdmin.js";
-import { triggerRebuild } from "../api-lib/deployHook.js";
 import { isKnownCategoryId } from "../shared/verticals.js";
 import { resolveProductCodeScope, parseProductCodeNumber, formatProductCode } from "../shared/categoryProductCodes.js";
 
@@ -37,9 +36,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
-    // Furniture: scope is just this one category (its own prefix + numbering).
-    // Doors & Windows: scope is every category in the vertical (one shared
-    // MDW prefix + numbering) — see resolveProductCodeScope for why.
+    // Both verticals number per-category — scope is just this one category's
+    // own prefix + numbering. See resolveProductCodeScope for how Furniture
+    // and Doors & Windows each resolve their config from the same call.
     const { config, folders } = resolveProductCodeScope(category);
 
     let maxNum = config.baselineMax;
@@ -53,7 +52,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     const productCode = formatProductCode(config.prefix, maxNum + 1);
     await setAssetProductCode(publicId, productCode);
-    await triggerRebuild();
+    // No direct rebuild trigger here — Cloudinary's account-level webhook
+    // (Console → Settings → Upload → Notification URL) fires for this
+    // context update independently and is now the SOLE rebuild trigger, so
+    // every upload/delete doesn't burn two deploys against Vercel's daily
+    // quota. See api-lib/deployHook.ts's triggerRebuild(), still available
+    // but deliberately unused here.
 
     return res.status(200).json({ productCode });
   } catch (err) {

@@ -1,12 +1,14 @@
-// Deletes a single photo by its Cloudinary public ID, then triggers the same
-// rebuild as an upload does. publicId's folder prefix must be a real
-// category from EITHER vertical (Furniture or Doors & Windows) — rejects
-// anything outside that, so this can't be used to delete assets elsewhere in
-// the Cloudinary account even by an authenticated caller.
+// Deletes a single photo by its Cloudinary public ID. publicId's folder
+// prefix must be a real category from EITHER vertical (Furniture or Doors &
+// Windows) — rejects anything outside that, so this can't be used to delete
+// assets elsewhere in the Cloudinary account even by an authenticated
+// caller. No direct rebuild trigger here — Cloudinary's account-level
+// webhook (Console → Settings → Upload → Notification URL) fires for this
+// delete independently and is the SOLE rebuild trigger; see
+// api-lib/deployHook.ts's triggerRebuild() for why this was removed.
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { verifySessionToken } from "../api-lib/session.js";
 import { deleteAsset } from "../api-lib/cloudinaryAdmin.js";
-import { triggerRebuild } from "../api-lib/deployHook.js";
 import { isKnownCategoryId } from "../shared/verticals.js";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
@@ -31,7 +33,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   try {
     await deleteAsset(publicId);
-    await triggerRebuild();
     return res.status(200).json({ success: true });
   } catch (err) {
     console.error("[admin-delete-photo] Error:", err);
