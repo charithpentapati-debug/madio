@@ -4,10 +4,11 @@ import { ArrowLeft, ArrowRight, CheckCircle } from "lucide-react";
 import {
   dwCategories,
   getCategoryMeta,
+  getCategoryPhotos,
   getSystemById,
   isDWCategoryId,
 } from "../data/doorsWindows";
-import type { DWSystemSpec } from "../data/doorsWindows";
+import type { DWCategoryPhoto, DWSystemSpec } from "../data/doorsWindows";
 import { usePageMeta } from "../hooks/usePageMeta";
 
 const DW_ACCENT = "#D4AF37";
@@ -32,12 +33,30 @@ const FLAT_SPEC_LABELS: Partial<Record<keyof DWSystemSpec, string>> = {
 // Coming soon state — used for the 6 categories pending full client
 // specification. Shows the one confirmed real data point instead of
 // inventing specs, matching the pattern used for un-populated Furniture
-// categories.
+// categories. Once the client has uploaded photos via /admin/upload for a
+// category like this, `photos` replaces the empty placeholder area with a
+// real grid — same pattern Bar Chairs uses in Furniture once it has real
+// photos — while the rest (confirmed note, enquire CTA) stays, since full
+// specs still aren't confirmed even once reference photos exist.
 const ComingSoonState: React.FC<{
   confirmedNote?: string;
   panelConfigs?: string[];
-}> = ({ confirmedNote, panelConfigs }) => (
+  photos?: DWCategoryPhoto[];
+}> = ({ confirmedNote, panelConfigs, photos = [] }) => (
   <div className="py-24 text-center max-w-xl mx-auto">
+    {photos.length > 0 && (
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-14 text-left">
+        {photos.map((p) => (
+          <div key={p.productCode} className="relative aspect-square overflow-hidden bg-[#EBE8E2] border border-[#EBE8E2]">
+            <img src={p.secureUrl} alt={p.productCode} loading="lazy" className="w-full h-full object-cover" />
+            <span className="absolute bottom-2 left-2 text-[8px] font-mono text-white bg-black/50 px-1.5 py-0.5 tracking-wider">
+              {p.productCode}
+            </span>
+          </div>
+        ))}
+      </div>
+    )}
+
     <div className="w-8 h-[2px] mx-auto mb-8" style={{ backgroundColor: DW_ACCENT }} />
 
     {(confirmedNote || (panelConfigs && panelConfigs.length > 0)) && (
@@ -64,7 +83,9 @@ const ComingSoonState: React.FC<{
     )}
 
     <p className="text-xs text-[#6B6B6B] font-light max-w-xs mx-auto mb-10 leading-relaxed">
-      Full specifications are being finalised with the client. Enquire below and we'll get in touch once they're available.
+      {photos.length > 0
+        ? "Full technical specifications are still being finalised. Enquire below for pricing and availability."
+        : "Full specifications are being finalised with the client. Enquire below and we'll get in touch once they're available."}
     </p>
     <Link
       to="/contact?source=doors-windows"
@@ -81,6 +102,8 @@ export const DoorsWindowsDetail: React.FC = () => {
   const { category } = useParams<{ category: string }>();
   const meta = category && isDWCategoryId(category) ? getCategoryMeta(category) : undefined;
   const system = category ? getSystemById(category) : undefined;
+  const clientPhotos = category && isDWCategoryId(category) ? getCategoryPhotos(category) : [];
+  const isAvailable = !!meta?.isPopulated || clientPhotos.length > 0;
 
   usePageMeta(
     meta ? `${meta.name} | MADIO Doors & Windows` : "MADIO Doors & Windows",
@@ -129,7 +152,7 @@ export const DoorsWindowsDetail: React.FC = () => {
 
           <div className="max-w-3xl">
             <span className="text-[10px] tracking-[0.3em] uppercase font-sans font-medium block mb-4" style={{ color: DW_ACCENT }}>
-              {meta.isPopulated ? "Product System" : "Coming Soon"}
+              {isAvailable ? "Product System" : "Coming Soon"}
             </span>
             <h1 className="text-4xl md:text-6xl font-serif font-light text-[#16232B] leading-tight mb-4">
               {meta.name}
@@ -146,6 +169,7 @@ export const DoorsWindowsDetail: React.FC = () => {
           <ComingSoonState
             confirmedNote={meta.confirmedNote}
             panelConfigs={meta.panelConfigs}
+            photos={clientPhotos}
           />
         ) : (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
@@ -332,7 +356,7 @@ export const DoorsWindowsDetail: React.FC = () => {
                 >
                   <div className="w-6 h-[2px] mb-4 transition-all duration-300 group-hover:w-10" style={{ backgroundColor: DW_ACCENT }} />
                   <span className="text-[9px] uppercase tracking-[0.2em] font-sans font-medium block mb-1" style={{ color: DW_ACCENT }}>
-                    {c.isPopulated ? "Product System" : "Coming Soon"}
+                    {c.isPopulated || getCategoryPhotos(c.id).length > 0 ? "Product System" : "Coming Soon"}
                   </span>
                   <p className="text-sm font-serif font-light text-[#16232B] group-hover:text-[#D4AF37] transition-colors">
                     {c.name}

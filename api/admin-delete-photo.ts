@@ -1,13 +1,13 @@
 // Deletes a single photo by its Cloudinary public ID, then triggers the same
 // rebuild as an upload does. publicId's folder prefix must be a real
-// furniture category — rejects anything outside that, so this can't be used
-// to delete assets elsewhere in the Cloudinary account even by an
-// authenticated caller.
+// category from EITHER vertical (Furniture or Doors & Windows) — rejects
+// anything outside that, so this can't be used to delete assets elsewhere in
+// the Cloudinary account even by an authenticated caller.
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { verifySessionToken } from "../api-lib/session.js";
 import { deleteAsset } from "../api-lib/cloudinaryAdmin.js";
 import { triggerRebuild } from "../api-lib/deployHook.js";
-import { isFurnitureCategoryId } from "../shared/furnitureCategories.js";
+import { isKnownCategoryId } from "../shared/verticals.js";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== "POST") {
@@ -25,7 +25,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   const folder = publicId.slice(0, publicId.lastIndexOf("/"));
-  if (!isFurnitureCategoryId(folder)) {
+  if (!isKnownCategoryId(folder)) {
     return res.status(400).json({ error: "publicId is not in a recognised category folder" });
   }
 

@@ -24,114 +24,15 @@
 // ============================================================
 
 // --------------- Category types ---------------
-
-export type DWCategoryId =
-  | "hl-vista-slim"
-  | "hl-50-casement-door"
-  | "hl-retro-gulf-slim"
-  | "hl-ultra-slim"
-  | "hl-eco-gulf-slim"
-  | "hl-elite-gulf-slim"
-  | "metal-ceiling-systems"
-  | "balcony-railing-system"
-  | "modular-partition-facade"
-  | "glass-partitions-doors"
-  | "casement-windows-openable"
-  | "sliding-folding-bifold";
-
-export interface DWCategoryMeta {
-  id: DWCategoryId;
-  name: string;
-  description: string;
-  isPopulated: boolean;
-  // For un-populated categories: the one real, client-confirmed data point
-  // (from the handwritten notes) — shown honestly instead of inventing specs.
-  confirmedNote?: string;
-  // Sliding Folding Bi-Fold only: real panel-arrangement configurations.
-  // The "2200sft/2500sft" figures in the same handwritten note are excluded —
-  // those read as job-specific quotation areas, not general product specs.
-  panelConfigs?: string[];
-}
-
-export const dwCategories: DWCategoryMeta[] = [
-  {
-    id: "hl-vista-slim",
-    name: "HL Vista Slim System",
-    description: "Premium slim sliding system engineered for large openings and maximum glass visibility.",
-    isPopulated: true,
-  },
-  {
-    id: "hl-50-casement-door",
-    name: "HL 50 Casement Door",
-    description: "Grand openings, unyielding performance.",
-    isPopulated: true,
-  },
-  {
-    id: "hl-retro-gulf-slim",
-    name: "HL Retro Gulf Slim System",
-    description: "Embrace timeless charm with modern performance.",
-    isPopulated: true,
-  },
-  {
-    id: "hl-ultra-slim",
-    name: "HL Ultra Slim System",
-    description: "Redefining transparency — the ultimate in minimalist aesthetics.",
-    isPopulated: true,
-  },
-  {
-    id: "hl-eco-gulf-slim",
-    name: "HL Eco Gulf Slim System",
-    description: "Smart design that enhances aesthetics and natural light without exceeding your budget.",
-    isPopulated: true,
-  },
-  {
-    id: "hl-elite-gulf-slim",
-    name: "HL Elite Gulf Slim System",
-    description: "Unyielding strength, uninterrupted views.",
-    isPopulated: true,
-  },
-  {
-    id: "metal-ceiling-systems",
-    name: "Metal Ceiling Systems",
-    description: "Aluminium metal ceiling systems, including baffle-ceiling configurations.",
-    isPopulated: false,
-    confirmedNote: "Material: aluminium only. Includes a baffle-ceiling sub-type, covering all kinds of metal ceiling series.",
-  },
-  {
-    id: "balcony-railing-system",
-    name: "Balcony Railing System",
-    description: "Aluminium balcony railing systems for residential and commercial facades.",
-    isPopulated: false,
-    confirmedNote: "Material: aluminium only.",
-  },
-  {
-    id: "modular-partition-facade",
-    name: "Modular Partition / Facade System",
-    description: "Modular partition and facade systems for flexible interior and exterior configurations.",
-    isPopulated: false,
-  },
-  {
-    id: "glass-partitions-doors",
-    name: "Glass Partitions & Doors",
-    description: "Glass partition and door systems for open-plan residential and commercial interiors.",
-    isPopulated: false,
-    confirmedNote: "Glass thickness: 12 mm.",
-  },
-  {
-    id: "casement-windows-openable",
-    name: "Casement Windows (Openable)",
-    description: "Openable casement window systems — distinct from the HL 50 Casement Door, which is a door system.",
-    isPopulated: false,
-    confirmedNote: "Mechanism: openable casement window.",
-  },
-  {
-    id: "sliding-folding-bifold",
-    name: "Sliding Folding Bi-Fold System",
-    description: "Sliding folding bi-fold systems available in multiple panel arrangements.",
-    isPopulated: false,
-    panelConfigs: ["3+0", "3+1", "3+3 (centre openable)", "5+1", "5+0"],
-  },
-];
+// Single source of truth lives in shared/doorsWindowsCategories.ts so that
+// Vercel serverless functions (api/*.ts) can validate against the same
+// category list without pulling in Vite-only code (import.meta.glob etc.) —
+// same reasoning as furniture.ts / shared/furnitureCategories.ts.
+export type { DoorsWindowsCategoryId as DWCategoryId, DoorsWindowsCategoryMeta as DWCategoryMeta } from "../../shared/doorsWindowsCategories";
+export { doorsWindowsCategories as dwCategories, isDoorsWindowsCategoryId as isDWCategoryId } from "../../shared/doorsWindowsCategories";
+import type { DoorsWindowsCategoryId as DWCategoryId, DoorsWindowsCategoryMeta } from "../../shared/doorsWindowsCategories";
+import { doorsWindowsCategories as dwCategories } from "../../shared/doorsWindowsCategories";
+import dwCategoryPhotosByCategory from "./dwCategoryPhotos.generated";
 
 // --------------- Product (populated systems) types ---------------
 
@@ -181,15 +82,34 @@ const _dwImgs = import.meta.glob<string>(
   { eager: true, import: "default" },
 );
 
+// Client-uploaded photos for a category, via the admin upload tool — same
+// Cloudinary-sourced pipeline as Furniture (see furniture.ts's
+// cloudinaryImagesFor). Cloudinary photos come first so a system's primary
+// display image (images[0]) is real client photography once any exists;
+// the static glob below is a fallback only, kept for parity with Furniture's
+// transitional pattern (in practice always empty for D&W — no filename in
+// src/assets/doors-windows/ matches a category id).
 function dwImg(id: string): string[] {
+  const cloudinaryUrls = getCategoryPhotos(id as DWCategoryId).map((p) => p.secureUrl);
   const png = _dwImgs[`../assets/doors-windows/${id}.png`];
-  if (png) return [png];
   const jpeg = _dwImgs[`../assets/doors-windows/${id}.jpeg`];
-  if (jpeg) return [jpeg];
   const jpg = _dwImgs[`../assets/doors-windows/${id}.jpg`];
-  if (jpg) return [jpg];
-  return [];
+  const staticUrl = png ?? jpeg ?? jpg;
+  return staticUrl ? [...cloudinaryUrls, staticUrl] : cloudinaryUrls;
 }
+
+// Every Cloudinary photo uploaded for a category, with its stable MDW-XXX
+// code — used both by dwImg() above (populated systems) and by
+// DoorsWindows.tsx / DoorsWindowsDetail.tsx to render a real photo grid for
+// an un-populated category once it has client photos, replacing the
+// "Coming Soon" state (same pattern Bar Chairs uses in Furniture).
+export interface DWCategoryPhoto {
+  productCode: string;
+  secureUrl: string;
+}
+
+export const getCategoryPhotos = (id: DWCategoryId): DWCategoryPhoto[] =>
+  dwCategoryPhotosByCategory[id] ?? [];
 
 export const dwSystems: DWSystem[] = [
   {
@@ -466,14 +386,11 @@ export const performanceStandards = [
 
 // --------------- Helpers ---------------
 
-export const getCategoryMeta = (id: string): DWCategoryMeta | undefined =>
+export const getCategoryMeta = (id: string): DoorsWindowsCategoryMeta | undefined =>
   dwCategories.find((c) => c.id === id);
 
 export const getSystemById = (id: string): DWSystem | undefined =>
   dwSystems.find((s) => s.id === id);
-
-export const isDWCategoryId = (s: string): s is DWCategoryId =>
-  dwCategories.some((c) => c.id === s);
 
 // "System Comparison At A Glance" — built directly from dwSystems so the
 // table can never drift from the per-system spec data above.

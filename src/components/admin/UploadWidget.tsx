@@ -4,7 +4,7 @@
 // comment for why. Keeping Cloudinary-specific code isolated here means
 // swapping providers later only touches this file and imageProvider.ts.
 import React, { useEffect, useRef, useState } from "react";
-import type { FurnitureCategoryId } from "../../data/furniture";
+import type { AnyCategoryId } from "../../../shared/verticals";
 
 const WIDGET_SCRIPT_SRC = "https://upload-widget.cloudinary.com/global/all.js";
 
@@ -81,7 +81,7 @@ async function requestSignature(
 }
 
 interface UploadWidgetProps {
-  category: FurnitureCategoryId;
+  category: AnyCategoryId;
   sessionToken: string;
   onUploaded?: (info: { secureUrl: string; publicId: string }) => void;
 }

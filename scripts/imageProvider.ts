@@ -12,9 +12,12 @@
 // time. Frontend pages never import it — they read the static JSON that
 // generate-image-data.ts produces (see src/data/cloudinaryImages.generated.json).
 //
-// Cloudinary folders are just the furniture category id — e.g. category
-// "beds" -> Cloudinary asset folder "beds" (see shared/furnitureCategories.ts
-// and api/cloudinary-sign.ts, which upload into the same folder names).
+// Cloudinary folders are just the category id — e.g. category "beds" ->
+// Cloudinary asset folder "beds" — same convention for both verticals (see
+// shared/furnitureCategories.ts, shared/doorsWindowsCategories.ts, and
+// api/cloudinary-sign.ts, which upload into these same folder names).
+// This function itself is fully category/vertical-agnostic; it's called once
+// per category for BOTH verticals by scripts/generate-image-data.ts.
 //
 // Reuses api-lib/cloudinaryAdmin.ts's listCategoryAssets (same function the
 // admin list/delete/assign-code endpoints use) rather than duplicating the

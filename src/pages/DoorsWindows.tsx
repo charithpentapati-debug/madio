@@ -4,6 +4,7 @@ import { ArrowRight, Sparkles, ChevronDown } from "lucide-react";
 import {
   dwCategories,
   dwSystems,
+  getCategoryPhotos,
   materialComparison,
   windowDoorTypologies,
   aluminiumAdvantages,
@@ -43,9 +44,17 @@ const OliveTexture: React.FC<{ className?: string; opacity?: string }> = ({
 
 // Category card — links to /doors-windows/[slug]. Mirrors FurnitureLanding's
 // CategoryCard so both verticals present catalogues the same way.
+//
+// isPopulated tracks the static catalogue only (whether the client has
+// confirmed full specs for this system) — independent of whether the client
+// has uploaded any photos via /admin/upload. An un-populated category with
+// client photos still shows real content here instead of "Coming Soon",
+// same as Bar Chairs would in Furniture once it has real photos.
 const CategoryCard: React.FC<{ cat: DWCategoryMeta; index: number }> = ({ cat, index }) => {
   const system = dwSystems.find((s) => s.id === cat.id);
-  const thumbnail = cat.isPopulated ? system?.images[0] : undefined;
+  const clientPhotos = getCategoryPhotos(cat.id);
+  const thumbnail = cat.isPopulated ? system?.images[0] : clientPhotos[0]?.secureUrl;
+  const isAvailable = cat.isPopulated || clientPhotos.length > 0;
 
   return (
     <Link
@@ -65,12 +74,12 @@ const CategoryCard: React.FC<{ cat: DWCategoryMeta; index: number }> = ({ cat, i
           <OliveTexture />
         )}
         <div className="absolute inset-0 bg-[#D4AF37]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-        {!cat.isPopulated && (
+        {!isAvailable && (
           <div className="absolute top-3 right-3 text-[8px] uppercase tracking-[0.25em] font-sans border border-[#243040] text-[#C4B9A8] px-2.5 py-1">
             Coming Soon
           </div>
         )}
-        {cat.isPopulated && (
+        {isAvailable && (
           <div
             className="absolute top-3 right-3 text-[8px] uppercase tracking-[0.25em] font-sans px-2.5 py-1"
             style={{ backgroundColor: DW_ACCENT, color: "#fff" }}
@@ -94,7 +103,7 @@ const CategoryCard: React.FC<{ cat: DWCategoryMeta; index: number }> = ({ cat, i
           {cat.description}
         </p>
         <div className="flex items-center space-x-1.5 mt-5 text-[10px] uppercase tracking-[0.2em] font-sans font-medium text-[#D4AF37]">
-          <span>{cat.isPopulated ? "Explore" : "View"}</span>
+          <span>{isAvailable ? "Explore" : "View"}</span>
           <ArrowRight size={11} className="group-hover:translate-x-1 transition-transform duration-300" />
         </div>
       </div>

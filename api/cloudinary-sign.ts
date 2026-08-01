@@ -3,12 +3,12 @@
 // every upload attempt. This is the ONLY place CLOUDINARY_API_SECRET is used —
 // it never reaches the client bundle. Requests must present a valid session
 // token (issued by api/admin-auth.ts after a correct password), and any
-// `folder` param must be one of the real furniture category ids, so an
-// unauthenticated caller can't obtain a usable signature no matter what they
-// send Cloudinary directly.
+// `folder` param must be a real category id from either vertical (Furniture
+// or Doors & Windows), so an unauthenticated caller can't obtain a usable
+// signature no matter what they send Cloudinary directly.
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import crypto from "node:crypto";
-import { isFurnitureCategoryId } from "../shared/furnitureCategories.js";
+import { isKnownCategoryId } from "../shared/verticals.js";
 import { verifySessionToken } from "../api-lib/session.js";
 
 // Cloudinary's signing algorithm: sort params alphabetically, join as
@@ -41,7 +41,7 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   const folder = paramsToSign.folder;
-  if (typeof folder === "string" && !isFurnitureCategoryId(folder)) {
+  if (typeof folder === "string" && !isKnownCategoryId(folder)) {
     return res.status(400).json({ error: "Unknown category folder" });
   }
 

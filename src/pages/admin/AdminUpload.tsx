@@ -1,7 +1,21 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { furnitureCategories } from "../../data/furniture";
-import type { FurnitureCategoryId } from "../../data/furniture";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { furnitureCategories } from "../../../shared/furnitureCategories";
+import { doorsWindowsCategories } from "../../../shared/doorsWindowsCategories";
+import type { Vertical, AnyCategoryId } from "../../../shared/verticals";
 import { UploadWidget } from "../../components/admin/UploadWidget";
+
+// Two-level selector: pick a vertical first, then a category belonging to
+// it — never a single flat 21-category dropdown (9 Furniture + 12 D&W).
+// Picking a vertical here is what filters/populates the category list below,
+// not just a label prefix on one giant list.
+const VERTICALS: { id: Vertical; label: string }[] = [
+  { id: "furniture", label: "Furniture" },
+  { id: "doors-windows", label: "Doors & Windows" },
+];
+
+function categoryMetaForVertical(vertical: Vertical) {
+  return vertical === "furniture" ? furnitureCategories : doorsWindowsCategories;
+}
 
 const SESSION_STORAGE_KEY = "madio_admin_session";
 
@@ -36,7 +50,18 @@ export const AdminUpload: React.FC = () => {
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [category, setCategory] = useState<FurnitureCategoryId>(furnitureCategories[0].id);
+  const [vertical, setVertical] = useState<Vertical>("furniture");
+  const [category, setCategory] = useState<AnyCategoryId>(furnitureCategories[0].id);
+
+  const categoryOptions = useMemo(() => categoryMetaForVertical(vertical), [vertical]);
+
+  const handleVerticalChange = (next: Vertical) => {
+    setVertical(next);
+    // Selecting a vertical re-populates the category dropdown with only that
+    // vertical's categories — always land on a valid selection, never leave
+    // a Furniture category selected while viewing Doors & Windows options.
+    setCategory(categoryMetaForVertical(next)[0].id);
+  };
 
   const [photos, setPhotos] = useState<CategoryPhoto[]>([]);
   const [photosLoading, setPhotosLoading] = useState(false);
@@ -57,7 +82,7 @@ export const AdminUpload: React.FC = () => {
     };
   }, []);
 
-  const fetchPhotos = useCallback(async (token: string, cat: FurnitureCategoryId) => {
+  const fetchPhotos = useCallback(async (token: string, cat: AnyCategoryId) => {
     setPhotosLoading(true);
     setPhotosError(null);
     try {
@@ -216,8 +241,8 @@ export const AdminUpload: React.FC = () => {
           <div>
             <h1 className="text-xl font-serif font-light text-[#16232B] mb-1">Admin Upload</h1>
             <p className="text-xs text-[#6B6B6B] font-light">
-              Choose a category, then upload or remove photos. Changes go live on the site within
-              1–2 minutes.
+              Choose a vertical and category, then upload or remove photos. Changes go live on the
+              site within 1–2 minutes.
             </p>
           </div>
           <button
@@ -229,19 +254,48 @@ export const AdminUpload: React.FC = () => {
         </div>
 
         <label className="block text-[10px] uppercase tracking-[0.2em] font-sans font-medium text-[#6B6B6B] mb-2">
+          Vertical
+        </label>
+        <div className="grid grid-cols-2 gap-2 mb-6">
+          {VERTICALS.map((v) => (
+            <button
+              key={v.id}
+              type="button"
+              onClick={() => handleVerticalChange(v.id)}
+              aria-pressed={vertical === v.id}
+              className="px-4 py-3 text-xs uppercase tracking-[0.15em] font-sans font-medium border rounded-[4px] transition-colors"
+              style={
+                vertical === v.id
+                  ? { backgroundColor: "#D4AF37", borderColor: "#D4AF37", color: "#fff" }
+                  : { backgroundColor: "#FAFAF7", borderColor: "#EBE8E2", color: "#6B6B6B" }
+              }
+            >
+              {v.label}
+            </button>
+          ))}
+        </div>
+
+        <label className="block text-[10px] uppercase tracking-[0.2em] font-sans font-medium text-[#6B6B6B] mb-2">
           Category
         </label>
         <select
           value={category}
-          onChange={(e) => setCategory(e.target.value as FurnitureCategoryId)}
-          className="w-full border border-[#EBE8E2] px-4 py-3 text-sm mb-8 bg-[#FAFAF7] rounded-[4px] focus:outline-none focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37]"
+          onChange={(e) => setCategory(e.target.value as AnyCategoryId)}
+          className="w-full border border-[#EBE8E2] px-4 py-3 text-sm mb-3 bg-[#FAFAF7] rounded-[4px] focus:outline-none focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37]"
         >
-          {furnitureCategories.map((cat) => (
+          {categoryOptions.map((cat) => (
             <option key={cat.id} value={cat.id}>
               {cat.name}
             </option>
           ))}
         </select>
+
+        {/* Always-visible confirmation of exactly where an upload will go —
+            deliberately the same text style regardless of vertical, so it
+            can't be mistaken for a decorative label. */}
+        <p className="text-[10px] font-mono text-[#16232B] bg-[#F5F0EB] border border-[#EBE8E2] px-3 py-2 mb-8">
+          Uploading to: {VERTICALS.find((v) => v.id === vertical)?.label} → {categoryOptions.find((c) => c.id === category)?.name}
+        </p>
 
         <UploadWidget category={category} sessionToken={session.token} onUploaded={handleUploaded} />
 

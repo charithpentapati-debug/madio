@@ -4,7 +4,7 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { verifySessionToken } from "../api-lib/session.js";
 import { listCategoryAssets } from "../api-lib/cloudinaryAdmin.js";
-import { isFurnitureCategoryId } from "../shared/furnitureCategories.js";
+import { isKnownCategoryId } from "../shared/verticals.js";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== "POST") {
@@ -17,7 +17,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (!verifySessionToken(token)) {
     return res.status(401).json({ error: "Unauthorized" });
   }
-  if (typeof category !== "string" || !isFurnitureCategoryId(category)) {
+  if (typeof category !== "string" || !isKnownCategoryId(category)) {
     return res.status(400).json({ error: "Unknown category" });
   }
 

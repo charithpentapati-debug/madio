@@ -11,8 +11,8 @@ import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { verifySessionToken } from "../api-lib/session.js";
 import { listCategoryAssets, setAssetProductCode } from "../api-lib/cloudinaryAdmin.js";
 import { triggerRebuild } from "../api-lib/deployHook.js";
-import { isFurnitureCategoryId } from "../shared/furnitureCategories.js";
-import { categoryProductCodeConfig, parseProductCodeNumber, formatProductCode } from "../shared/categoryProductCodes.js";
+import { isKnownCategoryId } from "../shared/verticals.js";
+import { resolveProductCodeScope, parseProductCodeNumber, formatProductCode } from "../shared/categoryProductCodes.js";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== "POST") {
@@ -29,7 +29,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (!verifySessionToken(token)) {
     return res.status(401).json({ error: "Unauthorized" });
   }
-  if (typeof category !== "string" || !isFurnitureCategoryId(category)) {
+  if (typeof category !== "string" || !isKnownCategoryId(category)) {
     return res.status(400).json({ error: "Unknown category" });
   }
   if (typeof publicId !== "string" || !publicId.startsWith(`${category}/`)) {
@@ -37,13 +37,18 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
-    const config = categoryProductCodeConfig[category];
-    const assets = await listCategoryAssets(category);
+    // Furniture: scope is just this one category (its own prefix + numbering).
+    // Doors & Windows: scope is every category in the vertical (one shared
+    // MDW prefix + numbering) — see resolveProductCodeScope for why.
+    const { config, folders } = resolveProductCodeScope(category);
 
     let maxNum = config.baselineMax;
-    for (const asset of assets) {
-      const n = parseProductCodeNumber(config.prefix, asset.productCode);
-      if (n !== null && n > maxNum) maxNum = n;
+    for (const folder of folders) {
+      const assets = await listCategoryAssets(folder);
+      for (const asset of assets) {
+        const n = parseProductCodeNumber(config.prefix, asset.productCode);
+        if (n !== null && n > maxNum) maxNum = n;
+      }
     }
 
     const productCode = formatProductCode(config.prefix, maxNum + 1);
