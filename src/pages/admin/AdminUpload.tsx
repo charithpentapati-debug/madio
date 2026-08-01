@@ -123,6 +123,19 @@ export const AdminUpload: React.FC = () => {
   const [createCategoryError, setCreateCategoryError] = useState<string | null>(null);
   const [createCategorySuccess, setCreateCategorySuccess] = useState<string | null>(null);
 
+  const [showDeleteCategory, setShowDeleteCategory] = useState(false);
+  const [deleteConfirmText, setDeleteConfirmText] = useState("");
+  const [deletingCategory, setDeletingCategory] = useState(false);
+  const [deleteCategoryError, setDeleteCategoryError] = useState<string | null>(null);
+  const [deleteCategorySuccess, setDeleteCategorySuccess] = useState<string | null>(null);
+
+  // Deletion is only ever offered for admin-created (dynamic) categories —
+  // static ones (Beds, Wall Art, HL Vista Slim, ...) have real catalogued
+  // data and aren't in this list at all, so there's no path to delete one
+  // even by mistake.
+  const currentDynamicCategory = (vertical === "furniture" ? dynamicFurnitureCategories : dynamicDoorsWindowsCategories)
+    .find((dc) => dc.id === category);
+
   const handleNewCategoryNameChange = (value: string) => {
     setNewCategoryName(value);
     if (!slugTouched) setNewCategorySlug(slugify(value));
@@ -171,6 +184,42 @@ export const AdminUpload: React.FC = () => {
     }
   };
 
+  const handleDeleteCategory = async () => {
+    if (!session || !currentDynamicCategory) return;
+    if (deleteConfirmText !== currentDynamicCategory.name) return; // button is disabled until this matches anyway
+    setDeletingCategory(true);
+    setDeleteCategoryError(null);
+    try {
+      const res = await fetch("/api/admin-delete-category", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          token: session.token,
+          vertical,
+          categoryId: currentDynamicCategory.id,
+          confirmName: deleteConfirmText,
+        }),
+      });
+      const data = (await res.json()) as { success?: boolean; deletedPhotoCount?: number; error?: string };
+      if (!res.ok || !data.success) {
+        setDeleteCategoryError(data.error ?? "Could not delete this category.");
+        return;
+      }
+      setDeleteCategorySuccess(
+        `Deleted "${currentDynamicCategory.name}" and ${data.deletedPhotoCount} photo${data.deletedPhotoCount === 1 ? "" : "s"}. It'll disappear from the dropdown once the next rebuild finishes — check back in a minute or two.`,
+      );
+      setShowDeleteCategory(false);
+      setDeleteConfirmText("");
+      // Land back on a category that's guaranteed to still exist — the
+      // vertical's first static category, never the one just deleted.
+      setCategory(categoryMetaForVertical(vertical)[0].id);
+    } catch {
+      setDeleteCategoryError("Could not reach the server. Check your connection and try again.");
+    } finally {
+      setDeletingCategory(false);
+    }
+  };
+
   // Keep this page out of search results — it's reachable by URL only, but
   // best not to let it get indexed if a crawler ever finds it.
   useEffect(() => {
@@ -215,6 +264,12 @@ export const AdminUpload: React.FC = () => {
   useEffect(() => {
     if (session) void fetchPhotos(session.token, category);
     setSelectedIds(new Set());
+    // Same reasoning as selection above — the delete-category confirm panel
+    // is category-scoped too, so switching categories closes it rather than
+    // silently carrying a typed confirmation over to a different category.
+    setShowDeleteCategory(false);
+    setDeleteConfirmText("");
+    setDeleteCategoryError(null);
   }, [session, category, fetchPhotos]);
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -540,6 +595,86 @@ export const AdminUpload: React.FC = () => {
         {createCategorySuccess && (
           <p className="text-xs text-green-700 bg-green-50 border border-green-200 px-3 py-2 mb-8">
             {createCategorySuccess}
+          </p>
+        )}
+
+        {/* Only ever offered for admin-created categories — static ones
+            (Beds, Wall Art, HL Vista Slim, ...) have real catalogued data
+            and simply never satisfy currentDynamicCategory, so this whole
+            block can't render for them regardless of what's clicked. */}
+        {currentDynamicCategory && !showDeleteCategory && (
+          <button
+            type="button"
+            onClick={() => {
+              setShowDeleteCategory(true);
+              setDeleteCategoryError(null);
+              setDeleteConfirmText("");
+            }}
+            className="text-[10px] uppercase tracking-[0.2em] font-sans text-red-600 hover:text-red-700 transition-colors mb-8 underline decoration-dotted underline-offset-4"
+          >
+            Delete this category
+          </button>
+        )}
+
+        {currentDynamicCategory && showDeleteCategory && (
+          <div className="border border-red-200 p-5 mb-8 bg-red-50">
+            <div className="flex items-center justify-between mb-3">
+              <h3 className="text-[10px] uppercase tracking-[0.2em] font-sans font-medium text-red-700">
+                Delete &quot;{currentDynamicCategory.name}&quot;
+              </h3>
+              <button
+                type="button"
+                onClick={() => {
+                  setShowDeleteCategory(false);
+                  setDeleteConfirmText("");
+                  setDeleteCategoryError(null);
+                }}
+                className="text-[10px] uppercase tracking-[0.2em] font-sans text-[#6B6B6B] hover:text-[#16232B] transition-colors"
+              >
+                Cancel
+              </button>
+            </div>
+
+            <p className="text-xs text-red-700 mb-3">
+              {photosLoading
+                ? "Checking how many photos are in this category…"
+                : photos.length === 0
+                  ? "This category has no photos. Deleting it is permanent and cannot be undone."
+                  : `This permanently deletes the category AND all ${photos.length} photo${photos.length === 1 ? "" : "s"} in it (${photos
+                      .map((p) => p.productCode ?? p.publicId)
+                      .join(", ")}). This cannot be undone.`}
+            </p>
+
+            <label className="block text-[9px] uppercase tracking-[0.15em] font-sans text-red-700 mb-1">
+              Type &quot;{currentDynamicCategory.name}&quot; to confirm
+            </label>
+            <input
+              type="text"
+              value={deleteConfirmText}
+              onChange={(e) => setDeleteConfirmText(e.target.value)}
+              className="w-full border border-red-300 px-3 py-2 text-sm bg-white rounded-[4px] mb-3 focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500"
+            />
+
+            {deleteCategoryError && (
+              <p className="text-xs text-red-600 bg-white border border-red-200 px-3 py-2 mb-3">
+                {deleteCategoryError}
+              </p>
+            )}
+
+            <button
+              type="button"
+              onClick={() => void handleDeleteCategory()}
+              disabled={deletingCategory || photosLoading || deleteConfirmText !== currentDynamicCategory.name}
+              className="w-full py-3 text-xs uppercase tracking-[0.25em] font-sans font-medium text-white transition-opacity disabled:opacity-40 hover:opacity-90 bg-red-600"
+            >
+              {deletingCategory ? "Deleting…" : "Delete Category Permanently"}
+            </button>
+          </div>
+        )}
+
+        {deleteCategorySuccess && (
+          <p className="text-xs text-green-700 bg-green-50 border border-green-200 px-3 py-2 mb-8">
+            {deleteCategorySuccess}
           </p>
         )}
 

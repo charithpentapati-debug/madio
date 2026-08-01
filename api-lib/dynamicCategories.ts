@@ -134,3 +134,18 @@ export async function addDynamicCategory(category: DynamicCategory): Promise<voi
   const existing = await getDynamicCategories(category.vertical);
   await writeDynamicCategories(category.vertical, [...existing, category]);
 }
+
+// Category management, Phase D — "delete a section." Only ever removes the
+// category's ENTRY from this JSON store; the caller (api/admin-delete-category.ts)
+// is responsible for deleting the category's actual Cloudinary photos itself
+// beforehand, since that's real, permanent, irreversible data loss and needs
+// its own explicit confirmation/counting, not something to fold silently
+// into a metadata-store write. Static categories (shared/furnitureCategories.ts,
+// shared/doorsWindowsCategories.ts) can never reach this function at all —
+// they're not in this store to begin with, which is what makes them
+// undeletable through the admin UI by construction, not by a runtime check.
+export async function removeDynamicCategory(vertical: Vertical, categoryId: string): Promise<void> {
+  const existing = await getDynamicCategories(vertical);
+  const filtered = existing.filter((c) => c.id !== categoryId);
+  await writeDynamicCategories(vertical, filtered);
+}
