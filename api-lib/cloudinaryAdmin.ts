@@ -94,16 +94,39 @@ export async function setAssetProductCode(publicId: string, productCode: string)
   }
 }
 
-export async function deleteAsset(publicId: string): Promise<void> {
-  const params = new URLSearchParams();
-  params.append("public_ids[]", publicId);
+export interface BulkDeleteResult {
+  deleted: string[];
+  notFound: string[];
+}
 
-  const res = await fetch(
-    `https://api.cloudinary.com/v1_1/${cloudName()}/resources/image/upload?${params.toString()}`,
-    { method: "DELETE", headers: { Authorization: authHeader() } },
-  );
+// Single deletes go through this too (as a one-element array) — Cloudinary's
+// bulk endpoint handles both, so there's no need for a separate single-delete
+// code path. Batches at 100 public_ids per call since that's Cloudinary's
+// per-request cap on this endpoint.
+export async function deleteAssets(publicIds: string[]): Promise<BulkDeleteResult> {
+  const deleted: string[] = [];
+  const notFound: string[] = [];
 
-  if (!res.ok) {
-    throw new Error(`Cloudinary delete failed for "${publicId}": ${res.status} ${res.statusText}`);
+  for (let i = 0; i < publicIds.length; i += 100) {
+    const batch = publicIds.slice(i, i + 100);
+    const params = new URLSearchParams();
+    for (const id of batch) params.append("public_ids[]", id);
+
+    const res = await fetch(
+      `https://api.cloudinary.com/v1_1/${cloudName()}/resources/image/upload?${params.toString()}`,
+      { method: "DELETE", headers: { Authorization: authHeader() } },
+    );
+
+    if (!res.ok) {
+      throw new Error(`Cloudinary bulk delete failed: ${res.status} ${res.statusText}`);
+    }
+
+    const data = (await res.json()) as { deleted?: Record<string, string> };
+    for (const [id, status] of Object.entries(data.deleted ?? {})) {
+      if (status === "deleted") deleted.push(id);
+      else notFound.push(id);
+    }
   }
+
+  return { deleted, notFound };
 }

@@ -110,7 +110,8 @@ export const AdminUpload: React.FC = () => {
   const [photosLoading, setPhotosLoading] = useState(false);
   const [photosError, setPhotosError] = useState<string | null>(null);
   const [assigningCode, setAssigningCode] = useState(false);
-  const [deletingId, setDeletingId] = useState<string | null>(null);
+  const [deletingIds, setDeletingIds] = useState<Set<string>>(new Set());
+  const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
 
   const [showCreateCategory, setShowCreateCategory] = useState(false);
   const [newCategoryName, setNewCategoryName] = useState("");
@@ -208,9 +209,12 @@ export const AdminUpload: React.FC = () => {
   }, []);
 
   // Refresh the photo list whenever we're logged in and whenever the
-  // selected category changes.
+  // selected category changes. Selection is always category-scoped — a
+  // photo picked before switching categories shouldn't carry over and get
+  // deleted by mistake once the list underneath it has changed.
   useEffect(() => {
     if (session) void fetchPhotos(session.token, category);
+    setSelectedIds(new Set());
   }, [session, category, fetchPhotos]);
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -272,29 +276,67 @@ export const AdminUpload: React.FC = () => {
     }
   };
 
-  const handleDelete = async (photo: CategoryPhoto) => {
-    if (!session) return;
-    const label = photo.productCode ?? photo.publicId;
-    if (!window.confirm(`Delete ${label}? This can't be undone.`)) return;
+  const toggleSelected = (publicId: string) => {
+    setSelectedIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(publicId)) next.delete(publicId);
+      else next.add(publicId);
+      return next;
+    });
+  };
 
-    setDeletingId(photo.publicId);
+  const toggleSelectAll = () => {
+    setSelectedIds((prev) => (prev.size === photos.length ? new Set() : new Set(photos.map((p) => p.publicId))));
+  };
+
+  // Backs both the single-photo Delete button and the "delete selected"
+  // bulk action — one photo is just a one-element array. Shows the exact
+  // product codes being removed before deleting, same principle as Phase D's
+  // "show exact counts of what will be lost" guardrail, just lighter-weight
+  // since this is undoable data loss at photo scope, not category scope.
+  const handleDeletePhotos = async (toDelete: CategoryPhoto[]) => {
+    if (!session || toDelete.length === 0) return;
+    const labels = toDelete.map((p) => p.productCode ?? p.publicId);
+    const confirmMessage =
+      toDelete.length === 1
+        ? `Delete ${labels[0]}? This can't be undone.`
+        : `Delete these ${toDelete.length} photos? This can't be undone.\n\n${labels.join(", ")}`;
+    if (!window.confirm(confirmMessage)) return;
+
+    const idsToDelete = toDelete.map((p) => p.publicId);
+    setDeletingIds((prev) => new Set([...prev, ...idsToDelete]));
     setPhotosError(null);
     try {
       const res = await fetch("/api/admin-delete-photo", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ token: session.token, publicId: photo.publicId }),
+        body: JSON.stringify({ token: session.token, publicIds: idsToDelete }),
       });
-      const data = (await res.json()) as { success?: boolean; error?: string };
+      const data = (await res.json()) as {
+        success?: boolean;
+        deleted?: string[];
+        notFound?: string[];
+        error?: string;
+      };
       if (!res.ok || !data.success) {
-        setPhotosError(data.error ?? "Could not delete this photo.");
+        setPhotosError(data.error ?? "Could not delete the selected photo(s).");
         return;
       }
-      setPhotos((prev) => prev.filter((p) => p.publicId !== photo.publicId));
+      const removed = new Set([...(data.deleted ?? []), ...(data.notFound ?? [])]);
+      setPhotos((prev) => prev.filter((p) => !removed.has(p.publicId)));
+      setSelectedIds((prev) => {
+        const next = new Set(prev);
+        for (const id of removed) next.delete(id);
+        return next;
+      });
     } catch {
       setPhotosError("Could not reach the server. Check your connection and try again.");
     } finally {
-      setDeletingId(null);
+      setDeletingIds((prev) => {
+        const next = new Set(prev);
+        for (const id of idsToDelete) next.delete(id);
+        return next;
+      });
     }
   };
 
@@ -527,23 +569,61 @@ export const AdminUpload: React.FC = () => {
             <p className="text-xs text-[#6B6B6B] font-light">No photos uploaded to this category yet.</p>
           )}
 
+          {photos.length > 0 && (
+            <div className="flex items-center justify-between mb-4">
+              <label className="flex items-center gap-2 text-[10px] uppercase tracking-[0.15em] font-sans text-[#6B6B6B] cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={selectedIds.size > 0 && selectedIds.size === photos.length}
+                  ref={(el) => {
+                    if (el) el.indeterminate = selectedIds.size > 0 && selectedIds.size < photos.length;
+                  }}
+                  onChange={toggleSelectAll}
+                  className="h-3.5 w-3.5"
+                />
+                {selectedIds.size > 0 ? `${selectedIds.size} selected` : "Select all"}
+              </label>
+              {selectedIds.size > 0 && (
+                <button
+                  onClick={() =>
+                    void handleDeletePhotos(photos.filter((p) => selectedIds.has(p.publicId)))
+                  }
+                  disabled={[...selectedIds].some((id) => deletingIds.has(id))}
+                  className="text-[9px] uppercase tracking-[0.15em] font-sans text-red-600 border border-red-200 px-3 py-1.5 hover:bg-red-50 transition-colors disabled:opacity-40"
+                >
+                  {[...selectedIds].some((id) => deletingIds.has(id))
+                    ? "Deleting…"
+                    : `Delete Selected (${selectedIds.size})`}
+                </button>
+              )}
+            </div>
+          )}
+
           <div className="grid grid-cols-3 gap-4">
             {photos.map((photo) => (
               <div key={photo.publicId} className="space-y-2">
-                <img
-                  src={photo.secureUrl}
-                  alt={photo.productCode ?? photo.publicId}
-                  className="w-full h-24 object-cover border border-[#EBE8E2]"
-                />
+                <div className="relative">
+                  <img
+                    src={photo.secureUrl}
+                    alt={photo.productCode ?? photo.publicId}
+                    className="w-full h-24 object-cover border border-[#EBE8E2]"
+                  />
+                  <input
+                    type="checkbox"
+                    checked={selectedIds.has(photo.publicId)}
+                    onChange={() => toggleSelected(photo.publicId)}
+                    className="absolute top-1.5 left-1.5 h-4 w-4 accent-[#D4AF37]"
+                  />
+                </div>
                 <p className="text-[10px] font-mono text-[#16232B] truncate">
                   {photo.productCode ?? "Assigning…"}
                 </p>
                 <button
-                  onClick={() => handleDelete(photo)}
-                  disabled={deletingId === photo.publicId}
+                  onClick={() => void handleDeletePhotos([photo])}
+                  disabled={deletingIds.has(photo.publicId)}
                   className="w-full text-[9px] uppercase tracking-[0.15em] font-sans text-red-600 border border-red-200 py-1.5 hover:bg-red-50 transition-colors disabled:opacity-40"
                 >
-                  {deletingId === photo.publicId ? "Deleting…" : "Delete"}
+                  {deletingIds.has(photo.publicId) ? "Deleting…" : "Delete"}
                 </button>
               </div>
             ))}
