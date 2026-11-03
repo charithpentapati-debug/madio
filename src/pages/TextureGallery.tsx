@@ -119,16 +119,16 @@ export const TextureGallery: React.FC = () => {
     : galleryItems.filter((item) => item.category === activeFilter);
 
   return (
-    <div className="texture-overlay min-h-screen pt-36 pb-24 bg-[#FAFAF7]">
+    <div className="texture-overlay min-h-screen pt-36 pb-24 bg-[#F4F1EA]">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         
         {/* Header Section */}
         <div className="max-w-3xl mb-16 reveal-on-scroll">
-          <span className="text-[10px] tracking-[0.3em] uppercase text-[#D4AF37] font-sans font-semibold block mb-4">
+          <span className="text-[10px] tracking-[0.3em] uppercase text-[#C5A059] font-sans font-semibold block mb-4">
             Aesthetic Portfolio
           </span>
-          <h1 className="text-4xl md:text-6xl font-serif font-light text-[#1A1A1A] mb-6 leading-tight">
-            The Texture <span className="italic font-normal text-[#D4AF37]">Gallery</span>
+          <h1 className="text-4xl md:text-6xl font-serif font-light text-[#121212] mb-6 leading-tight">
+            The Texture <span className="italic font-normal text-[#C5A059]">Gallery</span>
           </h1>
           <p className="text-sm md:text-base text-[#6B6B6B] font-light leading-relaxed">
             A visual curation of architectural projects throughout India utilizing MAP surface technologies. Browse slaked-lime Venetian finishes, monolithic floor systems, and mineral facade plasters in situ.
@@ -143,8 +143,8 @@ export const TextureGallery: React.FC = () => {
               onClick={() => setActiveFilter(filter.value)}
               className={`text-xs uppercase tracking-[0.2em] font-sans transition-all duration-300 pb-2 border-b relative -bottom-[2px] cursor-pointer ${
                 activeFilter === filter.value
-                  ? "text-[#D4AF37] border-[#D4AF37] font-medium"
-                  : "text-[#6B6B6B] border-transparent hover:text-[#1A1A1A]"
+                  ? "text-[#C5A059] border-[#C5A059] font-medium"
+                  : "text-[#6B6B6B] border-transparent hover:text-[#121212]"
               }`}
             >
               {filter.label}
@@ -158,7 +158,7 @@ export const TextureGallery: React.FC = () => {
             <div
               key={item.id}
               onClick={() => setSelectedItem(item)}
-              className="bg-[#F5F0EB]/40 border border-[#EBE8E2] group cursor-pointer overflow-hidden relative shadow-sm hover:shadow-md transition-all duration-300 reveal-on-scroll"
+              className="bg-[#F4F1EA]/40 border border-[#EBE8E2] group cursor-pointer overflow-hidden relative shadow-sm hover:shadow-md transition-all duration-300 reveal-on-scroll"
               style={{ transitionDelay: `${index * 0.08}s` }}
             >
               {/* Photo */}
@@ -170,8 +170,8 @@ export const TextureGallery: React.FC = () => {
                 />
                 
                 {/* Hover overlay with zoom icon */}
-                <div className="absolute inset-0 bg-[#1A1A1A]/35 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <div className="p-4 bg-white/90 backdrop-blur-sm rounded-full text-[#1A1A1A] scale-75 group-hover:scale-100 transition-transform duration-300">
+                <div className="absolute inset-0 bg-[#121212]/35 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <div className="p-4 bg-white/90 backdrop-blur-sm rounded-full text-[#121212] scale-75 group-hover:scale-100 transition-transform duration-300">
                     <ZoomIn size={20} />
                   </div>
                 </div>
@@ -179,10 +179,10 @@ export const TextureGallery: React.FC = () => {
 
               {/* Caption */}
               <div className="p-6">
-                <span className="text-[9px] tracking-[0.2em] uppercase text-[#D4AF37] font-sans font-semibold">
+                <span className="text-[9px] tracking-[0.2em] uppercase text-[#C5A059] font-sans font-semibold">
                   {item.collectionName}
                 </span>
-                <h3 className="text-lg font-serif font-light text-[#1A1A1A] mt-1 group-hover:text-[#D4AF37] transition-colors duration-300">
+                <h3 className="text-lg font-serif font-light text-[#121212] mt-1 group-hover:text-[#C5A059] transition-colors duration-300">
                   {item.title}
                 </h3>
               </div>
@@ -192,17 +192,17 @@ export const TextureGallery: React.FC = () => {
 
         {/* Lightbox Modal */}
         {selectedItem && (
-          <div className="fixed inset-0 z-50 bg-[#0A0A0A]/95 flex items-center justify-center p-4 md:p-8 animate-fade-in">
+          <div className="fixed inset-0 z-50 bg-[#121212]/95 flex items-center justify-center p-4 md:p-8 animate-fade-in">
             {/* Close trigger background */}
             <div className="absolute inset-0 cursor-zoom-out" onClick={() => setSelectedItem(null)} />
 
             {/* Modal Box */}
-            <div className="relative z-10 bg-[#FAFAF7] w-full max-w-6xl max-h-[90vh] overflow-y-auto grid grid-cols-1 lg:grid-cols-12 shadow-2xl animate-fade-in-up">
+            <div className="relative z-10 bg-[#F4F1EA] w-full max-w-6xl max-h-[90vh] overflow-y-auto grid grid-cols-1 lg:grid-cols-12 shadow-2xl animate-fade-in-up">
               
               {/* Close Button */}
               <button
                 onClick={() => setSelectedItem(null)}
-                className="absolute top-4 right-4 z-20 p-2 bg-white/90 hover:bg-white text-[#1A1A1A] hover:text-[#D4AF37] transition-all shadow-sm focus:outline-none"
+                className="absolute top-4 right-4 z-20 p-2 bg-white/90 hover:bg-white text-[#121212] hover:text-[#C5A059] transition-all shadow-sm focus:outline-none"
                 aria-label="Close Lightbox"
               >
                 <X size={20} />
@@ -218,13 +218,13 @@ export const TextureGallery: React.FC = () => {
               </div>
 
               {/* Metadata Area */}
-              <div className="lg:col-span-4 p-8 md:p-10 flex flex-col justify-between h-full bg-[#FAFAF7]">
+              <div className="lg:col-span-4 p-8 md:p-10 flex flex-col justify-between h-full bg-[#F4F1EA]">
                 <div className="space-y-8">
                   <div>
-                    <span className="text-[10px] tracking-[0.25em] uppercase text-[#D4AF37] font-sans font-semibold block mb-2">
+                    <span className="text-[10px] tracking-[0.25em] uppercase text-[#C5A059] font-sans font-semibold block mb-2">
                       Project Highlight
                     </span>
-                    <h2 className="text-2xl md:text-3xl font-serif font-light text-[#1A1A1A] leading-tight">
+                    <h2 className="text-2xl md:text-3xl font-serif font-light text-[#121212] leading-tight">
                       {selectedItem.title}
                     </h2>
                   </div>
@@ -235,10 +235,10 @@ export const TextureGallery: React.FC = () => {
 
                   <div className="border-t border-[#EBE8E2] pt-6 space-y-4 text-xs">
                     <div className="flex items-center space-x-3.5">
-                      <Layers size={15} className="text-[#D4AF37]" />
+                      <Layers size={15} className="text-[#C5A059]" />
                       <div>
                         <span className="text-[10px] uppercase text-[#6B6B6B] block">Finish System</span>
-                        <span className="text-[#1A1A1A] font-medium">{selectedItem.collectionName} Collection</span>
+                        <span className="text-[#121212] font-medium">{selectedItem.collectionName} Collection</span>
                       </div>
                     </div>
                   </div>
@@ -247,7 +247,7 @@ export const TextureGallery: React.FC = () => {
                 <div className="pt-8 border-t border-[#EBE8E2] mt-12 flex flex-col sm:flex-row gap-4">
                   <Link
                     to={`/contact?source=map&collection=${selectedItem.collectionName.toLowerCase().replace(" ", "-")}`}
-                    className="flex-1 bg-[#1A1A1A] text-white text-center py-3 text-[10px] uppercase tracking-[0.2em] font-sans font-medium hover:bg-[#D4AF37] transition-colors"
+                    className="flex-1 bg-[#121212] text-white text-center py-3 text-[10px] uppercase tracking-[0.2em] font-sans font-medium hover:bg-[#C5A059] transition-colors"
                   >
                     Request Sample Spec
                   </Link>

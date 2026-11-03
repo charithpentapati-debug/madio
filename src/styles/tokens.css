@@ -9,26 +9,26 @@
   --font-sans: "Inter", system-ui, sans-serif;
 
   /* --- Shared surface palette --- */
-  --color-surface:       #FAFAF7;   /* warm off-white page bg */
-  --color-surface-warm:  #F5F0EB;   /* slightly warmer tint */
+  --color-surface:       #F4F1EA;   /* warm travertine stone — page bg */
+  --color-surface-warm:  #F4F1EA;
   --color-surface-mid:   #F0EDE8;
-  --color-ink:           #1A1A1A;   /* body text default */
+  --color-ink:           #121212;   /* deep charcoal — body text default */
   --color-ink-muted:     #6B6B6B;
   --color-ink-subtle:    #C4B9A8;
   --color-border:        #EBE8E2;
-  --color-border-dark:   #243040;   /* navy-tinted dark border */
+  --color-border-dark:   #2A2A2A;   /* charcoal-tinted dark border */
 
-  /* --- MADIO master palette (Furniture flagship) --- */
-  --color-olive:         #D4AF37;   /* primary brand accent — bright gold */
-  --color-navy:          #16232B;   /* primary dark / header-footer bg */
-  --color-navy-mid:      #1E2F3C;   /* slightly lighter navy for hover states */
-  --color-navy-muted:    #C4B9A8;   /* desaturated navy-tinted mid text */
+  /* --- Madio Gruppo master palette --- */
+  --color-olive:         #C5A059;   /* primary brand accent — brushed bronze */
+  --color-navy:          #121212;   /* deep charcoal — primary dark / header-footer bg */
+  --color-navy-mid:      #2A2A2A;   /* slightly lighter charcoal for hover states */
+  --color-navy-muted:    #C4B9A8;   /* desaturated mid text */
 
   /* --- Per-vertical accent colours --- */
-  --accent-madio:        #D4AF37;   /* MADIO top-level — bright gold */
-  --accent-map:          #D4AF37;   /* MAP — bright gold */
-  --accent-furniture:    #D4AF37;   /* Furniture — bright gold */
-  --accent-doors:        #D4AF37;   /* Doors & Windows — bright gold */
+  --accent-madio:        #C5A059;   /* Madio Gruppo top-level — brushed bronze */
+  --accent-map:          #C5A059;   /* MAP — brushed bronze */
+  --accent-furniture:    #C5A059;   /* Madio Furniture — brushed bronze */
+  --accent-doors:        #C5A059;   /* Madio Doors and Windows — brushed bronze */
 
   /* --- Shared spacing scale --- */
   --space-xs:   4px;

@@ -2,13 +2,13 @@
 @import "./styles/tokens.css";
 
 @theme {
-  --color-warm-white: #FAFAF7;
-  --color-cream: #F5F0EB;
-  --color-brand-black: #1A1A1A;
+  --color-warm-white: #F4F1EA;
+  --color-cream: #F4F1EA;
+  --color-brand-black: #121212;
   --color-brand-grey: #6B6B6B;
-  --color-brand-gold: #D4AF37;
-  --color-charcoal: #2C2C2C;
-  --color-dark-grey: #3D3D3D;
+  --color-brand-gold: #C5A059;
+  --color-charcoal: #121212;
+  --color-dark-grey: #2A2A2A;
   --color-stone-light: #D4C9B8;
   --color-stone-dark: #C4B9A8;
 

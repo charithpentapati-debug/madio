@@ -62,18 +62,18 @@ export const RequestQuote: React.FC = () => {
   };
 
   return (
-    <div className="texture-overlay min-h-screen pt-36 pb-24 bg-[#FAFAF7]">
+    <div className="texture-overlay min-h-screen pt-36 pb-24 bg-[#F4F1EA]">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
           
           {/* Info Column (Left) */}
           <div className="lg:col-span-5 reveal-on-scroll">
-            <span className="text-[10px] tracking-[0.3em] uppercase text-[#D4AF37] font-sans font-semibold block mb-4">
+            <span className="text-[10px] tracking-[0.3em] uppercase text-[#C5A059] font-sans font-semibold block mb-4">
               Procurement & Specification
             </span>
-            <h1 className="text-4xl md:text-5xl font-serif font-light text-[#1A1A1A] mb-8 leading-tight">
+            <h1 className="text-4xl md:text-5xl font-serif font-light text-[#121212] mb-8 leading-tight">
               Request a <br />
-              <span className="italic font-normal text-[#D4AF37]">Specification Quote</span>
+              <span className="italic font-normal text-[#C5A059]">Specification Quote</span>
             </h1>
             <p className="text-sm text-[#6B6B6B] font-light leading-relaxed mb-8">
               We collaborate with architects, designers, and project managers to provide customized costing, material estimates, and sample boards. Fill out this form and our technical advisors in Hyderabad will contact you.
@@ -81,24 +81,24 @@ export const RequestQuote: React.FC = () => {
 
             <div className="space-y-6 pt-8 border-t border-[#EBE8E2] text-xs">
               <div className="flex items-start space-x-4">
-                <div className="p-2.5 bg-[#F5F0EB] border border-[#EBE8E2]">
-                  <Building size={16} className="text-[#D4AF37]" />
+                <div className="p-2.5 bg-[#F4F1EA] border border-[#EBE8E2]">
+                  <Building size={16} className="text-[#C5A059]" />
                 </div>
                 <div>
                   <span className="text-[10px] uppercase text-[#6B6B6B] block">Sample Dispatch</span>
-                  <span className="text-[#1A1A1A] font-medium leading-relaxed block mt-0.5">
+                  <span className="text-[#121212] font-medium leading-relaxed block mt-0.5">
                     We ship physical A4 plaster mock-ups across India.
                   </span>
                 </div>
               </div>
 
               <div className="flex items-start space-x-4">
-                <div className="p-2.5 bg-[#F5F0EB] border border-[#EBE8E2]">
-                  <MapPin size={16} className="text-[#D4AF37]" />
+                <div className="p-2.5 bg-[#F4F1EA] border border-[#EBE8E2]">
+                  <MapPin size={16} className="text-[#C5A059]" />
                 </div>
                 <div>
                   <span className="text-[10px] uppercase text-[#6B6B6B] block">Hyderabad Advisory</span>
-                  <span className="text-[#1A1A1A] font-medium leading-relaxed block mt-0.5">
+                  <span className="text-[#121212] font-medium leading-relaxed block mt-0.5">
                     1st Floor, Road No.1, Shilpa Hills, Kondapur, Hyderabad
                   </span>
                 </div>
@@ -111,8 +111,8 @@ export const RequestQuote: React.FC = () => {
             {isSubmitted ? (
               /* Success Screen */
               <div className="text-center py-8 flex flex-col items-center space-y-6">
-                <CheckCircle size={56} className="text-[#D4AF37] animate-pulse" />
-                <h2 className="text-3xl font-serif font-light text-[#1A1A1A]">
+                <CheckCircle size={56} className="text-[#C5A059] animate-pulse" />
+                <h2 className="text-3xl font-serif font-light text-[#121212]">
                   Specification Received
                 </h2>
                 <p className="text-sm text-[#6B6B6B] font-light max-w-md mx-auto leading-relaxed">
@@ -121,22 +121,22 @@ export const RequestQuote: React.FC = () => {
                 <div className="border-t border-[#EBE8E2] pt-6 w-full max-w-sm text-left text-xs space-y-2 text-[#6B6B6B] font-light">
                   <div className="flex justify-between">
                     <span>Requested Collection:</span>
-                    <strong className="text-[#1A1A1A]">{formData.collection ? formData.collection.toUpperCase() : "General"}</strong>
+                    <strong className="text-[#121212]">{formData.collection ? formData.collection.toUpperCase() : "General"}</strong>
                   </div>
                   {formData.shadeCode && (
                     <div className="flex justify-between">
                       <span>Requested Shade:</span>
-                      <strong className="text-[#1A1A1A]">{formData.shadeCode}</strong>
+                      <strong className="text-[#121212]">{formData.shadeCode}</strong>
                     </div>
                   )}
                   <div className="flex justify-between">
                     <span>Contact Person:</span>
-                    <strong className="text-[#1A1A1A]">{formData.name}</strong>
+                    <strong className="text-[#121212]">{formData.name}</strong>
                   </div>
                 </div>
                 <button
                   onClick={() => setIsSubmitted(false)}
-                  className="mt-8 px-8 py-3 bg-[#1A1A1A] text-white text-[10px] uppercase tracking-widest font-sans font-medium hover:bg-[#D4AF37] transition-colors duration-300"
+                  className="mt-8 px-8 py-3 bg-[#121212] text-white text-[10px] uppercase tracking-widest font-sans font-medium hover:bg-[#C5A059] transition-colors duration-300"
                 >
                   Submit Another Request
                 </button>
@@ -157,7 +157,7 @@ export const RequestQuote: React.FC = () => {
                       required
                       value={formData.name}
                       onChange={handleChange}
-                      className="border border-[#EBE8E2] px-4 py-3 text-sm focus:outline-none focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37] bg-[#FAFAF7]"
+                      className="border border-[#EBE8E2] px-4 py-3 text-sm focus:outline-none focus:border-[#C5A059] focus:ring-1 focus:ring-[#C5A059] bg-[#F4F1EA]"
                     />
                   </div>
 
@@ -173,7 +173,7 @@ export const RequestQuote: React.FC = () => {
                       required
                       value={formData.phone}
                       onChange={handleChange}
-                      className="border border-[#EBE8E2] px-4 py-3 text-sm focus:outline-none focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37] bg-[#FAFAF7]"
+                      className="border border-[#EBE8E2] px-4 py-3 text-sm focus:outline-none focus:border-[#C5A059] focus:ring-1 focus:ring-[#C5A059] bg-[#F4F1EA]"
                     />
                   </div>
                 </div>
@@ -190,7 +190,7 @@ export const RequestQuote: React.FC = () => {
                     required
                     value={formData.email}
                     onChange={handleChange}
-                    className="border border-[#EBE8E2] px-4 py-3 text-sm focus:outline-none focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37] bg-[#FAFAF7]"
+                    className="border border-[#EBE8E2] px-4 py-3 text-sm focus:outline-none focus:border-[#C5A059] focus:ring-1 focus:ring-[#C5A059] bg-[#F4F1EA]"
                   />
                 </div>
 
@@ -205,7 +205,7 @@ export const RequestQuote: React.FC = () => {
                       name="role"
                       value={formData.role}
                       onChange={handleChange}
-                      className="border border-[#EBE8E2] px-4 py-3 text-sm focus:outline-none focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37] bg-[#FAFAF7]"
+                      className="border border-[#EBE8E2] px-4 py-3 text-sm focus:outline-none focus:border-[#C5A059] focus:ring-1 focus:ring-[#C5A059] bg-[#F4F1EA]"
                     >
                       <option value="Architect">Architect</option>
                       <option value="Interior Designer">Interior Designer</option>
@@ -226,7 +226,7 @@ export const RequestQuote: React.FC = () => {
                       name="projectType"
                       value={formData.projectType}
                       onChange={handleChange}
-                      className="border border-[#EBE8E2] px-4 py-3 text-sm focus:outline-none focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37] bg-[#FAFAF7]"
+                      className="border border-[#EBE8E2] px-4 py-3 text-sm focus:outline-none focus:border-[#C5A059] focus:ring-1 focus:ring-[#C5A059] bg-[#F4F1EA]"
                     >
                       <option value="Residential">Private Residential Villa / Apt</option>
                       <option value="Commercial">Commercial Office / HQ</option>
@@ -250,7 +250,7 @@ export const RequestQuote: React.FC = () => {
                       placeholder="e.g. 2,500 sq ft"
                       value={formData.area}
                       onChange={handleChange}
-                      className="border border-[#EBE8E2] px-4 py-3 text-sm focus:outline-none focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37] bg-[#FAFAF7]"
+                      className="border border-[#EBE8E2] px-4 py-3 text-sm focus:outline-none focus:border-[#C5A059] focus:ring-1 focus:ring-[#C5A059] bg-[#F4F1EA]"
                     />
                   </div>
 
@@ -264,7 +264,7 @@ export const RequestQuote: React.FC = () => {
                       name="collection"
                       value={formData.collection}
                       onChange={handleChange}
-                      className="border border-[#EBE8E2] px-4 py-3 text-sm focus:outline-none focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37] bg-[#FAFAF7]"
+                      className="border border-[#EBE8E2] px-4 py-3 text-sm focus:outline-none focus:border-[#C5A059] focus:ring-1 focus:ring-[#C5A059] bg-[#F4F1EA]"
                     >
                       <option value="">-- Select Finish System --</option>
                       {collectionsData.map((c) => (
@@ -288,7 +288,7 @@ export const RequestQuote: React.FC = () => {
                     placeholder="e.g. AMD-22"
                     value={formData.shadeCode}
                     onChange={handleChange}
-                    className="border border-[#EBE8E2] px-4 py-3 text-sm focus:outline-none focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37] bg-[#FAFAF7]"
+                    className="border border-[#EBE8E2] px-4 py-3 text-sm focus:outline-none focus:border-[#C5A059] focus:ring-1 focus:ring-[#C5A059] bg-[#F4F1EA]"
                   />
                 </div>
 
@@ -304,14 +304,14 @@ export const RequestQuote: React.FC = () => {
                     placeholder="Specify substrate condition, location, timeline, or requests for physical catalog boards..."
                     value={formData.details}
                     onChange={handleChange}
-                    className="border border-[#EBE8E2] px-4 py-3 text-sm focus:outline-none focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37] bg-[#FAFAF7] resize-none"
+                    className="border border-[#EBE8E2] px-4 py-3 text-sm focus:outline-none focus:border-[#C5A059] focus:ring-1 focus:ring-[#C5A059] bg-[#F4F1EA] resize-none"
                   />
                 </div>
 
                 {/* Submit button */}
                 <button
                   type="submit"
-                  className="w-full bg-[#1A1A1A] text-white py-4 text-xs uppercase tracking-[0.25em] font-sans font-semibold hover:bg-[#D4AF37] transition-colors duration-300 flex items-center justify-center space-x-2 cursor-pointer shadow-sm"
+                  className="w-full bg-[#121212] text-white py-4 text-xs uppercase tracking-[0.25em] font-sans font-semibold hover:bg-[#C5A059] transition-colors duration-300 flex items-center justify-center space-x-2 cursor-pointer shadow-sm"
                 >
                   <span>Submit Specification Request</span>
                   <Send size={12} />

@@ -37,7 +37,7 @@ export const Products: React.FC = () => {
   };
 
   return (
-    <div className="texture-overlay min-h-screen pt-36 pb-24 bg-[#FAFAF7]">
+    <div className="texture-overlay min-h-screen pt-36 pb-24 bg-[#F4F1EA]">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         {activeCollection ? (
           /* ==========================================
@@ -47,7 +47,7 @@ export const Products: React.FC = () => {
             {/* Back Button */}
             <button
               onClick={() => selectCollection(null)}
-              className="inline-flex items-center space-x-2 text-xs uppercase tracking-[0.2em] font-sans font-medium text-[#6B6B6B] hover:text-[#1A1A1A] transition-colors mb-12 cursor-pointer"
+              className="inline-flex items-center space-x-2 text-xs uppercase tracking-[0.2em] font-sans font-medium text-[#6B6B6B] hover:text-[#121212] transition-colors mb-12 cursor-pointer"
             >
               <ArrowLeft size={14} />
               <span>Back to All Collections</span>
@@ -55,13 +55,13 @@ export const Products: React.FC = () => {
 
             {/* Title Block */}
             <div className="max-w-3xl mb-16">
-              <span className="text-[10px] tracking-[0.3em] uppercase text-[#D4AF37] font-sans font-semibold block mb-4">
+              <span className="text-[10px] tracking-[0.3em] uppercase text-[#C5A059] font-sans font-semibold block mb-4">
                 Collection Profile
               </span>
-              <h1 className="text-4xl md:text-6xl font-serif font-light text-[#1A1A1A] mb-4">
+              <h1 className="text-4xl md:text-6xl font-serif font-light text-[#121212] mb-4">
                 {activeCollection.name}
               </h1>
-              <p className="text-xs uppercase tracking-[0.25em] text-[#D4AF37] font-sans font-medium border-b border-[#EBE8E2] pb-6">
+              <p className="text-xs uppercase tracking-[0.25em] text-[#C5A059] font-sans font-medium border-b border-[#EBE8E2] pb-6">
                 {activeCollection.tagline}{hasValue(activeCollection.shadesCount) ? ` — ${activeCollection.shadesCount}` : ""}
               </p>
             </div>
@@ -85,7 +85,7 @@ export const Products: React.FC = () => {
                       className="w-full h-full object-cover grayscale brightness-95"
                     />
                   </div>
-                  <div className="bg-[#F5F0EB]/60 p-6 flex flex-col justify-between border border-[#EBE8E2]">
+                  <div className="bg-[#F4F1EA]/60 p-6 flex flex-col justify-between border border-[#EBE8E2]">
                     <span className="text-[10px] tracking-[0.15em] uppercase text-[#6B6B6B] font-medium block">
                       Need custom boards?
                     </span>
@@ -94,7 +94,7 @@ export const Products: React.FC = () => {
                     </p>
                     <Link
                       to={`/contact?source=map&collection=${activeCollection.id}`}
-                      className="text-xs font-semibold text-[#D4AF37] hover:underline uppercase tracking-wider mt-3 inline-block"
+                      className="text-xs font-semibold text-[#C5A059] hover:underline uppercase tracking-wider mt-3 inline-block"
                     >
                       Order Samples &rarr;
                     </Link>
@@ -105,7 +105,7 @@ export const Products: React.FC = () => {
               {/* Description & Technical Specifications */}
               <div className="lg:col-span-6 space-y-10">
                 <div>
-                  <h3 className="text-xs uppercase tracking-[0.2em] font-sans font-medium text-[#1A1A1A] mb-4">
+                  <h3 className="text-xs uppercase tracking-[0.2em] font-sans font-medium text-[#121212] mb-4">
                     Overview
                   </h3>
                   <p className="text-sm text-[#6B6B6B] font-light leading-relaxed">
@@ -127,8 +127,8 @@ export const Products: React.FC = () => {
                   if (rows.length === 0) return null;
                   return (
                     <div className="border-t border-[#EBE8E2] pt-8">
-                      <h3 className="text-xs uppercase tracking-[0.2em] font-sans font-medium text-[#1A1A1A] mb-6 flex items-center space-x-2">
-                        <Settings size={14} className="text-[#D4AF37]" />
+                      <h3 className="text-xs uppercase tracking-[0.2em] font-sans font-medium text-[#121212] mb-6 flex items-center space-x-2">
+                        <Settings size={14} className="text-[#C5A059]" />
                         <span>Technical Specification</span>
                       </h3>
                       <div className="space-y-4 text-xs">
@@ -138,7 +138,7 @@ export const Products: React.FC = () => {
                             className={`grid grid-cols-3 pb-3.5 ${i < rows.length - 1 ? "border-b border-[#EBE8E2]" : ""}`}
                           >
                             <span className="text-[#6B6B6B] font-light">{row.label}</span>
-                            <span className="col-span-2 text-[#1A1A1A] font-medium pl-4 leading-relaxed">
+                            <span className="col-span-2 text-[#121212] font-medium pl-4 leading-relaxed">
                               {row.value}
                             </span>
                           </div>
@@ -154,13 +154,13 @@ export const Products: React.FC = () => {
                       The price field is already typed on Collection; label/action swap only. */}
                   <Link
                     to={`/contact?source=map&collection=${activeCollection.id}`}
-                    className="flex-1 bg-[#1A1A1A] text-white text-center py-4 text-xs uppercase tracking-[0.25em] font-sans font-medium hover:bg-[#D4AF37] transition-all duration-300"
+                    className="flex-1 bg-[#121212] text-white text-center py-4 text-xs uppercase tracking-[0.25em] font-sans font-medium hover:bg-[#C5A059] transition-all duration-300"
                   >
                     Request Quote for {activeCollection.name}
                   </Link>
                   <Link
                     to="/map/colors"
-                    className="flex-1 border border-[#1A1A1A] text-[#1A1A1A] text-center py-4 text-xs uppercase tracking-[0.25em] font-sans font-medium hover:bg-[#1A1A1A] hover:text-white transition-all duration-300"
+                    className="flex-1 border border-[#121212] text-[#121212] text-center py-4 text-xs uppercase tracking-[0.25em] font-sans font-medium hover:bg-[#121212] hover:text-white transition-all duration-300"
                   >
                     View Color Swatches
                   </Link>
@@ -172,7 +172,7 @@ export const Products: React.FC = () => {
             <div className="border-t border-[#EBE8E2] pt-16">
               <div className="mb-10 flex items-center justify-between">
                 <div>
-                  <h3 className="text-xl font-serif font-light text-[#1A1A1A]">
+                  <h3 className="text-xl font-serif font-light text-[#121212]">
                     Shade Library Preview
                   </h3>
                   <p className="text-xs text-[#6B6B6B] mt-1 font-light">
@@ -181,7 +181,7 @@ export const Products: React.FC = () => {
                 </div>
                 <Link
                   to="/map/colors"
-                  className="text-xs uppercase tracking-[0.15em] font-sans text-[#D4AF37] hover:underline font-medium"
+                  className="text-xs uppercase tracking-[0.15em] font-sans text-[#C5A059] hover:underline font-medium"
                 >
                   View Full Library &rarr;
                 </Link>
@@ -199,10 +199,10 @@ export const Products: React.FC = () => {
                       style={{ backgroundColor: shade.hex }}
                     />
                     <div>
-                      <span className="text-[10px] uppercase tracking-wider font-mono text-[#D4AF37] block">
+                      <span className="text-[10px] uppercase tracking-wider font-mono text-[#C5A059] block">
                         {shade.code}
                       </span>
-                      <span className="text-xs text-[#1A1A1A] font-medium block truncate mt-0.5">
+                      <span className="text-xs text-[#121212] font-medium block truncate mt-0.5">
                         {shade.name}
                       </span>
                     </div>
@@ -218,11 +218,11 @@ export const Products: React.FC = () => {
           <div className="reveal-on-scroll">
             {/* Header Text */}
             <div className="max-w-3xl mb-16">
-              <span className="text-[10px] tracking-[0.3em] uppercase text-[#D4AF37] font-sans font-semibold block mb-4">
+              <span className="text-[10px] tracking-[0.3em] uppercase text-[#C5A059] font-sans font-semibold block mb-4">
                 Architectural Plasters
               </span>
-              <h1 className="text-4xl md:text-6xl font-serif font-light text-[#1A1A1A] mb-6 leading-tight">
-                The MAP <span className="italic font-normal text-[#D4AF37]">Collections</span>
+              <h1 className="text-4xl md:text-6xl font-serif font-light text-[#121212] mb-6 leading-tight">
+                The MAP <span className="italic font-normal text-[#C5A059]">Collections</span>
               </h1>
               <p className="text-sm md:text-base text-[#6B6B6B] font-light leading-relaxed">
                 Explore our official architectural coating systems — premium interiors, facade treatments, concrete installations, and luxury metallic reflections.
@@ -234,7 +234,7 @@ export const Products: React.FC = () => {
               {collectionsData.map((col) => (
                 <div
                   key={col.id}
-                  className="bg-white border border-[#EBE8E2] hover:border-[#D4AF37]/60 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between group"
+                  className="bg-white border border-[#EBE8E2] hover:border-[#C5A059]/60 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between group"
                 >
                   <div>
                     {/* Collection Image */}
@@ -244,17 +244,17 @@ export const Products: React.FC = () => {
                         alt={col.name}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                       />
-                      <div className="absolute bottom-3 right-3 bg-[#1A1A1A]/95 text-white text-[9px] tracking-widest uppercase font-sans px-3 py-1 font-light">
+                      <div className="absolute bottom-3 right-3 bg-[#121212]/95 text-white text-[9px] tracking-widest uppercase font-sans px-3 py-1 font-light">
                         {col.shadesCount}
                       </div>
                     </div>
 
                     {/* Collection Info */}
                     <div className="p-8">
-                      <span className="text-[9px] tracking-[0.25em] uppercase text-[#D4AF37] font-sans font-semibold mb-2 block">
+                      <span className="text-[9px] tracking-[0.25em] uppercase text-[#C5A059] font-sans font-semibold mb-2 block">
                         {col.tagline}
                       </span>
-                      <h3 className="text-2xl font-serif font-light text-[#1A1A1A] mb-3 group-hover:text-[#D4AF37] transition-colors duration-300">
+                      <h3 className="text-2xl font-serif font-light text-[#121212] mb-3 group-hover:text-[#C5A059] transition-colors duration-300">
                         {col.name}
                       </h3>
                       <p className="text-xs text-[#6B6B6B] font-light leading-relaxed">
@@ -264,13 +264,13 @@ export const Products: React.FC = () => {
                   </div>
 
                   {/* Actions */}
-                  <div className="px-8 pb-8 pt-0 flex items-center justify-between border-t border-[#FAFAF7] mt-2">
+                  <div className="px-8 pb-8 pt-0 flex items-center justify-between border-t border-[#F4F1EA] mt-2">
                     <span className="text-[10px] font-mono text-[#6B6B6B] tracking-wider">
                       {col.shadePrefix}
                     </span>
                     <button
                       onClick={() => selectCollection(col.id)}
-                      className="inline-flex items-center space-x-1.5 text-xs uppercase tracking-[0.2em] font-sans font-medium text-[#1A1A1A] hover:text-[#D4AF37] transition-colors group/btn cursor-pointer"
+                      className="inline-flex items-center space-x-1.5 text-xs uppercase tracking-[0.2em] font-sans font-medium text-[#121212] hover:text-[#C5A059] transition-colors group/btn cursor-pointer"
                     >
                       <span>Details</span>
                       <ArrowRight size={12} className="group-hover/btn:translate-x-1 transition-transform" />

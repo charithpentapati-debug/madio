@@ -9,7 +9,7 @@ import {
 import type { FurnitureProduct } from "../data/furniture";
 import { usePageMeta } from "../hooks/usePageMeta";
 
-const FURNITURE_ACCENT = "#D4AF37";
+const FURNITURE_ACCENT = "#C5A059";
 
 // Product card for the listing grid
 const ProductCard: React.FC<{ product: FurnitureProduct; categoryId: string }> = ({
@@ -20,7 +20,7 @@ const ProductCard: React.FC<{ product: FurnitureProduct; categoryId: string }> =
   return (
   <Link
     to={`/furniture/${categoryId}/${product.id}`}
-    className="group flex flex-col overflow-hidden border border-[#EBE8E2] bg-white hover:border-[#D4AF37]/30 transition-all duration-400 reveal-on-scroll"
+    className="group flex flex-col overflow-hidden border border-[#EBE8E2] bg-white hover:border-[#C5A059]/30 transition-all duration-400 reveal-on-scroll"
   >
     {/* Image — real photo when available, placeholder otherwise */}
     <div
@@ -41,7 +41,7 @@ const ProductCard: React.FC<{ product: FurnitureProduct; categoryId: string }> =
             className="absolute inset-0 opacity-[0.05]"
             style={{
               backgroundImage:
-                "repeating-linear-gradient(45deg, #D4AF37 0, #D4AF37 1px, transparent 0, transparent 50%)",
+                "repeating-linear-gradient(45deg, #C5A059 0, #C5A059 1px, transparent 0, transparent 50%)",
               backgroundSize: "18px 18px",
             }}
           />
@@ -50,7 +50,7 @@ const ProductCard: React.FC<{ product: FurnitureProduct; categoryId: string }> =
           </span>
         </>
       )}
-      <div className="absolute inset-0 bg-[#D4AF37]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
+      <div className="absolute inset-0 bg-[#C5A059]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
     </div>
 
     {/* Card body */}
@@ -63,7 +63,7 @@ const ProductCard: React.FC<{ product: FurnitureProduct; categoryId: string }> =
           {product.subcategory}
         </span>
       )}
-      <p className="text-sm font-serif font-light text-[#16232B] group-hover:text-[#D4AF37] transition-colors duration-300 mb-auto">
+      <p className="text-sm font-serif font-light text-[#121212] group-hover:text-[#C5A059] transition-colors duration-300 mb-auto">
         {product.name}
       </p>
       <div className="flex items-center justify-between mt-3 pt-3 border-t border-[#EBE8E2]">
@@ -72,7 +72,7 @@ const ProductCard: React.FC<{ product: FurnitureProduct; categoryId: string }> =
         </span>
         <ArrowRight
           size={11}
-          className="text-[#D4AF37] group-hover:translate-x-0.5 transition-transform duration-300"
+          className="text-[#C5A059] group-hover:translate-x-0.5 transition-transform duration-300"
         />
       </div>
     </div>
@@ -87,7 +87,7 @@ const ComingSoonState: React.FC<{ name: string }> = ({ name }) => (
       className="w-8 h-[2px] mx-auto mb-8"
       style={{ backgroundColor: FURNITURE_ACCENT }}
     />
-    <h2 className="text-3xl font-serif font-light text-[#16232B] mb-4">
+    <h2 className="text-3xl font-serif font-light text-[#121212] mb-4">
       {name}
     </h2>
     <p className="text-sm text-[#6B6B6B] font-light max-w-xs mx-auto mb-10 leading-relaxed">
@@ -112,8 +112,8 @@ export const FurnitureCategoryPage: React.FC = () => {
       : undefined;
 
   usePageMeta(
-    previewMeta ? `${previewMeta.name} | MADIO Furniture` : "MADIO Furniture",
-    previewMeta?.description ?? "MADIO Furniture — design-led furniture for residential and hospitality interiors."
+    previewMeta ? `${previewMeta.name} | Madio Furniture` : "Madio Furniture",
+    previewMeta?.description ?? "Madio Furniture — design-led furniture for residential and hospitality interiors."
   );
 
   // Unknown slug → redirect to landing
@@ -155,22 +155,22 @@ export const FurnitureCategoryPage: React.FC = () => {
     : "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4";
 
   return (
-    <div className="bg-[#FAFAF7]">
+    <div className="bg-[#F4F1EA]">
 
       {/* ── Header banner ── */}
-      <section className="relative bg-[#F5F0EB] pt-32 pb-14 px-6 md:px-12 overflow-hidden">
+      <section className="relative bg-[#F4F1EA] pt-32 pb-14 px-6 md:px-12 overflow-hidden">
         <div
           className="absolute inset-0 opacity-[0.04]"
           style={{
             backgroundImage:
-              "repeating-linear-gradient(-45deg, #D4AF37 0, #D4AF37 1px, transparent 0, transparent 50%)",
+              "repeating-linear-gradient(-45deg, #C5A059 0, #C5A059 1px, transparent 0, transparent 50%)",
             backgroundSize: "20px 20px",
           }}
         />
         <div className="relative z-10 max-w-7xl mx-auto">
           <Link
             to="/"
-            className="inline-flex items-center space-x-2 text-xs uppercase tracking-[0.2em] font-sans text-[#6B6B6B] hover:text-[#16232B] transition-colors mb-10"
+            className="inline-flex items-center space-x-2 text-xs uppercase tracking-[0.2em] font-sans text-[#6B6B6B] hover:text-[#121212] transition-colors mb-10"
           >
             <ArrowLeft size={13} />
             <span>All Furniture</span>
@@ -182,9 +182,9 @@ export const FurnitureCategoryPage: React.FC = () => {
                 className="text-[10px] tracking-[0.3em] uppercase font-sans font-medium block mb-3"
                 style={{ color: FURNITURE_ACCENT }}
               >
-                MADIO Furniture
+                Madio Furniture
               </span>
-              <h1 className="text-4xl md:text-6xl font-serif font-light text-[#16232B] leading-tight">
+              <h1 className="text-4xl md:text-6xl font-serif font-light text-[#121212] leading-tight">
                 {meta?.name}
               </h1>
             </div>
@@ -212,7 +212,7 @@ export const FurnitureCategoryPage: React.FC = () => {
         ) : (
           <>
             {/* Catalogue note — explains placeholder state honestly */}
-            <div className="bg-[#F5F0EB] border border-[#EBE8E2] px-6 py-4 mb-10 flex items-start space-x-3">
+            <div className="bg-[#F4F1EA] border border-[#EBE8E2] px-6 py-4 mb-10 flex items-start space-x-3">
               <div
                 className="w-[2px] h-10 shrink-0 mt-0.5"
                 style={{ backgroundColor: FURNITURE_ACCENT }}
@@ -243,7 +243,7 @@ export const FurnitureCategoryPage: React.FC = () => {
               </Link>
               <Link
                 to="/"
-                className="inline-flex items-center space-x-2 px-8 py-4 text-xs uppercase tracking-[0.25em] font-sans font-medium border border-[#EBE8E2] text-[#6B6B6B] hover:border-[#16232B] hover:text-[#16232B] transition-all duration-300"
+                className="inline-flex items-center space-x-2 px-8 py-4 text-xs uppercase tracking-[0.25em] font-sans font-medium border border-[#EBE8E2] text-[#6B6B6B] hover:border-[#121212] hover:text-[#121212] transition-all duration-300"
               >
                 <ArrowLeft size={13} />
                 <span>All Categories</span>
