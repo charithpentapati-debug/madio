@@ -7,7 +7,7 @@ export const MapFooter: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#2C2C2C] text-[#FAFAF7] pt-20 pb-8 border-t border-[#3D3D3D]">
+    <footer className="bg-[#121212] text-[#F4F1EA] pt-20 pb-8 border-t border-[#2A2A2A]">
       <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
         {/* Brand Column */}
         <div className="flex flex-col space-y-6">
@@ -23,7 +23,7 @@ export const MapFooter: React.FC = () => {
 
         {/* Collections Quick Links */}
         <div>
-          <h4 className="text-xs uppercase tracking-[0.2em] font-sans font-medium text-[#D4AF37] mb-6">
+          <h4 className="text-xs uppercase tracking-[0.2em] font-sans font-medium text-[#C5A059] mb-6">
             Key Collections
           </h4>
           <ul className="space-y-3 text-xs text-[#C4B9A8] font-light">
@@ -37,27 +37,27 @@ export const MapFooter: React.FC = () => {
 
         {/* Contact Information */}
         <div className="space-y-4">
-          <h4 className="text-xs uppercase tracking-[0.2em] font-sans font-medium text-[#D4AF37] mb-6">
+          <h4 className="text-xs uppercase tracking-[0.2em] font-sans font-medium text-[#C5A059] mb-6">
             Hyderabad HQ
           </h4>
           <ul className="space-y-3.5 text-xs text-[#C4B9A8] font-light">
             <li className="flex items-start space-x-3">
-              <MapPin size={16} className="text-[#D4AF37] shrink-0 mt-0.5" />
+              <MapPin size={16} className="text-[#C5A059] shrink-0 mt-0.5" />
               <span className="leading-relaxed">1st Floor, Road No.1, Plot No.25, Shilpa Hills, Kondapur, Hyderabad, Telangana 500084</span>
             </li>
             <li className="flex items-center space-x-3">
-              <Phone size={14} className="text-[#D4AF37] shrink-0" />
+              <Phone size={14} className="text-[#C5A059] shrink-0" />
               <div className="flex flex-col">
                 <a href="tel:+919948601899" className="hover:text-white transition-colors">+91 99486 01899</a>
-                <a href="tel:+919948601599" className="hover:text-white transition-colors">+91 99486 01599</a>
+                <a href="tel:+919948601799" className="hover:text-white transition-colors">+91 99486 01799</a>
               </div>
             </li>
             <li className="flex items-center space-x-3">
-              <Mail size={14} className="text-[#D4AF37] shrink-0" />
+              <Mail size={14} className="text-[#C5A059] shrink-0" />
               <a href="mailto:info@madio.in" className="hover:text-white transition-colors">info@madio.in</a>
             </li>
             <li className="flex items-center space-x-3">
-              <Globe size={14} className="text-[#D4AF37] shrink-0" />
+              <Globe size={14} className="text-[#C5A059] shrink-0" />
               <a href="http://www.madio.in" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">www.madio.in</a>
             </li>
           </ul>
@@ -65,7 +65,7 @@ export const MapFooter: React.FC = () => {
 
         {/* Newsletter */}
         <div className="space-y-6">
-          <h4 className="text-xs uppercase tracking-[0.2em] font-sans font-medium text-[#D4AF37]">
+          <h4 className="text-xs uppercase tracking-[0.2em] font-sans font-medium text-[#C5A059]">
             Architectural Updates
           </h4>
           <p className="text-xs text-[#C4B9A8] font-light leading-relaxed">
@@ -73,10 +73,10 @@ export const MapFooter: React.FC = () => {
           </p>
           <form
             onSubmit={(e) => { e.preventDefault(); alert("Thank you for subscribing. We will send updates to your inbox."); }}
-            className="flex border-b border-[#3D3D3D] focus-within:border-[#D4AF37] transition-colors duration-300 pb-2"
+            className="flex border-b border-[#2A2A2A] focus-within:border-[#C5A059] transition-colors duration-300 pb-2"
           >
             <input type="email" placeholder="Email address" required className="bg-transparent border-none text-xs text-white placeholder-[#6B6B6B] focus:ring-0 w-full focus:outline-none pr-3" />
-            <button type="submit" className="text-[#D4AF37] hover:text-white transition-colors" aria-label="Subscribe">
+            <button type="submit" className="text-[#C5A059] hover:text-white transition-colors" aria-label="Subscribe">
               <ArrowRight size={16} />
             </button>
           </form>
@@ -84,14 +84,14 @@ export const MapFooter: React.FC = () => {
       </div>
 
       {/* Footer Bottom */}
-      <div className="max-w-7xl mx-auto px-6 md:px-12 pt-8 border-t border-[#3D3D3D] flex flex-col md:flex-row items-center justify-between text-[11px] text-[#6B6B6B] font-light">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 pt-8 border-t border-[#2A2A2A] flex flex-col md:flex-row items-center justify-between text-[11px] text-[#6B6B6B] font-light">
         <div className="mb-4 md:mb-0">
           &copy; {currentYear} MAP (Premium Architectural Plasters). All rights reserved.
         </div>
         <div className="flex space-x-6">
           <span>Pan-India Supply</span>
           <span>HQ: Hyderabad</span>
-          <a href="https://wa.me/919948601899" target="_blank" rel="noopener noreferrer" className="text-[#D4AF37] hover:underline">WhatsApp Support</a>
+          <a href="https://wa.me/919948601899" target="_blank" rel="noopener noreferrer" className="text-[#C5A059] hover:underline">WhatsApp Support</a>
         </div>
       </div>
     </footer>

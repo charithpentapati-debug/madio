@@ -11,17 +11,17 @@ export const About: React.FC = () => {
   );
 
   return (
-    <div className="texture-overlay min-h-screen pt-36 pb-24 bg-[#FAFAF7]">
+    <div className="texture-overlay min-h-screen pt-36 pb-24 bg-[#F4F1EA]">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         
         {/* Header Title */}
         <div className="max-w-3xl mb-20 reveal-on-scroll">
-          <span className="text-[10px] tracking-[0.3em] uppercase text-[#D4AF37] font-sans font-semibold block mb-4">
+          <span className="text-[10px] tracking-[0.3em] uppercase text-[#C5A059] font-sans font-semibold block mb-4">
             Our Identity
           </span>
-          <h1 className="text-4xl md:text-6xl font-serif font-light text-[#1A1A1A] leading-tight mb-8">
+          <h1 className="text-4xl md:text-6xl font-serif font-light text-[#121212] leading-tight mb-8">
             Moving Beyond Coatings <br />
-            To Create <span className="italic font-normal text-[#D4AF37]">Architectural Surfaces</span>.
+            To Create <span className="italic font-normal text-[#C5A059]">Architectural Surfaces</span>.
           </h1>
           <p className="text-base md:text-lg text-[#6B6B6B] font-light leading-relaxed">
             MAP (Premium Architectural Plasters) is an elite decorative surfaces brand. We do not sell paint buckets. We curate and supply high-performance plaster systems, microcements, and mineral washes designed to serve as organic extensions of architectural structures.
@@ -38,9 +38,9 @@ export const About: React.FC = () => {
             />
           </div>
           <div className="lg:col-span-5 space-y-6 reveal-on-scroll" style={{ transitionDelay: "0.2s" }}>
-            <h2 className="text-2xl md:text-3xl font-serif font-light text-[#1A1A1A]">
+            <h2 className="text-2xl md:text-3xl font-serif font-light text-[#121212]">
               Crafted in Hyderabad, <br />
-              Spec'd <span className="italic font-normal text-[#D4AF37]">Pan-India</span>.
+              Spec'd <span className="italic font-normal text-[#C5A059]">Pan-India</span>.
             </h2>
             <p className="text-sm text-[#6B6B6B] font-light leading-relaxed">
               Based in Hyderabad, MAP collaborates closely with leading architects and expert application partners to select, specify, and refine high-end decorative surfaces.
@@ -48,8 +48,8 @@ export const About: React.FC = () => {
             <p className="text-sm text-[#6B6B6B] font-light leading-relaxed">
               We supply our comprehensive systems nationwide, supporting luxury residential builds, commercial lobbies, and boutique hotels in Mumbai, Bangalore, Delhi, Chennai, and beyond.
             </p>
-            <div className="pt-4 border-t border-[#EBE8E2] flex items-center space-x-3 text-[#1A1A1A]">
-              <MapPin size={18} className="text-[#D4AF37]" />
+            <div className="pt-4 border-t border-[#EBE8E2] flex items-center space-x-3 text-[#121212]">
+              <MapPin size={18} className="text-[#C5A059]" />
               <span className="text-xs uppercase tracking-widest font-sans font-medium">
                 HQ: Shilpa Hills, Kondapur, Hyderabad
               </span>
@@ -60,21 +60,21 @@ export const About: React.FC = () => {
         {/* The Pillars / Strengths */}
         <div className="mb-28">
           <div className="text-center max-w-2xl mx-auto mb-16 reveal-on-scroll">
-            <span className="text-[10px] tracking-[0.25em] uppercase text-[#D4AF37] font-sans font-medium block mb-3">
+            <span className="text-[10px] tracking-[0.25em] uppercase text-[#C5A059] font-sans font-medium block mb-3">
               Standard of Excellence
             </span>
-            <h2 className="text-3xl md:text-4xl font-serif font-light text-[#1A1A1A]">
+            <h2 className="text-3xl md:text-4xl font-serif font-light text-[#121212]">
               The Core Pillars of MAP
             </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             {/* Pillar 1 */}
-            <div className="bg-[#F5F0EB]/60 p-10 border border-[#EBE8E2] reveal-on-scroll flex flex-col items-start space-y-6">
+            <div className="bg-[#F4F1EA]/60 p-10 border border-[#EBE8E2] reveal-on-scroll flex flex-col items-start space-y-6">
               <div className="p-3 bg-white border border-[#EBE8E2]">
-                <Shield size={20} className="text-[#D4AF37]" />
+                <Shield size={20} className="text-[#C5A059]" />
               </div>
-              <h3 className="text-xl font-serif font-light text-[#1A1A1A]">
+              <h3 className="text-xl font-serif font-light text-[#121212]">
                 Earthy Durability
               </h3>
               <p className="text-xs text-[#6B6B6B] font-light leading-relaxed">
@@ -83,11 +83,11 @@ export const About: React.FC = () => {
             </div>
 
             {/* Pillar 2 */}
-            <div className="bg-[#F5F0EB]/60 p-10 border border-[#EBE8E2] reveal-on-scroll flex flex-col items-start space-y-6" style={{ transitionDelay: "0.15s" }}>
+            <div className="bg-[#F4F1EA]/60 p-10 border border-[#EBE8E2] reveal-on-scroll flex flex-col items-start space-y-6" style={{ transitionDelay: "0.15s" }}>
               <div className="p-3 bg-white border border-[#EBE8E2]">
-                <Sparkles size={20} className="text-[#D4AF37]" />
+                <Sparkles size={20} className="text-[#C5A059]" />
               </div>
-              <h3 className="text-xl font-serif font-light text-[#1A1A1A]">
+              <h3 className="text-xl font-serif font-light text-[#121212]">
                 Bespoke Textures
               </h3>
               <p className="text-xs text-[#6B6B6B] font-light leading-relaxed">
@@ -96,11 +96,11 @@ export const About: React.FC = () => {
             </div>
 
             {/* Pillar 3 */}
-            <div className="bg-[#F5F0EB]/60 p-10 border border-[#EBE8E2] reveal-on-scroll flex flex-col items-start space-y-6" style={{ transitionDelay: "0.3s" }}>
+            <div className="bg-[#F4F1EA]/60 p-10 border border-[#EBE8E2] reveal-on-scroll flex flex-col items-start space-y-6" style={{ transitionDelay: "0.3s" }}>
               <div className="p-3 bg-white border border-[#EBE8E2]">
-                <Compass size={20} className="text-[#D4AF37]" />
+                <Compass size={20} className="text-[#C5A059]" />
               </div>
-              <h3 className="text-xl font-serif font-light text-[#1A1A1A]">
+              <h3 className="text-xl font-serif font-light text-[#121212]">
                 Architect-Centric Support
               </h3>
               <p className="text-xs text-[#6B6B6B] font-light leading-relaxed">
@@ -115,7 +115,7 @@ export const About: React.FC = () => {
           <span className="text-xs uppercase tracking-[0.2em] text-[#6B6B6B] block mb-4">Ready to specify MAP?</span>
           <Link
             to="/contact?source=map"
-            className="inline-block px-12 py-4 bg-[#D4AF37] text-white text-xs uppercase tracking-[0.25em] font-sans font-medium hover:bg-[#1A1A1A] transition-colors duration-300"
+            className="inline-block px-12 py-4 bg-[#C5A059] text-white text-xs uppercase tracking-[0.25em] font-sans font-medium hover:bg-[#121212] transition-colors duration-300"
           >
             Request Architectural Samples
           </Link>

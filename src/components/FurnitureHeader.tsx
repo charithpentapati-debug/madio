@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import madioLogo from "../assets/madio-logo.png";
 
-const FURNITURE_ACCENT = "#D4AF37";
+const FURNITURE_ACCENT = "#C5A059";
 
 export const FurnitureHeader: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -21,8 +21,8 @@ export const FurnitureHeader: React.FC = () => {
 
   // Light glass header, consistent with the site-wide light theme.
   const scrolledBg = isScrolled
-    ? "bg-[#0A0A0A]/95 backdrop-blur-md border-b border-white/10 shadow-sm"
-    : "bg-[#0A0A0A]/70 backdrop-blur-sm";
+    ? "bg-[#121212]/95 backdrop-blur-md border-b border-white/10 shadow-sm"
+    : "bg-[#121212]/70 backdrop-blur-sm";
 
   return (
     <>
@@ -35,7 +35,7 @@ export const FurnitureHeader: React.FC = () => {
           <Link to="/" className="flex flex-col leading-none group">
             <img
               src={madioLogo}
-              alt="MADIO Furniture"
+              alt="Madio Furniture"
               className="h-4 w-auto transition-opacity duration-300 group-hover:opacity-80"
               style={{ filter: "brightness(0) invert(1)" }}
             />
@@ -68,11 +68,11 @@ export const FurnitureHeader: React.FC = () => {
                 Switch Vertical
               </span>
               <div className="absolute top-full right-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                <div className="bg-[#FAFAF7] border border-[#EBE8E2] shadow-lg py-2 min-w-[200px] text-left">
-                  <Link to="/map" className="block px-5 py-2.5 text-[11px] font-sans tracking-[0.1em] uppercase font-light text-[#1A1A1A] hover:text-[#D4AF37] hover:bg-[#F5F0EB]">
+                <div className="bg-[#F4F1EA] border border-[#EBE8E2] shadow-lg py-2 min-w-[200px] text-left">
+                  <Link to="/map" className="block px-5 py-2.5 text-[11px] font-sans tracking-[0.1em] uppercase font-light text-[#121212] hover:text-[#C5A059] hover:bg-[#F4F1EA]">
                     MAP Finishes
                   </Link>
-                  <Link to="/doors-windows" className="block px-5 py-2.5 text-[11px] font-sans tracking-[0.1em] uppercase font-light text-[#1A1A1A] hover:text-[#D4AF37] hover:bg-[#F5F0EB]">
+                  <Link to="/doors-windows" className="block px-5 py-2.5 text-[11px] font-sans tracking-[0.1em] uppercase font-light text-[#121212] hover:text-[#C5A059] hover:bg-[#F4F1EA]">
                     Doors &amp; Windows
                   </Link>
                 </div>
@@ -94,10 +94,10 @@ export const FurnitureHeader: React.FC = () => {
 
       {/* Mobile drawer */}
       {menuOpen && (
-        <div className="fixed inset-0 z-40 bg-[#0A0A0A]/98 backdrop-blur-md flex flex-col justify-between pt-24 px-10 pb-12">
+        <div className="fixed inset-0 z-40 bg-[#121212]/98 backdrop-blur-md flex flex-col justify-between pt-24 px-10 pb-12">
           <div className="flex flex-col space-y-6 overflow-y-auto max-h-[75vh]">
             <span className="text-[9px] uppercase tracking-[0.3em] font-sans font-medium" style={{ color: FURNITURE_ACCENT }}>
-              MADIO Furniture
+              Madio Furniture
             </span>
             {[
               { to: "/",           label: "All Furniture" },
@@ -106,25 +106,25 @@ export const FurnitureHeader: React.FC = () => {
               <Link
                 key={to}
                 to={to}
-                className="text-2xl font-serif font-light text-white/85 hover:text-[#D4AF37] transition-colors duration-300"
+                className="text-2xl font-serif font-light text-white/85 hover:text-[#C5A059] transition-colors duration-300"
               >
                 {label}
               </Link>
             ))}
             
             <div className="pt-4 border-t border-white/10 flex flex-col space-y-3">
-              <span className="text-[9px] uppercase tracking-[0.25em] text-[#D4AF37] font-sans font-semibold">
+              <span className="text-[9px] uppercase tracking-[0.25em] text-[#C5A059] font-sans font-semibold">
                 Other Verticals
               </span>
               <Link
                 to="/map"
-                className="text-lg font-serif font-light text-white/75 hover:text-[#D4AF37] transition-colors"
+                className="text-lg font-serif font-light text-white/75 hover:text-[#C5A059] transition-colors"
               >
                 MAP Finishes
               </Link>
               <Link
                 to="/doors-windows"
-                className="text-lg font-serif font-light text-white/75 hover:text-[#D4AF37] transition-colors"
+                className="text-lg font-serif font-light text-white/75 hover:text-[#C5A059] transition-colors"
               >
                 Doors &amp; Windows
               </Link>

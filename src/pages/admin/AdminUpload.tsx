@@ -445,12 +445,12 @@ export const AdminUpload: React.FC = () => {
 
   if (!session) {
     return (
-      <div className="min-h-screen bg-[#FAFAF7] flex items-center justify-center px-6">
+      <div className="min-h-screen bg-[#F4F1EA] flex items-center justify-center px-6">
         <form
           onSubmit={handleLogin}
           className="w-full max-w-sm bg-white border border-[#EBE8E2] p-10 shadow-sm"
         >
-          <h1 className="text-xl font-serif font-light text-[#16232B] mb-2">Admin Upload</h1>
+          <h1 className="text-xl font-serif font-light text-[#121212] mb-2">Admin Upload</h1>
           <p className="text-xs text-[#6B6B6B] font-light mb-8">
             Enter the password to upload new photos.
           </p>
@@ -460,7 +460,7 @@ export const AdminUpload: React.FC = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
-            className="w-full border border-[#EBE8E2] px-4 py-3 text-sm mb-4 focus:outline-none focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37] bg-[#FAFAF7] rounded-[4px]"
+            className="w-full border border-[#EBE8E2] px-4 py-3 text-sm mb-4 focus:outline-none focus:border-[#C5A059] focus:ring-1 focus:ring-[#C5A059] bg-[#F4F1EA] rounded-[4px]"
           />
           {loginError && (
             <p className="text-xs text-red-600 mb-4 bg-red-50 border border-red-200 px-3 py-2">
@@ -471,7 +471,7 @@ export const AdminUpload: React.FC = () => {
             type="submit"
             disabled={isSubmitting || password.length === 0}
             className="w-full py-3 text-xs uppercase tracking-[0.25em] font-sans font-medium text-white transition-opacity disabled:opacity-40 hover:opacity-90"
-            style={{ backgroundColor: "#D4AF37" }}
+            style={{ backgroundColor: "#C5A059" }}
           >
             {isSubmitting ? "Checking…" : "Log In"}
           </button>
@@ -481,11 +481,11 @@ export const AdminUpload: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#FAFAF7] px-6 py-16">
+    <div className="min-h-screen bg-[#F4F1EA] px-6 py-16">
       <div className="max-w-2xl mx-auto bg-white border border-[#EBE8E2] p-10 shadow-sm">
         <div className="flex items-start justify-between mb-8">
           <div>
-            <h1 className="text-xl font-serif font-light text-[#16232B] mb-1">Admin Upload</h1>
+            <h1 className="text-xl font-serif font-light text-[#121212] mb-1">Admin Upload</h1>
             <p className="text-xs text-[#6B6B6B] font-light">
               Choose a vertical and category, then upload or remove photos. Changes go live on the
               site within 1–2 minutes.
@@ -493,7 +493,7 @@ export const AdminUpload: React.FC = () => {
           </div>
           <button
             onClick={handleLogout}
-            className="text-[10px] uppercase tracking-[0.2em] font-sans text-[#6B6B6B] hover:text-[#16232B] transition-colors shrink-0 ml-4"
+            className="text-[10px] uppercase tracking-[0.2em] font-sans text-[#6B6B6B] hover:text-[#121212] transition-colors shrink-0 ml-4"
           >
             Log Out
           </button>
@@ -512,8 +512,8 @@ export const AdminUpload: React.FC = () => {
               className="px-4 py-3 text-xs uppercase tracking-[0.15em] font-sans font-medium border rounded-[4px] transition-colors"
               style={
                 vertical === v.id
-                  ? { backgroundColor: "#D4AF37", borderColor: "#D4AF37", color: "#fff" }
-                  : { backgroundColor: "#FAFAF7", borderColor: "#EBE8E2", color: "#6B6B6B" }
+                  ? { backgroundColor: "#C5A059", borderColor: "#C5A059", color: "#fff" }
+                  : { backgroundColor: "#F4F1EA", borderColor: "#EBE8E2", color: "#6B6B6B" }
               }
             >
               {v.label}
@@ -527,7 +527,7 @@ export const AdminUpload: React.FC = () => {
         <select
           value={category}
           onChange={(e) => setCategory(e.target.value)}
-          className="w-full border border-[#EBE8E2] px-4 py-3 text-sm mb-3 bg-[#FAFAF7] rounded-[4px] focus:outline-none focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37]"
+          className="w-full border border-[#EBE8E2] px-4 py-3 text-sm mb-3 bg-[#F4F1EA] rounded-[4px] focus:outline-none focus:border-[#C5A059] focus:ring-1 focus:ring-[#C5A059]"
         >
           {categoryOptions.map((cat) => (
             <option key={cat.id} value={cat.id}>
@@ -539,7 +539,7 @@ export const AdminUpload: React.FC = () => {
         {/* Always-visible confirmation of exactly where an upload will go —
             deliberately the same text style regardless of vertical, so it
             can't be mistaken for a decorative label. */}
-        <p className="text-[10px] font-mono text-[#16232B] bg-[#F5F0EB] border border-[#EBE8E2] px-3 py-2 mb-4">
+        <p className="text-[10px] font-mono text-[#121212] bg-[#F4F1EA] border border-[#EBE8E2] px-3 py-2 mb-4">
           Uploading to: {VERTICALS.find((v) => v.id === vertical)?.label} → {categoryOptions.find((c) => c.id === category)?.name}
         </p>
 
@@ -555,12 +555,12 @@ export const AdminUpload: React.FC = () => {
               setCreateCategorySuccess(null);
               setCreateCategoryError(null);
             }}
-            className="block text-[10px] uppercase tracking-[0.2em] font-sans text-[#6B6B6B] hover:text-[#16232B] transition-colors mb-8 underline decoration-dotted underline-offset-4"
+            className="block text-[10px] uppercase tracking-[0.2em] font-sans text-[#6B6B6B] hover:text-[#121212] transition-colors mb-8 underline decoration-dotted underline-offset-4"
           >
             + Create a new {VERTICALS.find((v) => v.id === vertical)?.label} category
           </button>
         ) : (
-          <div className="border border-dashed border-[#EBE8E2] p-5 mb-8 bg-[#FAFAF7]">
+          <div className="border border-dashed border-[#EBE8E2] p-5 mb-8 bg-[#F4F1EA]">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-[10px] uppercase tracking-[0.2em] font-sans font-medium text-[#6B6B6B]">
                 New {VERTICALS.find((v) => v.id === vertical)?.label} category
@@ -572,7 +572,7 @@ export const AdminUpload: React.FC = () => {
                   resetCreateCategoryForm();
                   setCreateCategoryError(null);
                 }}
-                className="text-[10px] uppercase tracking-[0.2em] font-sans text-[#6B6B6B] hover:text-[#16232B] transition-colors"
+                className="text-[10px] uppercase tracking-[0.2em] font-sans text-[#6B6B6B] hover:text-[#121212] transition-colors"
               >
                 Cancel
               </button>
@@ -588,7 +588,7 @@ export const AdminUpload: React.FC = () => {
                   value={newCategoryName}
                   onChange={(e) => handleNewCategoryNameChange(e.target.value)}
                   placeholder="e.g. Accent Chairs"
-                  className="w-full border border-[#EBE8E2] px-3 py-2 text-sm bg-white rounded-[4px] focus:outline-none focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37]"
+                  className="w-full border border-[#EBE8E2] px-3 py-2 text-sm bg-white rounded-[4px] focus:outline-none focus:border-[#C5A059] focus:ring-1 focus:ring-[#C5A059]"
                 />
               </div>
               <div>
@@ -603,7 +603,7 @@ export const AdminUpload: React.FC = () => {
                     setNewCategorySlug(e.target.value);
                   }}
                   placeholder="e.g. accent-chairs"
-                  className="w-full border border-[#EBE8E2] px-3 py-2 text-sm font-mono bg-white rounded-[4px] focus:outline-none focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37]"
+                  className="w-full border border-[#EBE8E2] px-3 py-2 text-sm font-mono bg-white rounded-[4px] focus:outline-none focus:border-[#C5A059] focus:ring-1 focus:ring-[#C5A059]"
                 />
               </div>
               <div>
@@ -618,7 +618,7 @@ export const AdminUpload: React.FC = () => {
                     setNewCategoryPrefix(e.target.value.toUpperCase());
                   }}
                   placeholder="e.g. MFAC"
-                  className="w-full border border-[#EBE8E2] px-3 py-2 text-sm font-mono bg-white rounded-[4px] focus:outline-none focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37]"
+                  className="w-full border border-[#EBE8E2] px-3 py-2 text-sm font-mono bg-white rounded-[4px] focus:outline-none focus:border-[#C5A059] focus:ring-1 focus:ring-[#C5A059]"
                 />
               </div>
 
@@ -632,7 +632,7 @@ export const AdminUpload: React.FC = () => {
                 type="submit"
                 disabled={creatingCategory || !newCategoryName.trim() || !newCategorySlug || !newCategoryPrefix}
                 className="w-full py-3 text-xs uppercase tracking-[0.25em] font-sans font-medium text-white transition-opacity disabled:opacity-40 hover:opacity-90"
-                style={{ backgroundColor: "#D4AF37" }}
+                style={{ backgroundColor: "#C5A059" }}
               >
                 {creatingCategory ? "Creating…" : "Create Category"}
               </button>
@@ -680,7 +680,7 @@ export const AdminUpload: React.FC = () => {
                   setShowDeleteCategoryPanel(false);
                   resetDeleteCategoryPanel();
                 }}
-                className="text-[10px] uppercase tracking-[0.2em] font-sans text-[#6B6B6B] hover:text-[#16232B] transition-colors"
+                className="text-[10px] uppercase tracking-[0.2em] font-sans text-[#6B6B6B] hover:text-[#121212] transition-colors"
               >
                 Cancel
               </button>
@@ -861,10 +861,10 @@ export const AdminUpload: React.FC = () => {
                     type="checkbox"
                     checked={selectedIds.has(photo.publicId)}
                     onChange={() => toggleSelected(photo.publicId)}
-                    className="absolute top-1.5 left-1.5 h-4 w-4 accent-[#D4AF37]"
+                    className="absolute top-1.5 left-1.5 h-4 w-4 accent-[#C5A059]"
                   />
                 </div>
-                <p className="text-[10px] font-mono text-[#16232B] truncate">
+                <p className="text-[10px] font-mono text-[#121212] truncate">
                   {photo.productCode ?? "Assigning…"}
                 </p>
                 <button

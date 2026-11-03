@@ -42,16 +42,16 @@ export const Stencils: React.FC = () => {
   const [lightbox, setLightbox] = useState<{ code: string; img: string } | null>(null);
 
   return (
-    <div className="texture-overlay min-h-screen pt-36 pb-24 bg-[#FAFAF7]">
+    <div className="texture-overlay min-h-screen pt-36 pb-24 bg-[#F4F1EA]">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
 
         {/* Header */}
         <div className="max-w-3xl mb-16 reveal-on-scroll">
-          <span className="text-[10px] tracking-[0.3em] uppercase text-[#D4AF37] font-sans font-semibold block mb-4">
+          <span className="text-[10px] tracking-[0.3em] uppercase text-[#C5A059] font-sans font-semibold block mb-4">
             Stencil Library
           </span>
-          <h1 className="text-4xl md:text-6xl font-serif font-light text-[#1A1A1A] mb-6 leading-tight">
-            ASN <span className="italic font-normal text-[#D4AF37]">Stencil Designs</span>
+          <h1 className="text-4xl md:text-6xl font-serif font-light text-[#121212] mb-6 leading-tight">
+            ASN <span className="italic font-normal text-[#C5A059]">Stencil Designs</span>
           </h1>
           <p className="text-sm md:text-base text-[#6B6B6B] font-light leading-relaxed">
             111 precision-cut stencil patterns available for use with MAP decorative surface systems. Each design is identified by its ASN code and can be specified alongside any MAP collection.
@@ -72,10 +72,10 @@ export const Stencils: React.FC = () => {
             >
               {/* Card */}
               <div
-                className="relative overflow-hidden rounded-[6px] border border-[#EBE8E2] bg-white/60 backdrop-blur-sm hover:border-[#D4AF37]/50 hover:shadow-lg"
+                className="relative overflow-hidden rounded-[6px] border border-[#EBE8E2] bg-white/60 backdrop-blur-sm hover:border-[#C5A059]/50 hover:shadow-lg"
                 style={{ transition: "border-color 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s cubic-bezier(0.16,1,0.3,1)" }}
               >
-                <div className="aspect-square overflow-hidden bg-[#F5F0EB]/40">
+                <div className="aspect-square overflow-hidden bg-[#F4F1EA]/40">
                   <img
                     src={s.img}
                     alt={s.code}
@@ -86,7 +86,7 @@ export const Stencils: React.FC = () => {
                 </div>
                 {/* Caption pill */}
                 <div className="px-2 py-1.5 text-center">
-                  <span className="text-[9px] tracking-[0.2em] uppercase font-sans font-medium text-[#D4AF37]">
+                  <span className="text-[9px] tracking-[0.2em] uppercase font-sans font-medium text-[#C5A059]">
                     {s.code}
                   </span>
                 </div>
@@ -104,17 +104,17 @@ export const Stencils: React.FC = () => {
       {/* Lightbox */}
       {lightbox && (
         <div
-          className="fixed inset-0 z-50 bg-[#0A0A0A]/95 flex items-center justify-center p-6"
+          className="fixed inset-0 z-50 bg-[#121212]/95 flex items-center justify-center p-6"
           onClick={() => setLightbox(null)}
         >
           <div
-            className="relative bg-[#FAFAF7] rounded-[8px] p-8 max-w-lg w-full flex flex-col items-center space-y-6 shadow-2xl"
+            className="relative bg-[#F4F1EA] rounded-[8px] p-8 max-w-lg w-full flex flex-col items-center space-y-6 shadow-2xl"
             onClick={(e) => e.stopPropagation()}
             style={{ backdropFilter: "blur(12px)" }}
           >
             <button
               onClick={() => setLightbox(null)}
-              className="absolute top-4 right-4 p-2 text-[#6B6B6B] hover:text-[#1A1A1A] transition-colors"
+              className="absolute top-4 right-4 p-2 text-[#6B6B6B] hover:text-[#121212] transition-colors"
               aria-label="Close"
             >
               <X size={18} />
@@ -124,7 +124,7 @@ export const Stencils: React.FC = () => {
               alt={lightbox.code}
               className="w-full max-h-[400px] object-contain"
             />
-            <span className="text-sm tracking-[0.25em] uppercase font-sans font-medium text-[#D4AF37]">
+            <span className="text-sm tracking-[0.25em] uppercase font-sans font-medium text-[#C5A059]">
               {lightbox.code}
             </span>
           </div>

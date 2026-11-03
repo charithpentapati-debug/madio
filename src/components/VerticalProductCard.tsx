@@ -65,7 +65,7 @@ export const VerticalProductCard: React.FC<VerticalProductCardProps> = ({
     primaryActionLabel ?? (primaryAction === "add-to-cart" ? "Add to Cart" : "Enquire");
 
   return (
-    <div className="bg-white border border-[#EBE8E2] hover:border-[#16232B]/30 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col group">
+    <div className="bg-white border border-[#EBE8E2] hover:border-[#121212]/30 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col group">
 
       {/* Image — if no src provided, render a branded placeholder */}
       <div className="h-64 overflow-hidden relative flex items-center justify-center" style={{ backgroundColor: image ? undefined : "#EBE8E2" }}>
@@ -82,7 +82,7 @@ export const VerticalProductCard: React.FC<VerticalProductCardProps> = ({
             <div
               className="absolute inset-0 opacity-[0.05]"
               style={{
-                backgroundImage: "repeating-linear-gradient(45deg, #D4AF37 0, #D4AF37 1px, transparent 0, transparent 50%)",
+                backgroundImage: "repeating-linear-gradient(45deg, #C5A059 0, #C5A059 1px, transparent 0, transparent 50%)",
                 backgroundSize: "20px 20px",
               }}
             />
@@ -103,7 +103,7 @@ export const VerticalProductCard: React.FC<VerticalProductCardProps> = ({
             {category}
           </span>
         )}
-        <h3 className="text-xl font-serif font-light text-[#16232B] mb-2 group-hover:text-[#D4AF37] transition-colors duration-300">
+        <h3 className="text-xl font-serif font-light text-[#121212] mb-2 group-hover:text-[#C5A059] transition-colors duration-300">
           {name}
         </h3>
         <p className="text-xs text-[#6B6B6B] font-light leading-relaxed flex-grow">
@@ -114,7 +114,7 @@ export const VerticalProductCard: React.FC<VerticalProductCardProps> = ({
         <div className="mt-6 pt-4 border-t border-[#EBE8E2] flex items-center justify-between gap-4">
           {/* Price slot — hidden until commerce is enabled */}
           {price ? (
-            <span className="text-sm font-serif text-[#16232B]">{price}</span>
+            <span className="text-sm font-serif text-[#121212]">{price}</span>
           ) : (
             <span /> /* spacer keeps CTA right-aligned */
           )}
@@ -124,7 +124,7 @@ export const VerticalProductCard: React.FC<VerticalProductCardProps> = ({
             {detailHref && (
               <Link
                 to={detailHref}
-                className="text-[10px] uppercase tracking-[0.2em] font-sans text-[#6B6B6B] hover:text-[#16232B] transition-colors whitespace-nowrap"
+                className="text-[10px] uppercase tracking-[0.2em] font-sans text-[#6B6B6B] hover:text-[#121212] transition-colors whitespace-nowrap"
               >
                 {detailLabel}
               </Link>

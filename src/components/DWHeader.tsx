@@ -31,8 +31,8 @@ export const DWHeader: React.FC = () => {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           isScrolled
-            ? "py-4 bg-[#0A0A0A]/95 backdrop-blur-md shadow-sm border-b border-white/10"
-            : "py-7 bg-[#0A0A0A]/70 backdrop-blur-sm"
+            ? "py-4 bg-[#121212]/95 backdrop-blur-md shadow-sm border-b border-white/10"
+            : "py-7 bg-[#121212]/70 backdrop-blur-sm"
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
@@ -41,7 +41,7 @@ export const DWHeader: React.FC = () => {
           <Link to="/doors-windows" className="select-none cursor-pointer shrink-0">
             <img
               src={dwLogo}
-              alt="MADIO Doors & Windows"
+              alt="Madio Doors and Windows"
               className="h-7 md:h-8 w-auto"
               style={{ filter: "brightness(0) invert(1)" }}
             />
@@ -56,9 +56,9 @@ export const DWHeader: React.FC = () => {
                 end={link.end}
                 className={({ isActive }) =>
                   "text-[11px] font-sans tracking-[0.15em] uppercase font-light transition-all duration-300 relative pb-1 whitespace-nowrap " +
-                  "after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-[1px] after:bg-[#D4AF37] after:transition-all after:duration-300 " +
+                  "after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-[1px] after:bg-[#C5A059] after:transition-all after:duration-300 " +
                   (isActive
-                    ? "text-[#D4AF37] after:w-full"
+                    ? "text-[#C5A059] after:w-full"
                     : "text-white/70 hover:text-white after:w-0 hover:after:w-full")
                 }
               >
@@ -75,11 +75,11 @@ export const DWHeader: React.FC = () => {
                 Switch Vertical
               </span>
               <div className="absolute top-full right-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                <div className="bg-[#FAFAF7] border border-[#EBE8E2] shadow-lg py-2 min-w-[200px] text-left">
-                  <Link to="/" className="block px-5 py-2.5 text-[11px] font-sans tracking-[0.1em] uppercase font-light text-[#1A1A1A] hover:text-[#D4AF37] hover:bg-[#F5F0EB]">
-                    MADIO Furniture
+                <div className="bg-[#F4F1EA] border border-[#EBE8E2] shadow-lg py-2 min-w-[200px] text-left">
+                  <Link to="/" className="block px-5 py-2.5 text-[11px] font-sans tracking-[0.1em] uppercase font-light text-[#121212] hover:text-[#C5A059] hover:bg-[#F4F1EA]">
+                    Madio Furniture
                   </Link>
-                  <Link to="/map" className="block px-5 py-2.5 text-[11px] font-sans tracking-[0.1em] uppercase font-light text-[#1A1A1A] hover:text-[#D4AF37] hover:bg-[#F5F0EB]">
+                  <Link to="/map" className="block px-5 py-2.5 text-[11px] font-sans tracking-[0.1em] uppercase font-light text-[#121212] hover:text-[#C5A059] hover:bg-[#F4F1EA]">
                     MAP Finishes
                   </Link>
                 </div>
@@ -98,7 +98,7 @@ export const DWHeader: React.FC = () => {
 
       {/* Full-screen mobile menu */}
       <div
-        className={`fixed inset-0 z-40 bg-[#0A0A0A] transition-all duration-500 md:hidden flex flex-col justify-between ${
+        className={`fixed inset-0 z-40 bg-[#121212] transition-all duration-500 md:hidden flex flex-col justify-between ${
           isMobileMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"
         }`}
       >
@@ -110,7 +110,7 @@ export const DWHeader: React.FC = () => {
               end={link.end}
               className={({ isActive }) =>
                 `text-2xl font-serif tracking-[0.06em] font-light transition-all duration-300 ${
-                  isActive ? "text-[#D4AF37] pl-4 border-l-2 border-[#D4AF37]" : "text-white/70 hover:text-white"
+                  isActive ? "text-[#C5A059] pl-4 border-l-2 border-[#C5A059]" : "text-white/70 hover:text-white"
                 }`
               }
             >
@@ -118,26 +118,26 @@ export const DWHeader: React.FC = () => {
             </NavLink>
           ))}
           <div className="pt-4 border-t border-white/10 flex flex-col space-y-3">
-            <span className="text-[9px] uppercase tracking-[0.25em] text-[#D4AF37] font-sans font-semibold">
+            <span className="text-[9px] uppercase tracking-[0.25em] text-[#C5A059] font-sans font-semibold">
               Other Verticals
             </span>
             <Link
               to="/"
-              className="text-lg font-serif font-light text-white/75 hover:text-[#D4AF37] transition-colors"
+              className="text-lg font-serif font-light text-white/75 hover:text-[#C5A059] transition-colors"
             >
-              MADIO Furniture
+              Madio Furniture
             </Link>
             <Link
               to="/map"
-              className="text-lg font-serif font-light text-white/75 hover:text-[#D4AF37] transition-colors"
+              className="text-lg font-serif font-light text-white/75 hover:text-[#C5A059] transition-colors"
             >
               MAP Finishes
             </Link>
           </div>
         </div>
         <div className="p-10 border-t border-white/10">
-          <p className="text-[10px] tracking-[0.2em] uppercase text-[#D4AF37] font-sans mb-2">
-            MADIO Doors &amp; Windows
+          <p className="text-[10px] tracking-[0.2em] uppercase text-[#C5A059] font-sans mb-2">
+            Madio Doors and Windows
           </p>
           <p className="text-xs text-white/50 font-light mt-3">Shilpa Hills, Kondapur, Hyderabad</p>
           <p className="text-xs text-white/50 font-light mt-1">info@madio.in</p>

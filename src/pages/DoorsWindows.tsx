@@ -15,7 +15,7 @@ import {
 import type { DWCategoryMeta } from "../data/doorsWindows";
 import { usePageMeta } from "../hooks/usePageMeta";
 
-const DW_ACCENT = "#D4AF37";
+const DW_ACCENT = "#C5A059";
 
 // Why MADIO D&W — reworded from the source catalogue PDF to remove
 // "manufacturer" framing and the blanket 15-Year Warranty claim.
@@ -35,7 +35,7 @@ const OliveTexture: React.FC<{ className?: string; opacity?: string }> = ({
     className={`absolute inset-0 ${className}`}
     style={{
       backgroundImage:
-        "repeating-linear-gradient(45deg, #D4AF37 0, #D4AF37 1px, transparent 0, transparent 50%)",
+        "repeating-linear-gradient(45deg, #C5A059 0, #C5A059 1px, transparent 0, transparent 50%)",
       backgroundSize: "20px 20px",
       opacity,
     }}
@@ -59,7 +59,7 @@ const CategoryCard: React.FC<{ cat: DWCategoryMeta; index: number }> = ({ cat, i
   return (
     <Link
       to={`/doors-windows/${cat.id}`}
-      className="group relative flex flex-col overflow-hidden border border-[#EBE8E2] bg-white hover:border-[#D4AF37]/30 transition-all duration-500 reveal-on-scroll"
+      className="group relative flex flex-col overflow-hidden border border-[#EBE8E2] bg-white hover:border-[#C5A059]/30 transition-all duration-500 reveal-on-scroll"
       style={{ animationDelay: `${index * 60}ms` }}
     >
       <div className="relative h-52 overflow-hidden shrink-0" style={{ backgroundColor: "#EBE8E2" }}>
@@ -73,9 +73,9 @@ const CategoryCard: React.FC<{ cat: DWCategoryMeta; index: number }> = ({ cat, i
         ) : (
           <OliveTexture />
         )}
-        <div className="absolute inset-0 bg-[#D4AF37]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        <div className="absolute inset-0 bg-[#C5A059]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
         {!isAvailable && (
-          <div className="absolute top-3 right-3 text-[8px] uppercase tracking-[0.25em] font-sans border border-[#243040] text-[#C4B9A8] px-2.5 py-1">
+          <div className="absolute top-3 right-3 text-[8px] uppercase tracking-[0.25em] font-sans border border-[#2A2A2A] text-[#C4B9A8] px-2.5 py-1">
             Coming Soon
           </div>
         )}
@@ -96,13 +96,13 @@ const CategoryCard: React.FC<{ cat: DWCategoryMeta; index: number }> = ({ cat, i
       </div>
 
       <div className="p-6 flex flex-col flex-grow">
-        <h3 className="text-lg font-serif font-light text-[#16232B] mb-2 group-hover:text-[#D4AF37] transition-colors duration-300">
+        <h3 className="text-lg font-serif font-light text-[#121212] mb-2 group-hover:text-[#C5A059] transition-colors duration-300">
           {cat.name}
         </h3>
         <p className="text-xs text-[#6B6B6B] font-light leading-relaxed flex-grow">
           {cat.description}
         </p>
-        <div className="flex items-center space-x-1.5 mt-5 text-[10px] uppercase tracking-[0.2em] font-sans font-medium text-[#D4AF37]">
+        <div className="flex items-center space-x-1.5 mt-5 text-[10px] uppercase tracking-[0.2em] font-sans font-medium text-[#C5A059]">
           <span>{isAvailable ? "Explore" : "View"}</span>
           <ArrowRight size={11} className="group-hover:translate-x-1 transition-transform duration-300" />
         </div>
@@ -116,7 +116,7 @@ const DataTable: React.FC<{ headers: string[]; rows: string[][] }> = ({ headers,
   <div className="overflow-x-auto border border-[#EBE8E2]">
     <table className="w-full text-xs">
       <thead>
-        <tr className="bg-[#16232B]">
+        <tr className="bg-[#121212]">
           {headers.map((h) => (
             <th
               key={h}
@@ -129,12 +129,12 @@ const DataTable: React.FC<{ headers: string[]; rows: string[][] }> = ({ headers,
       </thead>
       <tbody>
         {rows.map((row, i) => (
-          <tr key={i} className={i % 2 === 1 ? "bg-[#F5F0EB]/60" : "bg-white"}>
+          <tr key={i} className={i % 2 === 1 ? "bg-[#F4F1EA]/60" : "bg-white"}>
             {row.map((cell, j) => (
               <td
                 key={j}
                 className={`px-4 py-3 align-top ${
-                  j === 0 ? "font-medium text-[#16232B] whitespace-nowrap" : "text-[#6B6B6B] font-light"
+                  j === 0 ? "font-medium text-[#121212] whitespace-nowrap" : "text-[#6B6B6B] font-light"
                 }`}
               >
                 {cell}
@@ -149,34 +149,34 @@ const DataTable: React.FC<{ headers: string[]; rows: string[][] }> = ({ headers,
 
 export const DoorsWindows: React.FC = () => {
   usePageMeta(
-    "MADIO Doors & Windows | Premium Fenestration Systems for Architecture",
+    "Madio Doors and Windows | Premium Fenestration Systems for Architecture",
     "Custom-engineered architectural aluminium fenestration systems — slim sliding systems, casement doors, metal ceilings, balcony railings, and glass partitions."
   );
 
   const comparisonRows = getSystemComparison();
 
   return (
-  <div className="bg-[#FAFAF7]">
+  <div className="bg-[#F4F1EA]">
 
     {/* ================================================================
         HERO
         ================================================================ */}
-    <section className="relative h-[95vh] flex items-center justify-center bg-[#0A0A0A] overflow-hidden">
+    <section className="relative h-[95vh] flex items-center justify-center bg-[#121212] overflow-hidden">
       <div className="absolute inset-0 z-0">
         <div
           className="absolute inset-0 opacity-[0.12]"
           style={{
             backgroundImage:
-              "repeating-linear-gradient(45deg, #D4AF37 0, #D4AF37 1px, transparent 0, transparent 50%)",
+              "repeating-linear-gradient(45deg, #C5A059 0, #C5A059 1px, transparent 0, transparent 50%)",
             backgroundSize: "24px 24px",
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/70 via-transparent to-[#0A0A0A]/35" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#121212]/70 via-transparent to-[#121212]/35" />
       </div>
 
       <div className="relative z-10 max-w-5xl mx-auto px-6 md:px-12 text-center text-white flex flex-col items-center">
-        <div className="flex items-center space-x-2 border border-[#D4AF37]/60 px-4 py-1.5 mb-8 animate-fade-in">
-          <Sparkles size={12} className="text-[#D4AF37]" />
+        <div className="flex items-center space-x-2 border border-[#C5A059]/60 px-4 py-1.5 mb-8 animate-fade-in">
+          <Sparkles size={12} className="text-[#C5A059]" />
           <span className="text-[10px] tracking-[0.3em] uppercase font-sans text-[#EBE8E2]">
             Doors &amp; Windows
           </span>
@@ -184,23 +184,23 @@ export const DoorsWindows: React.FC = () => {
 
         <h1 className="text-4xl md:text-7xl lg:text-8xl font-serif font-light tracking-wide leading-[1.1] mb-6 animate-fade-in-up">
           Where Architecture <br />
-          <span className="italic font-normal text-[#D4AF37]">Meets Precision</span>
+          <span className="italic font-normal text-[#C5A059]">Meets Precision</span>
         </h1>
 
-        <p className="text-sm md:text-lg tracking-wider font-light text-[#F5F0EB]/95 max-w-2xl mb-12 leading-relaxed animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
+        <p className="text-sm md:text-lg tracking-wider font-light text-[#F4F1EA]/95 max-w-2xl mb-12 leading-relaxed animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
           Custom-engineered architectural aluminium fenestration systems, made to Madio's exacting specifications for discerning residential and commercial projects.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center gap-5 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
           <Link
             to="/contact?source=doors-windows"
-            className="w-full sm:w-auto px-10 py-4 text-xs uppercase tracking-[0.25em] font-sans font-medium bg-[#D4AF37] text-white hover:bg-white hover:text-[#0A0A0A] transition-all duration-300 shadow-md text-center"
+            className="w-full sm:w-auto px-10 py-4 text-xs uppercase tracking-[0.25em] font-sans font-medium bg-[#C5A059] text-white hover:bg-white hover:text-[#121212] transition-all duration-300 shadow-md text-center"
           >
             Request a Consultation
           </Link>
           <a
             href="#systems"
-            className="w-full sm:w-auto px-10 py-4 text-xs uppercase tracking-[0.25em] font-sans font-medium border border-white text-white hover:bg-white hover:text-[#0A0A0A] transition-all duration-300 text-center"
+            className="w-full sm:w-auto px-10 py-4 text-xs uppercase tracking-[0.25em] font-sans font-medium border border-white text-white hover:bg-white hover:text-[#121212] transition-all duration-300 text-center"
           >
             View Systems
           </a>
@@ -218,12 +218,12 @@ export const DoorsWindows: React.FC = () => {
         Madio custom-engineers systems to spec; it does not manufacture
         in-house, and the production partner is not named publicly.
         ================================================================ */}
-    <section className="bg-[#F5F0EB] border-t border-[#EBE8E2] py-20 px-6 md:px-12">
+    <section className="bg-[#F4F1EA] border-t border-[#EBE8E2] py-20 px-6 md:px-12">
       <div className="max-w-4xl mx-auto text-center">
         <span className="text-[10px] tracking-[0.3em] uppercase font-sans font-medium block mb-5" style={{ color: DW_ACCENT }}>
           About Madio Doors &amp; Windows
         </span>
-        <h2 className="text-2xl md:text-3xl font-serif font-light text-[#16232B] leading-snug mb-6">
+        <h2 className="text-2xl md:text-3xl font-serif font-light text-[#121212] leading-snug mb-6">
           Engineering the future of fenestration.
         </h2>
         <p className="text-sm text-[#6B6B6B] font-light leading-relaxed mb-4">
@@ -244,7 +244,7 @@ export const DoorsWindows: React.FC = () => {
         <span className="text-[10px] tracking-[0.3em] uppercase font-sans font-medium block mb-4" style={{ color: DW_ACCENT }}>
           Product Portfolio
         </span>
-        <h2 className="text-3xl md:text-5xl font-serif font-light text-[#16232B] leading-tight">
+        <h2 className="text-3xl md:text-5xl font-serif font-light text-[#121212] leading-tight">
           Our Fenestration <span className="italic font-normal">Systems</span>
         </h2>
       </div>
@@ -265,7 +265,7 @@ export const DoorsWindows: React.FC = () => {
           <span className="text-[10px] tracking-[0.3em] uppercase font-sans font-medium block mb-4" style={{ color: DW_ACCENT }}>
             At A Glance
           </span>
-          <h2 className="text-2xl md:text-3xl font-serif font-light text-[#16232B]">
+          <h2 className="text-2xl md:text-3xl font-serif font-light text-[#121212]">
             System Comparison
           </h2>
         </div>
@@ -287,13 +287,13 @@ export const DoorsWindows: React.FC = () => {
     {/* ================================================================
         MATERIAL COMPARISON — Aluminium vs Wood vs UPVC
         ================================================================ */}
-    <section className="border-t border-[#EBE8E2] bg-[#F5F0EB]/50 py-20 px-6 md:px-12">
+    <section className="border-t border-[#EBE8E2] bg-[#F4F1EA]/50 py-20 px-6 md:px-12">
       <div className="max-w-7xl mx-auto">
         <div className="mb-10">
           <span className="text-[10px] tracking-[0.3em] uppercase font-sans font-medium block mb-4" style={{ color: DW_ACCENT }}>
             Material Comparison
           </span>
-          <h2 className="text-2xl md:text-3xl font-serif font-light text-[#16232B]">
+          <h2 className="text-2xl md:text-3xl font-serif font-light text-[#121212]">
             Why Aluminium?
           </h2>
           <p className="text-sm text-[#6B6B6B] font-light leading-relaxed max-w-2xl mt-4">
@@ -316,7 +316,7 @@ export const DoorsWindows: React.FC = () => {
           <span className="text-[10px] tracking-[0.3em] uppercase font-sans font-medium block mb-4" style={{ color: DW_ACCENT }}>
             Configurations
           </span>
-          <h2 className="text-2xl md:text-3xl font-serif font-light text-[#16232B]">
+          <h2 className="text-2xl md:text-3xl font-serif font-light text-[#121212]">
             Window &amp; Door Typologies
           </h2>
         </div>
@@ -332,13 +332,13 @@ export const DoorsWindows: React.FC = () => {
         to "Precision Engineering"; Step 3/4 reworded to remove
         "manufacturer" wording and the blanket 15-Year Warranty claim.
         ================================================================ */}
-    <section className="border-t border-[#EBE8E2] bg-[#F5F0EB]/50 py-20 px-6 md:px-12">
+    <section className="border-t border-[#EBE8E2] bg-[#F4F1EA]/50 py-20 px-6 md:px-12">
       <div className="max-w-7xl mx-auto">
         <div className="mb-12">
           <span className="text-[10px] tracking-[0.3em] uppercase font-sans font-medium block mb-4" style={{ color: DW_ACCENT }}>
             Our Process
           </span>
-          <h2 className="text-2xl md:text-3xl font-serif font-light text-[#16232B] mb-4">
+          <h2 className="text-2xl md:text-3xl font-serif font-light text-[#121212] mb-4">
             End-to-End Excellence
           </h2>
           <p className="text-sm text-[#6B6B6B] font-light leading-relaxed max-w-2xl">
@@ -348,10 +348,10 @@ export const DoorsWindows: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {madioProcess.map((step) => (
             <div key={step.step} className="bg-white border border-[#EBE8E2] p-7">
-              <span className="text-[10px] font-mono text-[#D4AF37] font-medium block mb-3">
+              <span className="text-[10px] font-mono text-[#C5A059] font-medium block mb-3">
                 Step {step.step}
               </span>
-              <h3 className="text-lg font-serif font-light text-[#16232B] mb-1">{step.title}</h3>
+              <h3 className="text-lg font-serif font-light text-[#121212] mb-1">{step.title}</h3>
               <p className="text-xs italic text-[#6B6B6B] font-light mb-5">{step.tagline}</p>
               <ul className="space-y-2">
                 {step.bullets.map((b, i) => (
@@ -376,7 +376,7 @@ export const DoorsWindows: React.FC = () => {
           <span className="text-[10px] tracking-[0.3em] uppercase font-sans font-medium block mb-4" style={{ color: DW_ACCENT }}>
             Standards
           </span>
-          <h2 className="text-2xl md:text-3xl font-serif font-light text-[#16232B]">
+          <h2 className="text-2xl md:text-3xl font-serif font-light text-[#121212]">
             Performance Standards
           </h2>
         </div>
@@ -390,13 +390,13 @@ export const DoorsWindows: React.FC = () => {
     {/* ================================================================
         ALUMINIUM ADVANTAGES
         ================================================================ */}
-    <section className="border-t border-[#EBE8E2] bg-[#F5F0EB]/50 py-20 px-6 md:px-12">
+    <section className="border-t border-[#EBE8E2] bg-[#F4F1EA]/50 py-20 px-6 md:px-12">
       <div className="max-w-7xl mx-auto">
         <div className="mb-10">
           <span className="text-[10px] tracking-[0.3em] uppercase font-sans font-medium block mb-4" style={{ color: DW_ACCENT }}>
             Why It Lasts
           </span>
-          <h2 className="text-2xl md:text-3xl font-serif font-light text-[#16232B]">
+          <h2 className="text-2xl md:text-3xl font-serif font-light text-[#121212]">
             The Advantages of Aluminium Windows
           </h2>
         </div>
@@ -410,20 +410,20 @@ export const DoorsWindows: React.FC = () => {
     {/* ================================================================
         WHY MADIO DOORS & WINDOWS
         ================================================================ */}
-    <section className="bg-[#F5F0EB]/50 border-t border-[#EBE8E2] py-20 px-6 md:px-12">
+    <section className="bg-[#F4F1EA]/50 border-t border-[#EBE8E2] py-20 px-6 md:px-12">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
         <div>
           <span className="text-[10px] tracking-[0.3em] uppercase font-sans font-medium block mb-5" style={{ color: DW_ACCENT }}>
-            Why MADIO Doors &amp; Windows
+            Why Madio Doors and Windows
           </span>
-          <h2 className="text-3xl md:text-4xl font-serif font-light text-[#16232B] leading-snug">
+          <h2 className="text-3xl md:text-4xl font-serif font-light text-[#121212] leading-snug">
             The standard for premium fenestration in India.
           </h2>
         </div>
         <div className="space-y-5">
           {whyPoints.map((point, i) => (
             <div key={i} className="flex items-start space-x-4">
-              <span className="text-[10px] font-mono text-[#D4AF37] font-medium mt-0.5 shrink-0 w-5">
+              <span className="text-[10px] font-mono text-[#C5A059] font-medium mt-0.5 shrink-0 w-5">
                 {String(i + 1).padStart(2, "0")}
               </span>
               <p className="text-sm text-[#6B6B6B] font-light leading-relaxed">{point}</p>

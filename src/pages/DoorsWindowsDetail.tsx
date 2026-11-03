@@ -11,7 +11,7 @@ import {
 import type { DWCategoryPhoto, DWSystemSpec } from "../data/doorsWindows";
 import { usePageMeta } from "../hooks/usePageMeta";
 
-const DW_ACCENT = "#D4AF37";
+const DW_ACCENT = "#C5A059";
 
 const hasValue = (v: string | undefined): v is string =>
   !!v && v.trim() !== "" && v.trim().toLowerCase() !== "todo";
@@ -60,7 +60,7 @@ const ComingSoonState: React.FC<{
     <div className="w-8 h-[2px] mx-auto mb-8" style={{ backgroundColor: DW_ACCENT }} />
 
     {(confirmedNote || (panelConfigs && panelConfigs.length > 0)) && (
-      <div className="bg-[#F5F0EB] border border-[#EBE8E2] px-6 py-5 mb-10 text-left">
+      <div className="bg-[#F4F1EA] border border-[#EBE8E2] px-6 py-5 mb-10 text-left">
         <span className="text-[9px] uppercase tracking-[0.25em] font-sans font-medium block mb-3" style={{ color: DW_ACCENT }}>
           Confirmed So Far
         </span>
@@ -72,7 +72,7 @@ const ComingSoonState: React.FC<{
             {panelConfigs.map((cfg) => (
               <span
                 key={cfg}
-                className="text-[10px] font-mono uppercase tracking-wider px-3 py-1.5 border text-[#16232B] border-[#EBE8E2] bg-white"
+                className="text-[10px] font-mono uppercase tracking-wider px-3 py-1.5 border text-[#121212] border-[#EBE8E2] bg-white"
               >
                 {cfg}
               </span>
@@ -106,8 +106,8 @@ export const DoorsWindowsDetail: React.FC = () => {
   const isAvailable = !!meta?.isPopulated || clientPhotos.length > 0;
 
   usePageMeta(
-    meta ? `${meta.name} | MADIO Doors & Windows` : "MADIO Doors & Windows",
-    meta?.description ?? "Custom-engineered architectural aluminium fenestration systems from MADIO Doors & Windows."
+    meta ? `${meta.name} | Madio Doors and Windows` : "Madio Doors and Windows",
+    meta?.description ?? "Custom-engineered architectural aluminium fenestration systems from Madio Doors and Windows."
   );
 
   // Unknown slug → redirect to landing
@@ -129,22 +129,22 @@ export const DoorsWindowsDetail: React.FC = () => {
     : [];
 
   return (
-    <div className="bg-[#FAFAF7]">
+    <div className="bg-[#F4F1EA]">
 
       {/* ── Header banner ── */}
-      <section className="relative bg-[#F5F0EB] pt-32 pb-16 px-6 md:px-12 overflow-hidden">
+      <section className="relative bg-[#F4F1EA] pt-32 pb-16 px-6 md:px-12 overflow-hidden">
         <div
           className="absolute inset-0 opacity-[0.04]"
           style={{
             backgroundImage:
-              "repeating-linear-gradient(-45deg, #D4AF37 0, #D4AF37 1px, transparent 0, transparent 50%)",
+              "repeating-linear-gradient(-45deg, #C5A059 0, #C5A059 1px, transparent 0, transparent 50%)",
             backgroundSize: "20px 20px",
           }}
         />
         <div className="relative z-10 max-w-7xl mx-auto">
           <Link
             to="/doors-windows"
-            className="inline-flex items-center space-x-2 text-xs uppercase tracking-[0.2em] font-sans text-[#6B6B6B] hover:text-[#16232B] transition-colors mb-10"
+            className="inline-flex items-center space-x-2 text-xs uppercase tracking-[0.2em] font-sans text-[#6B6B6B] hover:text-[#121212] transition-colors mb-10"
           >
             <ArrowLeft size={13} />
             <span>All Systems</span>
@@ -154,7 +154,7 @@ export const DoorsWindowsDetail: React.FC = () => {
             <span className="text-[10px] tracking-[0.3em] uppercase font-sans font-medium block mb-4" style={{ color: DW_ACCENT }}>
               {isAvailable ? "Product System" : "Coming Soon"}
             </span>
-            <h1 className="text-4xl md:text-6xl font-serif font-light text-[#16232B] leading-tight mb-4">
+            <h1 className="text-4xl md:text-6xl font-serif font-light text-[#121212] leading-tight mb-4">
               {meta.name}
             </h1>
             <p className="text-sm text-[#6B6B6B] font-light leading-relaxed max-w-xl">
@@ -190,7 +190,7 @@ export const DoorsWindowsDetail: React.FC = () => {
                       className="absolute inset-0 opacity-[0.05]"
                       style={{
                         backgroundImage:
-                          "repeating-linear-gradient(45deg, #D4AF37 0, #D4AF37 1px, transparent 0, transparent 50%)",
+                          "repeating-linear-gradient(45deg, #C5A059 0, #C5A059 1px, transparent 0, transparent 50%)",
                         backgroundSize: "20px 20px",
                       }}
                     />
@@ -205,7 +205,7 @@ export const DoorsWindowsDetail: React.FC = () => {
               </div>
 
               <div>
-                <h2 className="text-xs uppercase tracking-[0.2em] font-sans font-medium text-[#16232B] mb-4">
+                <h2 className="text-xs uppercase tracking-[0.2em] font-sans font-medium text-[#121212] mb-4">
                   Overview
                 </h2>
                 <p className="text-sm text-[#6B6B6B] font-light leading-relaxed">{system.description}</p>
@@ -213,7 +213,7 @@ export const DoorsWindowsDetail: React.FC = () => {
 
               {system.coreFeatures.length > 0 && (
                 <div className="border-t border-[#EBE8E2] pt-6">
-                  <h2 className="text-xs uppercase tracking-[0.2em] font-sans font-medium text-[#16232B] mb-4">
+                  <h2 className="text-xs uppercase tracking-[0.2em] font-sans font-medium text-[#121212] mb-4">
                     Core Performance Features
                   </h2>
                   <ul className="space-y-2.5">
@@ -229,7 +229,7 @@ export const DoorsWindowsDetail: React.FC = () => {
 
               {hasValue(system.bestFor) && (
                 <div className="border-t border-[#EBE8E2] pt-6">
-                  <h2 className="text-xs uppercase tracking-[0.2em] font-sans font-medium text-[#16232B] mb-3">
+                  <h2 className="text-xs uppercase tracking-[0.2em] font-sans font-medium text-[#121212] mb-3">
                     Best For
                   </h2>
                   <p className="text-sm text-[#6B6B6B] font-light leading-relaxed">{system.bestFor}</p>
@@ -243,14 +243,14 @@ export const DoorsWindowsDetail: React.FC = () => {
               {/* Track table — 2-track / 3-track systems only */}
               {hasTrack && (
                 <div>
-                  <h2 className="text-xs uppercase tracking-[0.2em] font-sans font-medium text-[#16232B] mb-6 flex items-center space-x-2">
+                  <h2 className="text-xs uppercase tracking-[0.2em] font-sans font-medium text-[#121212] mb-6 flex items-center space-x-2">
                     <div className="w-4 h-[2px]" style={{ backgroundColor: DW_ACCENT }} />
                     <span>Track Specification</span>
                   </h2>
                   <div className="overflow-x-auto border border-[#EBE8E2]">
                     <table className="w-full text-xs">
                       <thead>
-                        <tr className="bg-[#16232B]">
+                        <tr className="bg-[#121212]">
                           <th className="text-left font-sans font-medium uppercase tracking-[0.1em] text-[10px] text-white px-4 py-3">Specification</th>
                           <th className="text-left font-sans font-medium uppercase tracking-[0.1em] text-[10px] text-white px-4 py-3">2 Track</th>
                           <th className="text-left font-sans font-medium uppercase tracking-[0.1em] text-[10px] text-white px-4 py-3">3 Track</th>
@@ -258,20 +258,20 @@ export const DoorsWindowsDetail: React.FC = () => {
                       </thead>
                       <tbody>
                         <tr className="bg-white">
-                          <td className="px-4 py-3 font-medium text-[#16232B]">Track Width</td>
+                          <td className="px-4 py-3 font-medium text-[#121212]">Track Width</td>
                           <td className="px-4 py-3 text-[#6B6B6B] font-light">{system.specs.trackWidth?.twoTrack ?? "—"}</td>
                           <td className="px-4 py-3 text-[#6B6B6B] font-light">{system.specs.trackWidth?.threeTrack ?? "—"}</td>
                         </tr>
                         {hasValue(system.specs.frameHeight) && (
-                          <tr className="bg-[#F5F0EB]/60">
-                            <td className="px-4 py-3 font-medium text-[#16232B]">Frame Height</td>
+                          <tr className="bg-[#F4F1EA]/60">
+                            <td className="px-4 py-3 font-medium text-[#121212]">Frame Height</td>
                             <td className="px-4 py-3 text-[#6B6B6B] font-light">{system.specs.frameHeight}</td>
                             <td className="px-4 py-3 text-[#6B6B6B] font-light">{system.specs.frameHeight}</td>
                           </tr>
                         )}
                         {hasValue(system.specs.interlock) && (
                           <tr className="bg-white">
-                            <td className="px-4 py-3 font-medium text-[#16232B]">Interlock</td>
+                            <td className="px-4 py-3 font-medium text-[#121212]">Interlock</td>
                             <td className="px-4 py-3 text-[#6B6B6B] font-light">{system.specs.interlock}</td>
                             <td className="px-4 py-3 text-[#6B6B6B] font-light">{system.specs.interlock}</td>
                           </tr>
@@ -285,7 +285,7 @@ export const DoorsWindowsDetail: React.FC = () => {
               {/* Flat spec table */}
               {flatRows.length > 0 && (
                 <div>
-                  <h2 className="text-xs uppercase tracking-[0.2em] font-sans font-medium text-[#16232B] mb-6 flex items-center space-x-2">
+                  <h2 className="text-xs uppercase tracking-[0.2em] font-sans font-medium text-[#121212] mb-6 flex items-center space-x-2">
                     <div className="w-4 h-[2px]" style={{ backgroundColor: DW_ACCENT }} />
                     <span>Technical Specification</span>
                   </h2>
@@ -296,7 +296,7 @@ export const DoorsWindowsDetail: React.FC = () => {
                         className={`grid grid-cols-5 py-3.5 ${i < flatRows.length - 1 ? "border-b border-[#EBE8E2]" : ""}`}
                       >
                         <span className="col-span-2 text-[#6B6B6B] font-light">{row.label}</span>
-                        <span className="col-span-3 text-[#16232B] font-medium pl-4 leading-relaxed">{row.value}</span>
+                        <span className="col-span-3 text-[#121212] font-medium pl-4 leading-relaxed">{row.value}</span>
                       </div>
                     ))}
                   </div>
@@ -305,7 +305,7 @@ export const DoorsWindowsDetail: React.FC = () => {
 
               {/* Warranty callout — hasValue-gated, per-product (see doorsWindows.ts correction note) */}
               {hasValue(system.specs.warranty) && (
-                <div className="flex items-start space-x-3 bg-[#F5F0EB] border border-[#EBE8E2] p-5">
+                <div className="flex items-start space-x-3 bg-[#F4F1EA] border border-[#EBE8E2] p-5">
                   <CheckCircle size={16} style={{ color: DW_ACCENT }} className="shrink-0 mt-0.5" />
                   <p className="text-xs text-[#6B6B6B] font-light leading-relaxed">
                     {system.specs.warranty} Warranty. Custom RAL powder-coat and anodized finishes available on request.
@@ -327,7 +327,7 @@ export const DoorsWindowsDetail: React.FC = () => {
                 </Link>
                 <Link
                   to="/doors-windows"
-                  className="flex items-center justify-center space-x-2 w-full py-4 text-xs uppercase tracking-[0.25em] font-sans font-medium border border-[#EBE8E2] text-[#6B6B6B] hover:border-[#16232B] hover:text-[#16232B] transition-all duration-300"
+                  className="flex items-center justify-center space-x-2 w-full py-4 text-xs uppercase tracking-[0.25em] font-sans font-medium border border-[#EBE8E2] text-[#6B6B6B] hover:border-[#121212] hover:text-[#121212] transition-all duration-300"
                 >
                   <ArrowLeft size={13} />
                   <span>All Systems</span>
@@ -339,9 +339,9 @@ export const DoorsWindowsDetail: React.FC = () => {
       </div>
 
       {/* ── Related systems strip ── */}
-      <section className="border-t border-[#EBE8E2] bg-[#F5F0EB]/40 py-16 px-6 md:px-12">
+      <section className="border-t border-[#EBE8E2] bg-[#F4F1EA]/40 py-16 px-6 md:px-12">
         <div className="max-w-7xl mx-auto">
-          <h3 className="text-xs uppercase tracking-[0.2em] font-sans font-medium text-[#16232B] mb-8">
+          <h3 className="text-xs uppercase tracking-[0.2em] font-sans font-medium text-[#121212] mb-8">
             Other Systems
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -352,13 +352,13 @@ export const DoorsWindowsDetail: React.FC = () => {
                 <Link
                   key={c.id}
                   to={`/doors-windows/${c.id}`}
-                  className="bg-white border border-[#EBE8E2] p-6 group hover:border-[#D4AF37]/40 transition-all duration-300"
+                  className="bg-white border border-[#EBE8E2] p-6 group hover:border-[#C5A059]/40 transition-all duration-300"
                 >
                   <div className="w-6 h-[2px] mb-4 transition-all duration-300 group-hover:w-10" style={{ backgroundColor: DW_ACCENT }} />
                   <span className="text-[9px] uppercase tracking-[0.2em] font-sans font-medium block mb-1" style={{ color: DW_ACCENT }}>
                     {c.isPopulated || getCategoryPhotos(c.id).length > 0 ? "Product System" : "Coming Soon"}
                   </span>
-                  <p className="text-sm font-serif font-light text-[#16232B] group-hover:text-[#D4AF37] transition-colors">
+                  <p className="text-sm font-serif font-light text-[#121212] group-hover:text-[#C5A059] transition-colors">
                     {c.name}
                   </p>
                 </Link>

@@ -33,7 +33,7 @@ export const MapHeader: React.FC = () => {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${
           isScrolled || isMobileMenuOpen
-            ? "py-4 bg-[#FAFAF7]/95 backdrop-blur-md shadow-sm border-b border-[#EBE8E2]"
+            ? "py-4 bg-[#F4F1EA]/95 backdrop-blur-md shadow-sm border-b border-[#EBE8E2]"
             : "py-7 bg-transparent"
         }`}
       >
@@ -47,15 +47,15 @@ export const MapHeader: React.FC = () => {
           <div className="flex items-center space-x-6 md:space-x-8 shrink-0">
             {/* Switch Vertical dropdown */}
             <div className="hidden md:block relative group py-2 -my-2">
-              <span className="text-[11px] tracking-[0.15em] uppercase font-sans text-[#6B6B6B] hover:text-[#D4AF37] transition-colors cursor-pointer select-none">
+              <span className="text-[11px] tracking-[0.15em] uppercase font-sans text-[#6B6B6B] hover:text-[#C5A059] transition-colors cursor-pointer select-none">
                 Switch Vertical
               </span>
               <div className="absolute top-full right-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                <div className="bg-[#FAFAF7] border border-[#EBE8E2] shadow-lg py-2 min-w-[200px] text-left">
-                  <Link to="/" className="block px-5 py-2.5 text-[11px] font-sans tracking-[0.1em] uppercase font-light text-[#1A1A1A] hover:text-[#D4AF37] hover:bg-[#F5F0EB]">
-                    MADIO Furniture
+                <div className="bg-[#F4F1EA] border border-[#EBE8E2] shadow-lg py-2 min-w-[200px] text-left">
+                  <Link to="/" className="block px-5 py-2.5 text-[11px] font-sans tracking-[0.1em] uppercase font-light text-[#121212] hover:text-[#C5A059] hover:bg-[#F4F1EA]">
+                    Madio Furniture
                   </Link>
-                  <Link to="/doors-windows" className="block px-5 py-2.5 text-[11px] font-sans tracking-[0.1em] uppercase font-light text-[#1A1A1A] hover:text-[#D4AF37] hover:bg-[#F5F0EB]">
+                  <Link to="/doors-windows" className="block px-5 py-2.5 text-[11px] font-sans tracking-[0.1em] uppercase font-light text-[#121212] hover:text-[#C5A059] hover:bg-[#F4F1EA]">
                     Doors &amp; Windows
                   </Link>
                 </div>
@@ -65,7 +65,7 @@ export const MapHeader: React.FC = () => {
             {/* Request Quote button */}
             <Link
               to="/contact?source=map"
-              className="hidden md:flex items-center space-x-2 border border-[#D4AF37]/60 px-6 py-2.5 text-xs tracking-[0.2em] uppercase font-sans text-[#1A1A1A] hover:bg-[#D4AF37] hover:text-white hover:border-[#D4AF37] transition-all duration-300"
+              className="hidden md:flex items-center space-x-2 border border-[#C5A059]/60 px-6 py-2.5 text-xs tracking-[0.2em] uppercase font-sans text-[#121212] hover:bg-[#C5A059] hover:text-white hover:border-[#C5A059] transition-all duration-300"
             >
               <span>Request Quote</span>
               <ArrowRight size={14} />
@@ -74,7 +74,7 @@ export const MapHeader: React.FC = () => {
             {/* Hamburger Button (Always Visible) */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-[#1A1A1A] hover:text-[#D4AF37] transition-colors focus:outline-none p-2 -mr-2"
+              className="text-[#121212] hover:text-[#C5A059] transition-colors focus:outline-none p-2 -mr-2"
               aria-label="Toggle Menu"
             >
               {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -85,7 +85,7 @@ export const MapHeader: React.FC = () => {
 
       {/* Full-screen Overlay Menu (Always Used) */}
       <div
-        className={`fixed inset-0 z-40 bg-[#FAFAF7] transition-all duration-500 ease-in-out flex flex-col pt-24 md:pt-28 ${
+        className={`fixed inset-0 z-40 bg-[#F4F1EA] transition-all duration-500 ease-in-out flex flex-col pt-24 md:pt-28 ${
           isMobileMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"
         }`}
       >
@@ -97,7 +97,7 @@ export const MapHeader: React.FC = () => {
               end={link.path === "/map"}
               className={({ isActive }) =>
                 `text-2xl md:text-4xl font-serif tracking-[0.05em] font-light transition-all duration-300 ${
-                  isActive ? "text-[#D4AF37] border-b border-[#D4AF37] pb-1" : "text-[#1A1A1A] hover:text-[#D4AF37]"
+                  isActive ? "text-[#C5A059] border-b border-[#C5A059] pb-1" : "text-[#121212] hover:text-[#C5A059]"
                 }`
               }
             >
@@ -106,26 +106,26 @@ export const MapHeader: React.FC = () => {
           ))}
           
           <div className="pt-6 border-t border-[#EBE8E2] w-full max-w-xs flex flex-col space-y-3">
-            <span className="text-[9px] uppercase tracking-[0.25em] text-[#D4AF37] font-sans font-semibold">
+            <span className="text-[9px] uppercase tracking-[0.25em] text-[#C5A059] font-sans font-semibold">
               Other Verticals
             </span>
             <Link
               to="/"
-              className="text-lg font-serif font-light text-[#1A1A1A] hover:text-[#D4AF37] transition-colors"
+              className="text-lg font-serif font-light text-[#121212] hover:text-[#C5A059] transition-colors"
             >
-              MADIO Furniture
+              Madio Furniture
             </Link>
             <Link
               to="/doors-windows"
-              className="text-lg font-serif font-light text-[#1A1A1A] hover:text-[#D4AF37] transition-colors"
+              className="text-lg font-serif font-light text-[#121212] hover:text-[#C5A059] transition-colors"
             >
               Doors &amp; Windows
             </Link>
           </div>
         </div>
-        <div className="p-8 md:p-12 border-t border-[#EBE8E2] bg-[#F5F0EB]/60 shrink-0 text-center">
-          <p className="text-xs text-[#1A1A1A] font-light">Kondapur, Hyderabad, India</p>
-          <p className="text-xs text-[#1A1A1A] font-light mt-1">+91 99486 01899</p>
+        <div className="p-8 md:p-12 border-t border-[#EBE8E2] bg-[#F4F1EA]/60 shrink-0 text-center">
+          <p className="text-xs text-[#121212] font-light">Kondapur, Hyderabad, India</p>
+          <p className="text-xs text-[#121212] font-light mt-1">+91 99486 01899</p>
         </div>
       </div>
     </>

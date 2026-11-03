@@ -231,7 +231,7 @@ export const UploadWidget: React.FC<UploadWidgetProps> = ({ category, sessionTok
           type="button"
           onClick={() => fileInputRef.current?.click()}
           className="px-8 py-4 text-xs uppercase tracking-[0.25em] font-sans font-medium text-white transition-opacity hover:opacity-90"
-          style={{ backgroundColor: "#D4AF37" }}
+          style={{ backgroundColor: "#C5A059" }}
         >
           Upload Photos
         </button>
@@ -267,7 +267,7 @@ export const UploadWidget: React.FC<UploadWidgetProps> = ({ category, sessionTok
               type="button"
               onClick={handleUseFullPhoto}
               disabled={processing}
-              className="flex-1 px-4 py-3 text-xs uppercase tracking-[0.15em] font-sans text-[#16232B] border border-[#EBE8E2] hover:bg-[#FAFAF7] transition-colors disabled:opacity-40"
+              className="flex-1 px-4 py-3 text-xs uppercase tracking-[0.15em] font-sans text-[#121212] border border-[#EBE8E2] hover:bg-[#F4F1EA] transition-colors disabled:opacity-40"
             >
               Use Full Photo
             </button>
@@ -276,7 +276,7 @@ export const UploadWidget: React.FC<UploadWidgetProps> = ({ category, sessionTok
               onClick={() => void handleCropAndContinue()}
               disabled={processing}
               className="flex-1 px-4 py-3 text-xs uppercase tracking-[0.25em] font-sans font-medium text-white transition-opacity hover:opacity-90 disabled:opacity-40"
-              style={{ backgroundColor: "#D4AF37" }}
+              style={{ backgroundColor: "#C5A059" }}
             >
               {processing ? "Uploading…" : "Crop & Continue"}
             </button>

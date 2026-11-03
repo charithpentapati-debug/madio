@@ -21,9 +21,9 @@ export const MadioHeader: React.FC = () => {
   }, [location]);
 
   const navLinks = [
-    { path: "/",              label: "MADIO Furniture" },
+    { path: "/",              label: "Madio Furniture" },
     { path: "/map",           label: "MAP" },
-    { path: "/doors-windows", label: "MADIO Doors & Windows" },
+    { path: "/doors-windows", label: "Madio Doors and Windows" },
     { path: "/contact?source=general",       label: "Contact" },
   ];
 
@@ -40,9 +40,9 @@ export const MadioHeader: React.FC = () => {
   const navLinkClass = ({ isActive }: { isActive: boolean }) => {
     const base =
       "text-[11px] font-sans tracking-[0.15em] uppercase font-light transition-all duration-300 relative pb-1 whitespace-nowrap " +
-      "after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-[1px] after:bg-[#D4AF37] after:transition-all after:duration-300 ";
+      "after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-[1px] after:bg-[#C5A059] after:transition-all after:duration-300 ";
     return base + (isActive
-      ? "text-[#D4AF37] after:w-full"
+      ? "text-[#C5A059] after:w-full"
       : "text-white/70 hover:text-white after:w-0 hover:after:w-full");
   };
 
@@ -51,8 +51,8 @@ export const MadioHeader: React.FC = () => {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${
           isScrolled
-            ? "py-4 bg-[#0A0A0A]/95 backdrop-blur-md shadow-sm border-b border-white/10"
-            : "py-6 bg-[#0A0A0A]/80 backdrop-blur-md border-b border-white/10"
+            ? "py-4 bg-[#121212]/95 backdrop-blur-md shadow-sm border-b border-white/10"
+            : "py-6 bg-[#121212]/80 backdrop-blur-md border-b border-white/10"
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
@@ -76,14 +76,14 @@ export const MadioHeader: React.FC = () => {
                     {link.label}
                   </NavLink>
                   <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                    <div className="bg-[#FAFAF7] border border-[#EBE8E2] shadow-lg py-2 min-w-[180px]">
+                    <div className="bg-[#F4F1EA] border border-[#EBE8E2] shadow-lg py-2 min-w-[180px]">
                       {mapSubLinks.map((sub) => (
                         <NavLink
                           key={sub.path}
                           to={sub.path}
                           className={({ isActive }) =>
                             `block px-5 py-2.5 text-[11px] font-sans tracking-[0.1em] uppercase font-light transition-colors duration-200 ${
-                              isActive ? "text-[#D4AF37]" : "text-[#1A1A1A] hover:text-[#D4AF37] hover:bg-[#F5F0EB]"
+                              isActive ? "text-[#C5A059]" : "text-[#121212] hover:text-[#C5A059] hover:bg-[#F4F1EA]"
                             }`
                           }
                         >
@@ -107,7 +107,7 @@ export const MadioHeader: React.FC = () => {
           <div className="flex items-center space-x-6 shrink-0">
             <a
               href="mailto:info@madio.in"
-              className="hidden xl:block text-[11px] tracking-[0.15em] uppercase font-sans transition-colors duration-300 text-white/50 hover:text-[#D4AF37]"
+              className="hidden xl:block text-[11px] tracking-[0.15em] uppercase font-sans transition-colors duration-300 text-white/50 hover:text-[#C5A059]"
             >
               info@madio.in
             </a>
@@ -116,7 +116,7 @@ export const MadioHeader: React.FC = () => {
                 subpages are reachable without first navigating into /map */}
             <button
               onClick={() => setIsMapDrawerOpen(!isMapDrawerOpen)}
-              className="hidden md:block transition-colors focus:outline-none text-white/80 hover:text-[#D4AF37] p-1"
+              className="hidden md:block transition-colors focus:outline-none text-white/80 hover:text-[#C5A059] p-1"
               aria-label="Toggle site navigation"
               title="Site Navigation"
             >
@@ -125,7 +125,7 @@ export const MadioHeader: React.FC = () => {
 
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden transition-colors focus:outline-none text-white/80 hover:text-[#D4AF37]"
+              className="md:hidden transition-colors focus:outline-none text-white/80 hover:text-[#C5A059]"
               aria-label="Toggle menu"
             >
               {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
@@ -136,7 +136,7 @@ export const MadioHeader: React.FC = () => {
 
       {/* Full-screen mobile menu — always light cream */}
       <div
-        className={`fixed inset-0 z-40 bg-[#0A0A0A] transition-all duration-500 ease-in-out md:hidden flex flex-col pt-20 ${
+        className={`fixed inset-0 z-40 bg-[#121212] transition-all duration-500 ease-in-out md:hidden flex flex-col pt-20 ${
           isMobileMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"
         }`}
       >
@@ -149,7 +149,7 @@ export const MadioHeader: React.FC = () => {
                 className={({ isActive }) =>
                   `text-3xl font-serif tracking-[0.06em] font-light transition-all duration-300 ${
                     isActive
-                      ? "text-[#D4AF37] pl-4 border-l-2 border-[#D4AF37]"
+                      ? "text-[#C5A059] pl-4 border-l-2 border-[#C5A059]"
                       : "text-white/75 hover:text-white"
                   }`
                 }
@@ -164,7 +164,7 @@ export const MadioHeader: React.FC = () => {
                       to={sub.path}
                       className={({ isActive }) =>
                         `text-sm font-sans uppercase tracking-[0.1em] font-light transition-colors duration-300 ${
-                          isActive ? "text-[#D4AF37]" : "text-white/50 hover:text-[#D4AF37]"
+                          isActive ? "text-[#C5A059]" : "text-white/50 hover:text-[#C5A059]"
                         }`
                       }
                     >
@@ -177,8 +177,8 @@ export const MadioHeader: React.FC = () => {
           ))}
         </div>
         <div className="p-10 border-t border-white/10 bg-white/5 shrink-0">
-          <p className="text-[10px] tracking-[0.2em] uppercase text-[#D4AF37] font-sans mb-2">
-            MADIO Furniture | MAP | MADIO Doors &amp; Windows
+          <p className="text-[10px] tracking-[0.2em] uppercase text-[#C5A059] font-sans mb-2">
+            Madio Furniture | MAP | Madio Doors and Windows
           </p>
           <p className="text-xs text-white/50 font-light mt-3">Kondapur, Hyderabad, India</p>
           <p className="text-xs text-white/50 font-light mt-1">info@madio.in</p>
@@ -198,18 +198,18 @@ export const MadioHeader: React.FC = () => {
         />
         {/* Drawer content */}
         <div 
-          className={`relative w-[380px] h-full bg-[#FAFAF7] border-l border-[#EBE8E2] shadow-2xl p-12 flex flex-col justify-between z-10 transition-transform duration-500 ease-out ${
+          className={`relative w-[380px] h-full bg-[#F4F1EA] border-l border-[#EBE8E2] shadow-2xl p-12 flex flex-col justify-between z-10 transition-transform duration-500 ease-out ${
             isMapDrawerOpen ? "translate-x-0" : "translate-x-full"
           }`}
         >
           <div className="overflow-y-auto">
             <div className="flex justify-between items-center mb-10">
-              <span className="text-[10px] tracking-[0.25em] uppercase text-[#D4AF37] font-sans font-semibold">
+              <span className="text-[10px] tracking-[0.25em] uppercase text-[#C5A059] font-sans font-semibold">
                 Site Navigation
               </span>
               <button
                 onClick={() => setIsMapDrawerOpen(false)}
-                className="text-[#1A1A1A] hover:text-[#D4AF37] transition-colors p-1"
+                className="text-[#121212] hover:text-[#C5A059] transition-colors p-1"
               >
                 <X size={20} />
               </button>
@@ -224,7 +224,7 @@ export const MadioHeader: React.FC = () => {
                   end={link.path === "/"}
                   className={({ isActive }) =>
                     `text-base font-serif tracking-wide font-light transition-all duration-300 ${
-                      isActive ? "text-[#D4AF37] pl-4 border-l-2 border-[#D4AF37]" : "text-[#1A1A1A] hover:text-[#D4AF37]"
+                      isActive ? "text-[#C5A059] pl-4 border-l-2 border-[#C5A059]" : "text-[#121212] hover:text-[#C5A059]"
                     }`
                   }
                 >
@@ -234,7 +234,7 @@ export const MadioHeader: React.FC = () => {
             </nav>
 
             {/* MAP Finishes — deep links into the MAP vertical */}
-            <span className="text-[10px] tracking-[0.25em] uppercase text-[#D4AF37] font-sans font-semibold block mb-6">
+            <span className="text-[10px] tracking-[0.25em] uppercase text-[#C5A059] font-sans font-semibold block mb-6">
               MAP Finishes
             </span>
             <nav className="flex flex-col space-y-4">
@@ -244,7 +244,7 @@ export const MadioHeader: React.FC = () => {
                   to={sub.path}
                   className={({ isActive }) =>
                     `text-base font-serif tracking-wide font-light transition-all duration-300 ${
-                      isActive ? "text-[#D4AF37] pl-4 border-l-2 border-[#D4AF37]" : "text-[#1A1A1A] hover:text-[#D4AF37]"
+                      isActive ? "text-[#C5A059] pl-4 border-l-2 border-[#C5A059]" : "text-[#121212] hover:text-[#C5A059]"
                     }`
                   }
                 >
@@ -254,7 +254,7 @@ export const MadioHeader: React.FC = () => {
             </nav>
           </div>
           <div className="border-t border-[#EBE8E2] pt-8">
-            <p className="text-[9px] uppercase tracking-[0.2em] text-[#D4AF37] font-sans font-medium mb-1">
+            <p className="text-[9px] uppercase tracking-[0.2em] text-[#C5A059] font-sans font-medium mb-1">
               Kondapur, Hyderabad
             </p>
             <p className="text-xs text-[#6B6B6B] font-light mt-2">info@madio.in</p>

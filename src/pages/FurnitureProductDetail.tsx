@@ -10,7 +10,7 @@ import {
 import type { FurnitureProductSpec } from "../data/furniture";
 import { usePageMeta } from "../hooks/usePageMeta";
 
-const FURNITURE_ACCENT = "#D4AF37";
+const FURNITURE_ACCENT = "#C5A059";
 
 // Guard: hides empty / placeholder spec fields in the UI
 const hasValue = (v: string | undefined): v is string =>
@@ -32,8 +32,8 @@ export const FurnitureProductDetail: React.FC = () => {
   const previewProduct = productId ? getProductById(productId) : undefined;
 
   usePageMeta(
-    previewProduct ? `${previewProduct.name} | MADIO Furniture` : "MADIO Furniture",
-    previewProduct?.description || "MADIO Furniture — design-led furniture for residential and hospitality interiors."
+    previewProduct ? `${previewProduct.name} | Madio Furniture` : "Madio Furniture",
+    previewProduct?.description || "Madio Furniture — design-led furniture for residential and hospitality interiors."
   );
 
   // Validate route params
@@ -61,22 +61,22 @@ export const FurnitureProductDetail: React.FC = () => {
   const nextProduct = currentIdx < siblings.length - 1 ? siblings[currentIdx + 1] : null;
 
   return (
-    <div className="bg-[#FAFAF7]">
+    <div className="bg-[#F4F1EA]">
 
       {/* ── Product header banner ── */}
-      <section className="relative bg-[#F5F0EB] pt-32 pb-16 px-6 md:px-12 overflow-hidden">
+      <section className="relative bg-[#F4F1EA] pt-32 pb-16 px-6 md:px-12 overflow-hidden">
         <div
           className="absolute inset-0 opacity-[0.04]"
           style={{
             backgroundImage:
-              "repeating-linear-gradient(-45deg, #D4AF37 0, #D4AF37 1px, transparent 0, transparent 50%)",
+              "repeating-linear-gradient(-45deg, #C5A059 0, #C5A059 1px, transparent 0, transparent 50%)",
             backgroundSize: "20px 20px",
           }}
         />
         <div className="relative z-10 max-w-7xl mx-auto">
           <Link
             to={`/furniture/${category}`}
-            className="inline-flex items-center space-x-2 text-xs uppercase tracking-[0.2em] font-sans text-[#6B6B6B] hover:text-[#16232B] transition-colors mb-10"
+            className="inline-flex items-center space-x-2 text-xs uppercase tracking-[0.2em] font-sans text-[#6B6B6B] hover:text-[#121212] transition-colors mb-10"
           >
             <ArrowLeft size={13} />
             <span>{categoryMeta?.name ?? "Back"}</span>
@@ -87,10 +87,10 @@ export const FurnitureProductDetail: React.FC = () => {
               className="text-[10px] tracking-[0.3em] uppercase font-sans font-medium block mb-4"
               style={{ color: FURNITURE_ACCENT }}
             >
-              {categoryMeta?.name ?? "MADIO Furniture"}
+              {categoryMeta?.name ?? "Madio Furniture"}
             </span>
             {/* Product name — currently the SKU code until client provides real names */}
-            <h1 className="text-4xl md:text-6xl font-serif font-light text-[#16232B] leading-tight mb-2">
+            <h1 className="text-4xl md:text-6xl font-serif font-light text-[#121212] leading-tight mb-2">
               {product.name}
             </h1>
             {product.subcategory && (
@@ -127,7 +127,7 @@ export const FurnitureProductDetail: React.FC = () => {
                   className="absolute inset-0 opacity-[0.05]"
                   style={{
                     backgroundImage:
-                      "repeating-linear-gradient(45deg, #D4AF37 0, #D4AF37 1px, transparent 0, transparent 50%)",
+                      "repeating-linear-gradient(45deg, #C5A059 0, #C5A059 1px, transparent 0, transparent 50%)",
                     backgroundSize: "18px 18px",
                   }}
                 />
@@ -147,7 +147,7 @@ export const FurnitureProductDetail: React.FC = () => {
           {/* Description — empty until client provides product copy */}
           {hasValue(product.description) && (
             <div>
-              <h2 className="text-xs uppercase tracking-[0.2em] font-sans font-medium text-[#16232B] mb-3">
+              <h2 className="text-xs uppercase tracking-[0.2em] font-sans font-medium text-[#121212] mb-3">
                 Overview
               </h2>
               <p className="text-sm text-[#6B6B6B] font-light leading-relaxed">
@@ -166,7 +166,7 @@ export const FurnitureProductDetail: React.FC = () => {
             <span className="text-[10px] uppercase tracking-[0.2em] text-[#6B6B6B] font-sans block mb-1">
               Reference
             </span>
-            <span className="font-mono text-xl text-[#16232B] tracking-wider">
+            <span className="font-mono text-xl text-[#121212] tracking-wider">
               {product.sku}
             </span>
           </div>
@@ -174,7 +174,7 @@ export const FurnitureProductDetail: React.FC = () => {
           {/* Technical specs — only fields with real data from the PDF */}
           {specRows.length > 0 ? (
             <div>
-              <h2 className="text-xs uppercase tracking-[0.2em] font-sans font-medium text-[#16232B] mb-6 flex items-center space-x-2">
+              <h2 className="text-xs uppercase tracking-[0.2em] font-sans font-medium text-[#121212] mb-6 flex items-center space-x-2">
                 <div className="w-4 h-[2px]" style={{ backgroundColor: FURNITURE_ACCENT }} />
                 <span>Specification</span>
               </h2>
@@ -187,7 +187,7 @@ export const FurnitureProductDetail: React.FC = () => {
                     }`}
                   >
                     <span className="col-span-2 text-[#6B6B6B] font-light">{row.label}</span>
-                    <span className="col-span-3 text-[#16232B] font-medium pl-4 leading-relaxed">
+                    <span className="col-span-3 text-[#121212] font-medium pl-4 leading-relaxed">
                       {row.value}
                     </span>
                   </div>
@@ -207,14 +207,14 @@ export const FurnitureProductDetail: React.FC = () => {
           {/* Variants */}
           {product.variants && product.variants.length > 0 && (
             <div className="border-t border-[#EBE8E2] pt-6">
-              <h2 className="text-xs uppercase tracking-[0.2em] font-sans font-medium text-[#16232B] mb-4">
+              <h2 className="text-xs uppercase tracking-[0.2em] font-sans font-medium text-[#121212] mb-4">
                 Available Options
               </h2>
               <div className="flex flex-wrap gap-2">
                 {product.variants.map((v) => (
                   <span
                     key={v.name}
-                    className="text-[10px] font-sans uppercase tracking-wider px-3 py-1.5 border border-[#EBE8E2] text-[#16232B] bg-white"
+                    className="text-[10px] font-sans uppercase tracking-wider px-3 py-1.5 border border-[#EBE8E2] text-[#121212] bg-white"
                   >
                     {v.name}
                   </span>
@@ -238,7 +238,7 @@ export const FurnitureProductDetail: React.FC = () => {
             </Link>
             <Link
               to={`/furniture/${category}`}
-              className="flex items-center justify-center space-x-2 w-full py-4 text-xs uppercase tracking-[0.25em] font-sans font-medium border border-[#EBE8E2] text-[#6B6B6B] hover:border-[#16232B] hover:text-[#16232B] transition-all duration-300"
+              className="flex items-center justify-center space-x-2 w-full py-4 text-xs uppercase tracking-[0.25em] font-sans font-medium border border-[#EBE8E2] text-[#6B6B6B] hover:border-[#121212] hover:text-[#121212] transition-all duration-300"
             >
               <ArrowLeft size={13} />
               <span>Back to {categoryMeta?.name}</span>
@@ -250,12 +250,12 @@ export const FurnitureProductDetail: React.FC = () => {
 
       {/* ── Prev / Next navigation ── */}
       {(prevProduct || nextProduct) && (
-        <section className="border-t border-[#EBE8E2] bg-[#F5F0EB]/40 py-10 px-6 md:px-12">
+        <section className="border-t border-[#EBE8E2] bg-[#F4F1EA]/40 py-10 px-6 md:px-12">
           <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
             {prevProduct ? (
               <Link
                 to={`/furniture/${category}/${prevProduct.id}`}
-                className="group flex items-center space-x-3 text-xs font-sans text-[#6B6B6B] hover:text-[#16232B] transition-colors duration-200"
+                className="group flex items-center space-x-3 text-xs font-sans text-[#6B6B6B] hover:text-[#121212] transition-colors duration-200"
               >
                 <ArrowLeft
                   size={13}
@@ -263,7 +263,7 @@ export const FurnitureProductDetail: React.FC = () => {
                 />
                 <div>
                   <span className="text-[8px] uppercase tracking-[0.2em] text-[#C4B9A8] block">Previous</span>
-                  <span className="font-mono text-sm text-[#16232B]">{prevProduct.sku}</span>
+                  <span className="font-mono text-sm text-[#121212]">{prevProduct.sku}</span>
                 </div>
               </Link>
             ) : (
@@ -272,11 +272,11 @@ export const FurnitureProductDetail: React.FC = () => {
             {nextProduct && (
               <Link
                 to={`/furniture/${category}/${nextProduct.id}`}
-                className="group flex items-center space-x-3 text-xs font-sans text-[#6B6B6B] hover:text-[#16232B] transition-colors duration-200 text-right"
+                className="group flex items-center space-x-3 text-xs font-sans text-[#6B6B6B] hover:text-[#121212] transition-colors duration-200 text-right"
               >
                 <div>
                   <span className="text-[8px] uppercase tracking-[0.2em] text-[#C4B9A8] block">Next</span>
-                  <span className="font-mono text-sm text-[#16232B]">{nextProduct.sku}</span>
+                  <span className="font-mono text-sm text-[#121212]">{nextProduct.sku}</span>
                 </div>
                 <ArrowRight
                   size={13}
